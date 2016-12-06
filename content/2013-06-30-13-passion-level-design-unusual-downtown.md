@@ -15,38 +15,28 @@ quelques corrections à faire mais rien de bien bien gros!)
 
 Aujourd'hui je suis là pour vous présenter la première map de SinaRun 2 : **Unusual Downtown**
 
-<p>
 Avant de parler de la map directement je vais d'abord parler des
 différences qu'il y aura entre SinaRun 1 et 2. Même si les niveaux de
 SinaRun 1 étaient plutôt cool (C'est la seule partie de SinaRun 1 dont
-je suis fier) je pense qu'on peut améliorer le concept! Commençons!
+je suis fier) je pense qu'on peut améliorer le concept!
 
-<center>
+<!-- more -->
 
-
-Avertissement
--------------
-
-------------------------------------------------------------------------
+## Avertissement
 
 Je ne suis pas un level designer (Même que je suis très nul là-dedans la
 plupart du temps). Ce qui est écrit ici sont des trucs que je pense
 important pour SinaRun et qui ne s'appliquent très certainement pas à
 d'autre type de jeux.
 
-</p>
 Si vous voulez des tutoriaux à propos du level design en général je vous
 recommande [Mapcore](http://www.mapcore.org/ "MapCore") et
 [WorldOfLevelDesign](http://worldofleveldesign.com "World of Level Design")
 et si vous voulez faire des maps je recommande à 1220% de faire des maps
 pour des jeux Source. En particulier TF2 et CS:GO. C'est une très bonne
 façon d'apprendre ce qu'une map d'un jeu à besoin pour être viable.
-<span style="opacity:0.5">(Moi-même j'en ai fait et vous voyez où je
-suis maintenant! jkjk)</span>
 
 ------------------------------------------------------------------------
-
-</center>
 </p>
 • EP1 - Changement(s)
 ---------------------
@@ -77,12 +67,8 @@ des maps. Unusual Downtown (La map d'aujourd'hui) n'est justement pas
 une map rapide. Mais elle n'est pas vraiment lente non plus.. Elle joue
 entre les deux!
 
-<p>
-<center>
-<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/mnuBhFq9rqU?rel=0" frameborder="0" allowfullscreen>
-</iframe>
-</center>
-</p>
+{% youtube mnuBhFq9rqU%}
+
 <span style="font-size: 15px;">**L'illusion de pouvoir utiliser le décor
 à son avantage ne devrait pas qu'être une illusion**</span>
 Les gros piliers de Blue Collums, les murs de Blue Horse, les piliers de

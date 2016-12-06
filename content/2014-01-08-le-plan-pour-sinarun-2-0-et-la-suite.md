@@ -22,14 +22,8 @@ toi-même!"
 
 Bon. C'est vrai c'est pas très clair! On recommence désolé.
 
-<p>
-<center>
---------------------------------------------------------------
+<!-- more -->
 
-</center>
-</strong>
-
-</p>
 BONJOUR ET BIENVENUE DANS CE NOUVEL ARTICLE!
 
 Ça fait très longtemps qu'il n'y a pas eu de mise à jour pour SinaRun
