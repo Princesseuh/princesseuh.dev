@@ -107,7 +107,6 @@ MD_EXTENSIONS = [
 PLUGIN_PATHS = ['pelican-plugins', 'plugins']
 PLUGINS = [
     'lazy-youtube',
-    'optimize_images',
     'summary',
     'page-hierarchy'
 ]
