@@ -85,7 +85,7 @@ Thanks for taking interest in the game.
 
 <p>
 <center>
-<iframe src="http://store.steampowered.com/widget/324470/" frameborder="0" width="646" height="190">
+<iframe src="https://store.steampowered.com/widget/324470/" frameborder="0" width="646" height="190">
 </iframe>
 </center>
 </p>
