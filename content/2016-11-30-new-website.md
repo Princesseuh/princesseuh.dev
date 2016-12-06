@@ -2,7 +2,7 @@ Title: New Website!
 Date: 2016-11-30 03:41:18
 Author: Princesseuh
 Category: Website
-Tags: pelican
+Tags: pelican, release
 Slug: new-website
 Status: published
 
