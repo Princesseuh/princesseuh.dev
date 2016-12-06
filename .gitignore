@@ -3,11 +3,6 @@
 __pycache__/
 .sass-cache/
 
-# Those are not really helpful for the repo
-/theme/static/css/
-*.css.map
-prin.min.js
-
 # Sublime's project files
 *.sublime-project
 *.sublime-workspace
