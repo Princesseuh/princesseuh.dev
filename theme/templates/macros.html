@@ -1,0 +1,67 @@
+{% macro article_top_info(article, highlight_tag = "") %}
+    <header class="post-info">
+        <div class="date" title="{{ article.date|strftime('%B %d, %Y') }} at {{ article.date|strftime('%H:%M') }}">
+            <div class="day">{{ article.date|strftime('%d') }}</div>
+            <div class="month">{{ article.date|strftime('%b') }}</div>
+        </div>
+
+        <div class="post-meta">
+            <h1 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+
+            <div class="post-meta-info">
+                Written by {{ article.authors|join(", ") }} in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+                {% if article.tags %}
+                    -
+                    {% for tag in article.tags %}
+                        <a class="tag {% if tag == highlight_tag %}tag-highlight{% endif %}" href="{{ SITEURL }}/{{tag.url}}">#{{ tag }}</a>{% if not loop.last %},{% endif %}
+
+                    {% endfor %}
+                {% endif %}
+                <!-- <span style="float:right;"><?php comments_popup_link('No comments', 'One comment', '% comments', 'commentslink', 'Comments closed'); ?></span> -->
+            </div>
+        </div>
+    </header>
+{% endmacro %}
+
+{% macro article_list_pagination(article_page) %}
+    {% if articles_page.has_next() or articles_page.has_previous() %}
+    <footer class="pagination">
+        {% if articles_page.has_next() %}
+            <a class="prev" href="{{ SITEURL }}/{{ articles_next_page.url }}">◄ Older</a>
+        {% else %}
+            <span class="prev"></span>
+        {% endif %}
+
+        {% if articles_page.has_previous() %}
+            <a class="next" href="{{ SITEURL }}/{{ articles_previous_page.url }}">Newer ▶</a>
+        {% else %}
+            <span class="next"></span>
+        {% endif %}
+    </footer>
+    {% endif %}
+{% endmacro %}
+
+{% macro disqus_comments(article) %}
+{% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
+<section class="comments">
+    <h1>Comments</h1>
+    <noscript>
+        <p>Sorry, Javascript need to be enabled in order to see comments</p>
+    </noscript>
+    <script type="text/javascript">
+        var disqus_config = function() {
+            this.page.url = '{{ SITEURL }}/{{ article.url }}';
+            this.page.title = '{{ article.title | striptags | replace("\\", "\\\\") | replace("'", "\'") }}';
+        };
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+            dsq.setAttribute('data-timestamp', +new Date());
+            (document.head || document.body).appendChild(dsq);
+        })();
+    </script>
+</section>
+{% endif %}
+{% endmacro %}

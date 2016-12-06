@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro with context %}
+
+{% block title %}{{ article.title|striptags }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+    <article role="article">
+        {{ macro.article_top_info(article) }}
+        <div class="post-content">
+                {{ article.content }}
+        </div>
+    </article>
+
+    {{ macro.disqus_comments(article) }}
+{% endblock %}

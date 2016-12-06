@@ -1,0 +1,25 @@
+# Various caches
+*.pyc
+__pycache__/
+.sass-cache/
+
+# Those are not really helpful for the repo
+/theme/static/css/
+*.css.map
+prin.min.js
+
+# Sublime's project files
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code settings
+/.vscode/
+
+# Pelican stuff
+/pelican.pid
+/srv.pid
+/output/
+/output-publish/
+
+/content/drafts
+/content/phrase

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <meta name="author" content="{{ AUTHOR }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{{ SITEURL }}/favicon.png" rel="icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ SITEURL }}/theme/css/style.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+
+    <script src="{{ SITEURL }}/theme/js/prin.min.js"></script>
+    {% if DEBUG_ACCESSIBILITY %}
+    <script src="{{ SITEURL }}/theme/js/tota11y.min.js"></script>
+    {% endif %}
+
+    {% block additionalhead %}{% endblock %}
+
+    <noscript><style>.no-js {display: none;}</style></noscript>
+</head>
+
+<body>
+    <header role="banner">
+        <div class="container">
+            <div id="head-left">
+                <h1 id="site-title"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+                <div id="random-sentence"><noscript>Indie Game Developer!</noscript></div>
+            </div>
+        </div>
+    </header>
+
+    <nav role="navigation">
+        <div class="container">
+            <ul class="float-right">
+                <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsiveMenu()" aria-hidden="true">&#9776;</a></li>
+            </ul>
+
+            <ul role="menubar">
+              <li role="menuitem"><a href="{{ SITEURL }}/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+              <li role="menuitem"><a href="{{ SITEURL }}/blog/"><i class="fa fa-book" aria-hidden="true"></i>Blog</a></li>
+              <li role="menuitem" aria-haspopup="true"><a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                  <ul role="menu">
+                  {% for game in GAMES_LIST %}
+                    <li role="menuitem"><a href="{{ SITEURL }}/games/{{ game['url'] }}/">{{ game['name'] }}</a></li>
+                  {% endfor %}
+                  </ul>
+              </li>
+            </ul>
+
+            <ul id="contact" role="menubar">
+            {% macro render_social_link(name, url, icon) %}
+                <li role="menuitem"><a href="{{ url }}"><i class="fa fa-{{ icon }}" aria-hidden="true"></i>{{ name }}</a>
+            {% endmacro %}
+            {% for link in SOCIAL_LINKS %}{{ render_social_link(*link) }}{% endfor %}
+            </ul>
+        </div>
+    </nav>
+    {% block fullcontent %}
+    <div class="content-block container">
+        <main role="main">
+            {% block content %}{% endblock %}
+        </main>
+        {% include 'sidebar.html' %}
+    </div>
+    {% endblock %}
+
+    {% block footer %}
+    <footer role="contentinfo">
+    {% include 'footer.html' %}
+    </footer>
+    {% endblock %}
+</body>
+</html>

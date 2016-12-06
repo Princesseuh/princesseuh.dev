@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page.title|striptags }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+{# Apparently it's okay to use <article> on static pages #}
+    <article role="article">
+        <header class="post-info">
+            <div class="post-meta">
+                <h1 class="post-title"><a href="{{ SITEURL }}/{{ page.url }}" title="Permalink to {{ page.title }}">{{ page.title }}</a></h1>
+            </div>
+        </header>
+
+        <div class="post-content">
+                {{ page.content }}
+        </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro with context %}
+
+{% macro game_showcase(name, url, logo_url, featured, desc) %}
+                        <li>
+                            <a href="{{ SITEURL }}/games/{{url}}/"><img src="{{ SITEURL }}/theme/images/{{logo_url}}" alt="Small logo of {{ name }}"/></a>
+                            <div>
+                                <h3><a href="{{ SITEURL }}/games/{{url}}/">{{name}}</a></h3>
+                                <p>{{desc}}</p>
+                            </div>
+                        </li>
+{% endmacro %}
+
+{% block additionalhead %}
+    <style>body,html{height:100%}body{background-size:cover}</style>
+{% endblock %}
+
+
+{% block fullcontent %}
+    <div class="container">
+        <main role="main" class="home-landing">
+            <h1 class="landing-logo">Princesseuh</h1>
+            <p class="intro-text">Hello! I'm Princesseuh. You might know me for the video games I made or perhaps I once wrote something interesting enough to be shared.<br/><br/>Anyway, this is my website! Please sit back, reconsider everything you are told and enjoy!</h1></p>
+            <section class="work-list">
+                <section>
+                    <h2>Games</h2>
+                    <ul class="game-list">
+                        {% for game in GAMES_LIST %}
+                            {{ game_showcase(**game) }}
+                        {% endfor %}
+                        <!-- <a class="more-articles" href="/blog"><i class="fa fa-gamepad" aria-hidden="true"></i>See the full game list for more games »</a> -->
+                    </ul>
+                </section>
+                <section>
+                    <h2>Recent Articles</h2>
+                    {% set recent = articles if not all_articles else all_articles %}
+                        <ul class="recent-posts">
+                        {% for a in recent %}
+                          {% if loop.index <= 7 %}
+                            <li>
+                              <a href="{{ SITEURL }}/{{ a.url }}">{{ a.title|truncate(60, end="…") }}</a>
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                        <a class="more-articles" href="{{ SITEURL }}/blog"><i class="fa fa-book" aria-hidden="true"></i>Check the blog for more articles »</a>
+                        </ul>
+                </section>
+            </section>
+        </main>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="stick-to-end" role="contentinfo">
+{% include 'footer.html' %}
+</footer>
+{% endblock %}

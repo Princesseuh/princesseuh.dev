@@ -1,0 +1,893 @@
+// ==========================================================================
+// Variables, mixins, placeholders etc
+// TODO : Use more of these. Some things are still quite hardcoded when they could be more dynamic~
+// ==========================================================================
+
+// Variables
+// --------------------------------------------------------------------------
+$dark-bg: #454545;
+$darker-bg: #333;
+$normal-link-color: #3b76ce;
+$highlight-link-color: #266eca; // This is used in blockquote, codeblocks etc
+
+$content-padding: 0.1em 1.4em 0 1.4em;
+
+// Font Icons
+// --------------------------------------------------------------------------
+
+// I use a custom lightweight version of FontAwesome in order to not have to load the whole package to simply draw a few glyphs
+@font-face {
+  font-family: 'FontAwesomeLight';
+  src: url('../font/font-awesome-light.eot');
+  src: url('../font/font-awesome-light.eot?#iefix') format('embedded-opentype'),
+       url('../font/font-awesome-light.woff2') format('woff2'),
+       url('../font/font-awesome-light.woff') format('woff'),
+       url('../font/font-awesome-light.ttf') format('truetype'),
+       url('../font/font-awesome-light.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesomeLight;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+
+.fa-home:before {content: "\f015";}
+.fa-tag:before {content: "\f02b";}
+.fa-tags:before {content: "\f02c";}
+.fa-book:before {content: "\f02d";}
+.fa-twitter:before {content: "\f099";}
+.fa-github:before {content: "\f09b";}
+.fa-caret-down:before {content: "\f0d7";}
+.fa-caret-right:before {content: "\f0da";}
+.fa-envelope:before {content: "\f0e0";}
+.fa-bolt:before {content: "\f0e7";}
+.fa-flash:before {content: "\f0e7";}
+.fa-gamepad:before {content: "\f11b";}
+.fa-code:before {content: "\f121";}
+.fa-file-text:before {content: "\f15c";}
+.fa-bitbucket:before {content: "\f171";}
+.fa-apple:before {content: "\f179";}
+.fa-windows:before {content: "\f17a";}
+.fa-linux:before {content: "\f17c";}
+.fa-gitlab:before {content: "\f296";}
+.fa-fa:before {content: "\f2b4";}
+.fa-font-awesome:before {content: "\f2b4";}
+
+// ==========================================================================
+// Links, Titles etc
+// ==========================================================================
+a {
+    color: $normal-link-color;
+    text-decoration: none;
+
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+
+}
+
+// We actually don't have a visited color right now but we might in the future!
+h1 a, h1 a:visited,
+h2 a, h2 a:visited,
+h3 a, h3 a:visited,
+h4 a, h4 a:visited,
+h5 a, h5 a:visited,
+h6 a, h6 a:visited {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato", "Open Sans", "Helvetica", sans-serif;
+}
+
+// ==========================================================================
+// Layout
+// ==========================================================================
+
+html {
+    background-color: #f4f4f4;
+    font-size: 14px;
+}
+
+body {
+    color: #202020;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    background-image: url("../images/background.png");
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    > header {
+        min-height: 88px;
+        padding-top: 12px;
+        clear: both;
+        text-align: left;
+        background-color: $dark-bg;
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 25px;
+            margin: 0;
+            color: #fff;
+        }
+
+        #head-left {
+            max-width:510px
+        }
+
+        #random-sentence {
+            font-size:14px;
+            font-weight:700;
+            text-transform:uppercase;
+            color:#b2b2b2;
+            padding-bottom: 5px;
+
+            a {
+                color: #d6d6d6;
+            }
+        }
+
+        #head-right {
+            float:right;
+            margin-right:15px;
+            margin-top:20px
+        }
+    }
+}
+
+// Container. We use this to content the content in a container
+.container {
+    max-width: 1080px;
+    margin: auto;
+}
+
+@media screen and (max-width:1095px) {
+    body > header, body > footer .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+// Landing Page
+// --------------------------------------------------------------------------
+.home-landing {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border-radius: 3px;
+    padding: 24px;
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.landing-logo {
+    font-size: 5em;
+    margin: 0;
+    margin-bottom: 0.3em;
+}
+
+.intro-text {
+    font-size: 20px;
+}
+
+.work-list {
+    margin-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+
+    section {
+        flex: 1;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    h2 {
+        margin: 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .game-list {
+        text-align: left;
+        list-style-type: none;
+        padding-left: 0;
+
+        li {
+            clear: both;
+            display: flex;
+            min-height: 62px;
+            padding-bottom:6px;
+        }
+
+        img {
+            width: 62px;
+            height: 62px;
+            margin-right: 4px;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+    }
+
+    .recent-posts {
+        text-align: left;
+        font-size: 18px;
+        list-style-type: square;
+
+        li:last-of-type {
+            margin-bottom: 6px;
+        }
+
+    }
+
+    .more-articles {
+        text-align: right;
+        display: block;
+        font-size: 16px;
+
+        .fa {
+            margin-right: 4px;
+        }
+    }
+}
+
+// Navigation Bar
+// TODO : This is a mess!
+// --------------------------------------------------------------------------
+nav {
+    background-color: $darker-bg;
+    height: 40px;
+
+
+    ul {
+        margin: 0;
+        padding: 0;
+        line-height: 40px;
+        list-style: none;
+        position: relative;
+        display: inline-table;
+        background-color: $darker-bg;
+    }
+
+    ul:after {
+        content: ""; clear: both; display: block;
+    }
+
+    ul li {
+        float: left;
+    }
+
+    ul li a {
+        display: block;
+        color: #eaeaea;
+        padding: 0 15px;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: pre; // If we don't put this, Firefox will try to do word-wrap where it shouldn't
+    }
+
+    ul li a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    ul ul {
+        display: none;
+        position: absolute;
+        background-color: $darker-bg;
+    }
+
+    ul ul li {
+        background-color: $darker-bg;
+        border-top: 1px dotted #888;
+        float: none;
+    }
+
+    ul li:hover > ul, ul li a:focus + ul {
+        display: table;
+    }
+
+    .fa {
+        margin-right: 6px;
+    }
+
+    ul li .fa-caret-down {
+        padding-left: 8px;
+    }
+
+    #contact {
+        float: right;
+        max-height: 40px;
+        margin-right: 5px
+    }
+
+    // Color Twitter logo when we hover the button
+    // EDIT: It doesn't look very good :(
+    //  a:hover > .fa-twitter {
+    //      color: #00aced;
+    //  }
+
+    /* Responsive Thing */
+    li.icon {
+        display: none;
+    }
+}
+
+// Mobile navigation bar
+@media screen and (max-width:575px) {
+    nav {
+        #contact {display: none;}
+
+        li.icon {
+            display: inline-block;
+            padding-right: 2px;
+        }
+    }
+
+    nav.responsive {
+        position: relative;
+
+        #contact {
+            display: block;
+            float: none;
+            padding-right: 0;
+            max-height: 100%;
+        }
+
+        li.icon {
+            z-index: 2;
+            float: right;
+            position: absolute;
+            right: 0;
+        }
+
+        ul {
+            width: 100%;
+        }
+
+        li {
+            float: none;
+            display: inline;
+        }
+
+        li a {
+            display: block;
+            text-align: left;
+        }
+
+        ul ul {
+            position: relative;
+        }
+
+        ul ul li a {
+            padding-left: 35px;
+        }
+    }
+}
+
+// The main block. This include the sidebar aswell
+// --------------------------------------------------------------------------
+.content-block {
+    display: flex;
+
+    > main {
+        flex: 1;
+        background: #fff;
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+
+        // H2 that are not in articles are used to present a list of articles (example : list of articles tagged with a specific tag)
+        // Since we don't have padding outside of articles we need to manually add padding to these.
+        > h2 {
+            padding-left: 0.7em;
+        }
+    }
+
+    > aside {
+        padding: 0 10px;
+        padding-bottom: 25px;
+        width: 162px;
+
+        a {
+            color: #585858;
+
+            &:hover {
+                color: #1f1f1f;
+            }
+        }
+
+        h2 {
+            border-bottom: 1px solid rgba(168, 168, 168, 1);
+            padding-bottom: 0.15em;
+            margin-bottom: 0.6em;
+
+            &:first-child {
+                margin-top: 0.6em;
+            }
+        }
+
+        // Sidebar content.
+        // TODO : Perhaps this could be cleaned up
+        #sidebar-gamelist {
+            display: flex;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .sidebar-game {
+            flex: 1;
+        }
+
+        .sidebar-game a img {
+            margin-bottom: 5px;
+        }
+
+        #sidebar-categories {
+            border-left: 1px solid #ccc;
+            font-size: 17px;
+            list-style: none;
+            padding-left: 10px;
+            margin: 0;
+        }
+
+        #sidebar-friendlist {
+            border-left: 1px solid #ccc;
+            font-size: 16px;
+            list-style: none;
+            padding-left: 10px;
+            margin: 0;
+        }
+    }
+}
+
+// Footer
+// --------------------------------------------------------------------------
+body > footer {
+    height: 55px;
+    background-color: darken($darker-bg, 2%);
+    border-top: 12px solid darken($dark-bg, 2%);
+    font-size: 15px;
+    clear:both;
+    color:#CCC;
+
+    .container {
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    a {
+        color: #e6e6e6;
+    }
+
+    p {
+        margin: 0;
+    }
+
+}
+
+// Used on the home page to stick the footer at the bottom of the window
+.stick-to-end {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+// Responsive things
+// --------------------------------------------------------------------------
+@media screen and (max-width:900px) {
+    body {
+        background-image: none; // Avoid loading the background on small devices, save 12kb!
+    }
+
+    main {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .content-block {
+        flex-direction: column;
+
+        > aside {
+            width: auto;
+        }
+    }
+
+    .youtube-embed img {
+        height: initial;
+        // This fix youtube's embed on mobile.
+        // Fun Fact : This was the first time in my life I used initial
+    }
+
+    .home-landing {
+        padding: 18px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border-radius: 0;
+    }
+
+    .landing-logo {
+        font-size: 4em;
+    }
+
+    .work-list {
+        flex-direction: column;
+        padding: 0;
+
+        .recent-posts {
+            padding-left: 20px;
+        }
+    }
+
+    body > footer {
+        font-size: 14px;
+    }
+
+    .stick-to-end {
+        position: static;
+    }
+}
+
+// ==========================================================================
+// Articles/Pages
+// ==========================================================================
+
+// Post Info
+// TODO : Another mess!
+// --------------------------------------------------------------------------
+.post-info {
+    display: flex;
+    margin-top: 0.70em;
+    border-bottom: 1px solid #9F9F9F;
+    border-top: 1px solid #656565;
+    padding: 8px 10px 10px 10px;
+    clear: both;
+}
+
+main article:first-child .post-info {
+    padding-top: 0;
+    border-top: none;
+}
+
+.post-info .date {
+    border-right: 3px solid #484848;
+    padding-right: 8px;
+}
+
+.post-info .date .day{
+    font-size:23px;
+    color: #464646;
+    text-align:center;
+    text-transform:uppercase
+}
+
+.post-info .date .month{
+    font-size:14px;
+    color: #2b2b2b;
+    clear:both;
+    text-align:right;
+    text-transform:uppercase
+}
+
+.post-info .post-meta {
+    padding-left:8px;
+    float:left
+}
+
+.post-info .post-title {
+    margin: 0;
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+.post-info .post-title a {
+    font-size:23px;
+    clear:both;
+}
+
+.post-info .post-title a:hover{
+    color:#000;
+}
+
+.post-info .post-meta-info {
+    padding-top: 2px;
+    font-size: 0.99em;
+    color: #404040;
+}
+
+.post-info .post-meta-info a {
+    color: #7b7b7b;
+    text-decoration: underline;
+}
+
+.post-info .post-meta-info a:hover {
+    color: #000;
+}
+
+.post-info .post-meta-info .tag-highlight {
+    font-weight: bold;
+}
+
+// Content
+// --------------------------------------------------------------------------
+.post-content {
+    text-align: justify;
+    word-wrap: break-word;
+    line-height: 1.5;
+    padding: $content-padding;
+
+    a code {
+        color: $highlight-link-color;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+
+        // We use immediate em for captions
+        // TODO : We should probably use figures..
+        + * {
+            display: block;
+            text-align: center;
+            margin-top: 4px;
+        }
+    }
+
+    iframe {
+        border : 0;
+        max-width: 100%; // Prevent Steam, Itch.io etc embeds from breaking everything
+    }
+
+    // Youtube embed
+    .youtube-wrapper {
+        max-width: 640px;
+        margin: 0 auto;
+
+        %transform-play-button {
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0 );
+        }
+
+        .youtube-embed {
+            background-color: #000;
+            margin-bottom: 1.5em;
+            position: relative;
+            padding-top: 56.23%;
+            overflow: hidden;
+            cursor: pointer;
+
+            &:hover .play-button {
+                background-color: #cc181e;
+                opacity: 1;
+            }
+
+            img, iframe, .play-button, .play-button:before {
+                position: absolute;
+            }
+
+            img {
+                width: 100%;
+                top: -16.72%;
+                left: 0;
+                opacity: 0.9;
+            }
+
+            iframe {
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            .play-button {
+                @extend %transform-play-button;
+                width: 68px;
+                height: 48px;
+                background-color: #1f1f1f;
+                z-index: 1;
+                opacity: 0.81;
+                border-radius: 5px;
+                transition: background-color 0.1s cubic-bezier(0, 0, 0.2, 1);
+
+                &:before {
+                    @extend %transform-play-button;
+                    left: 52%;
+                    content: "";
+                    border-style: solid;
+                    border-width: 9px 0 9px 16px;
+                    border-color: transparent transparent transparent #fff;
+                }
+            }
+        }
+    }
+
+    blockquote {
+        margin: 1em 0;
+        color: #707070;
+        padding: 1px 1em 1px 1.17em;
+        background-color: rgba(0, 0, 0, 0.04);
+        border-left:.33em solid #ccc;
+
+        code {
+            color: #696969;
+        }
+
+        a {
+            color: $highlight-link-color;
+        }
+    }
+
+    code {
+        padding: 0.2em 0.4em;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 2px;
+    }
+
+    table.highlighttable {
+        width: 100%;
+        line-height: 1.2;
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        td.linenos {
+            width: 1em;
+            margin: 0;
+            text-align: center;
+            vertical-align: top;
+            background: #eaeaea;
+        }
+
+        td {
+            padding: .5em;
+        }
+
+        pre {
+            margin: 0;
+        }
+    }
+
+    // Code highlighting
+    .code  {
+        background: #f4f4f4;
+        padding: .5em;
+        overflow: auto;
+
+        .hll { background-color: #ffffcc }
+        .c { color: #408080; font-style: italic } /* Comment */
+        .err { border: 1px solid #FF0000 } /* Error */
+        .k { color: #008000; font-weight: bold } /* Keyword */
+        .o { color: #666666 } /* Operator */
+        .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+        .cp { color: #BC7A00 } /* Comment.Preproc */
+        .c1 { color: #408080; font-style: italic } /* Comment.Single */
+        .cs { color: #408080; font-style: italic } /* Comment.Special */
+        .gd { color: #A00000 } /* Generic.Deleted */
+        .ge { font-style: italic } /* Generic.Emph */
+        .gr { color: #FF0000 } /* Generic.Error */
+        .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+        .gi { color: #00A000 } /* Generic.Inserted */
+        .go { color: #808080 } /* Generic.Output */
+        .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+        .gs { font-weight: bold } /* Generic.Strong */
+        .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+        .gt { color: #0040D0 } /* Generic.Traceback */
+        .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+        .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+        .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+        .kp { color: #008000 } /* Keyword.Pseudo */
+        .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+        .kt { color: #B00040 } /* Keyword.Type */
+        .m { color: #666666 } /* Literal.Number */
+        .s { color: #BA2121 } /* Literal.String */
+        .na { color: #7D9029 } /* Name.Attribute */
+        .nb { color: #008000 } /* Name.Builtin */
+        .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+        .no { color: #880000 } /* Name.Constant */
+        .nd { color: #AA22FF } /* Name.Decorator */
+        .ni { color: #999999; font-weight: bold } /* Name.Entity */
+        .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+        .nf { color: #0000FF } /* Name.Function */
+        .nl { color: #A0A000 } /* Name.Label */
+        .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+        .nt { color: #008000; font-weight: bold } /* Name.Tag */
+        .nv { color: #19177C } /* Name.Variable */
+        .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+        .w { color: #bbbbbb } /* Text.Whitespace */
+        .mf { color: #666666 } /* Literal.Number.Float */
+        .mh { color: #666666 } /* Literal.Number.Hex */
+        .mi { color: #666666 } /* Literal.Number.Integer */
+        .mo { color: #666666 } /* Literal.Number.Oct */
+        .sb { color: #BA2121 } /* Literal.String.Backtick */
+        .sc { color: #BA2121 } /* Literal.String.Char */
+        .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+        .s2 { color: #BA2121 } /* Literal.String.Double */
+        .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+        .sh { color: #BA2121 } /* Literal.String.Heredoc */
+        .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+        .sx { color: #008000 } /* Literal.String.Other */
+        .sr { color: #BB6688 } /* Literal.String.Regex */
+        .s1 { color: #BA2121 } /* Literal.String.Single */
+        .ss { color: #19177C } /* Literal.String.Symbol */
+        .bp { color: #008000 } /* Name.Builtin.Pseudo */
+        .vc { color: #19177C } /* Name.Variable.Class */
+        .vg { color: #19177C } /* Name.Variable.Global */
+        .vi { color: #19177C } /* Name.Variable.Instance */
+        .il { color: #666666 } /* Literal.Number.Integer.Long */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.25;
+    }
+
+    h2 {
+        padding-bottom: 0.2em;
+        border-bottom: 1px solid #eee;
+    }
+
+    .read-more {
+        line-height: 1;
+        padding: .5em .75em;
+        background-color: $dark-bg;
+        border: 1px solid transparent;
+        color: #e8e8e8;
+        border-radius: 2px;
+        float: right;
+        margin-bottom: 15px;
+    }
+}
+
+.comments {
+    padding: $content-padding;
+
+    h1 {
+        margin: 0.32em;
+        margin-left: 0;
+        margin-right: 0;
+        border-bottom: 1px solid #9F9F9F;
+        padding-bottom: 0.2em;
+    }
+}
+
+// Pagination
+.pagination {
+    clear: both;
+    display: flex;
+    text-align: center;
+    padding: 14px;
+    border-top: 1px solid #9F9F9F;
+
+    > a, > span {
+        flex: 1;
+        font-weight: bold;
+        color: #585858;
+    }
+}
+
+// Random utilities
+.float-right {
+    float: right;
+}

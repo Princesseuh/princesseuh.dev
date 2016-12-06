@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro with context %}
+
+{% block title %}#{{ tag.name }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+    <h2 class="articles-tagged"><i class="fa fa-tags" aria-hidden="true"></i> Articles tagged #{{ tag.name }}</h2>
+    {% for article in articles_page.object_list %}
+        <article>
+        {{ macro.article_top_info(article, tag.name) }}
+            <div class="post-content">
+                {{ article.summary }}
+
+            {% if article.summary != article.content %}
+                <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">See the full article</a>
+            {% endif %}
+            </div>
+        </article>
+    {% endfor %}
+    {{ macro.article_list_pagination(article_page) }}
+{% endblock %}

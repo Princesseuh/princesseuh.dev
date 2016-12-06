@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{# Apparently it's okay to use <article> on static pages #}
+    <article role="article">
+        <div class="post-content">
+                {{ page.content }}
+        </div>
+    </article>
+{% endblock %}

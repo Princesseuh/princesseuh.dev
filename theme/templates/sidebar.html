@@ -1,0 +1,45 @@
+{% macro render_game(name, url, logo_url, featured, desc) %}
+    <div class="sidebar-game">
+        <a href="{{ SITEURL }}/games/{{ url }}/">
+            <img title="{{ name }}" width="125" height="125" src="{{ SITEURL }}/theme/images/{{ logo_url }}" alt="Small logo of {{ name }}"/></br>
+            {{ name }}
+        </a>
+    </div>
+{% endmacro %}
+
+{% macro render_friend(name, url) %}
+    <li class="sidebar-friend">
+        <a href="{{ url }}">‣ {{ name }}</a>
+    </li>
+{% endmacro %}
+
+<aside role="complementary">
+    <h2>Featured game</h2>
+    <div id="sidebar-gamelist">
+        {% for game in GAMES_LIST if game.featured %}
+            {{ render_game(**game) }}
+        {% endfor %}
+    </div>
+
+    <h2>Categories</h2>
+    <ul id="sidebar-categories">
+    {% for category, articles in categories %}
+    <li>
+        <a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a>
+    </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Tags</h2>
+    {% for tag, articles in tags if articles | length > 1 %}
+    <a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %},{% endif %}
+    {% endfor %}
+
+    <h2>Creative friends</h2>
+    <ul id="sidebar-friendlist">
+    {% for friend in SIDEBAR_FRIENDS %}
+        {{ render_friend(*friend) }}
+    {% endfor %}
+    </ul>
+</aside>
+
