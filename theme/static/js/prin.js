@@ -35,7 +35,7 @@ function generateHeader() {
         }
     }
 
-    xhr.open('GET', "http://princesseuh.eu/new/phrase", true)
+    xhr.open('GET', "https://princesseuh.eu/new/phrase", true)
     xhr.send();
 }
 
