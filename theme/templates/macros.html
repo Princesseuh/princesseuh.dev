@@ -45,9 +45,11 @@
 {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
 <section class="comments">
     <h1>Comments</h1>
-    <noscript>
-        <p>Sorry, Javascript need to be enabled in order to see comments</p>
-    </noscript>
+    <div id="disqus_thread" aria-live="polite">
+        <noscript>
+            <p>Sorry, JavaScript need to be enabled in order to see comments</p>
+        </noscript>
+    </div>
     <script type="text/javascript">
         var disqus_config = function() {
             this.page.url = '{{ SITEURL }}/{{ article.url }}';
