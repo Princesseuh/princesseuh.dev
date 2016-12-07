@@ -31,7 +31,7 @@
     </ul>
 
     <h2>Tags</h2>
-    {% for tag, articles in tags if articles | length > 1 %}
+    {% for tag, articles in tags|sort if articles | length > 1 %}
     <a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %},{% endif %}
     {% endfor %}
 

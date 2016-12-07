@@ -12,7 +12,7 @@
                 Written by {{ article.authors|join(", ") }} in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
                 {% if article.tags %}
                     -
-                    {% for tag in article.tags %}
+                    {% for tag in article.tags|sort %}
                         <a class="tag {% if tag == highlight_tag %}tag-highlight{% endif %}" href="{{ SITEURL }}/{{tag.url}}">#{{ tag }}</a>{% if not loop.last %},{% endif %}
 
                     {% endfor %}

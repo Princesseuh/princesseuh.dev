@@ -8,7 +8,6 @@ from liquid_tags.mdx_liquid_tags import LiquidTags
 
 @LiquidTags.register('youtube')
 def youtube(preprocessor, tag, markup):
-    # Syntax is: filename [thumbnail] [title]
     parts = markup.split(None, 2)
 
     result_string = """
