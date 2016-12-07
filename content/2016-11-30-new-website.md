@@ -40,7 +40,7 @@ It worked great back then and I had some experience with it! Unfortunately being
 
 I then stumbled upon Grav. To be honest.. I didn't really gave it a chance but checking it out I was quickly confused by how pages and templates worked. I'm sure it's great though!
 
-Obviously, there was no reason to limit myself to PHP. I've certainly 'grown up' in programming languages since my first websites and certainly would be able to use Python, Javascript (Node.js) etc. Python in particular is one of my favorite languages so hey, let's look that way!
+Obviously, there was no reason to limit myself to PHP. I've certainly 'grown up' in programming languages since my first websites and certainly would be able to use Python, JavaScript (Node.js) etc. Python in particular is one of my favorite languages so hey, let's look that way!
 
 There's quite a lot of static site generators and blogging softwares in Python but [Pelican](http://blog.getpelican.com/) seemed to be the most popular and it actually.. Did fit my needs pretty nicely!
 
@@ -51,13 +51,13 @@ It was in Python (duh), it allowed writing articles easily in Markdown and of co
 
 Honorable mention to Jekyll, Hugo and Hexo which all looked neat (specially Hugo. I like Go and the documentation seemed extra nice)
 
-And so Pelican it was!#####
+And so Pelican it was!
 
 ### Downside
 
-Unfortunately due to being a static website, the few 'dynamic' parts of the website needed to be emulated through Javascript (the devil!).
+Unfortunately due to being a static website, the few 'dynamic' parts of the website needed to be emulated through JavaScript (the devil!).
 
-So comments and the random sentences in the header won't work if Javascript is disabled, sorry! That's pretty much the only bad part of it though and those features are not core to the website anyway.
+So comments and the random sentences in the header won't work if JavaScript is disabled, sorry! That's pretty much the only bad part of it though and those features are not core to the website anyway.
 
 ## Design
 
