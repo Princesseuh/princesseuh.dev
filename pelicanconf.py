@@ -96,12 +96,15 @@ FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})-(?P<slug>.*)'
 # Typogrify. This can cause a lot of issue. We'll have to keep an eye out!
 TYPOGRIFY = True
 
-MD_EXTENSIONS = [
-    'codehilite(css_class=highlight, linenums=True)',
-    'extra',
-    'fenced_code',
-    'toc(anchorlink=True)'
-]
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight', 'linenums': True},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.fenced_code': {},
+        'markdown.extensions.toc': {'anchorlink': True},
+    },
+    'output_format': 'html5',
+}
 
 # Plugins
 PLUGIN_PATHS = ['pelican-plugins', 'plugins']
@@ -115,4 +118,4 @@ SUMMARY_END_MARKER = '<!-- more -->'
 SUMMARY_MAX_LENGTH = None
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True

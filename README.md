@@ -1,6 +1,6 @@
 # princesseuh.net
 
-Source code of my website, https://princesseuh.net/
+Source code of my website, [princesseuh.net](https://princesseuh.net/)
 
 It's powered by [Pelican](http://blog.getpelican.com/), a static website generator in Python
 
