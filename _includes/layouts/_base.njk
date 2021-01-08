@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title + " - " + metadata.title if title else metadata.title }}</title>
 
+  <link rel="preload" href="/prin.css" as="style">
   <link rel="stylesheet" href="/prin.css">
 
   {# We still include the style element even if empty so we can add to it through Javascript if needed #}
@@ -13,6 +14,7 @@
     {{ page.url | getCss | safe }}
   {% endif %}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tota11y/0.1.6/tota11y.min.js" integrity="sha512-1HVjtS0xDBXlnujfjKAaWul3+WZf4hcniLWuXm82KsfodAliukKsfpkgkIjL5MbSHIpe5t8+vT282xjPT5BuTg==" crossorigin="anonymous"></script>
 </head>
 <body>
   <div id="app">
@@ -46,7 +48,7 @@
       </section>
     </footer>
   </div>
-  <script src="/theme/spa.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+  <script src="/theme/spa.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous" async></script>
 </body>
 </html>

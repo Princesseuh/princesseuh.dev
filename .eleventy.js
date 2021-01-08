@@ -9,6 +9,7 @@ const markdownItAnchor = require('markdown-it-anchor')
 const pluginTOC = require('eleventy-plugin-toc')
 
 const AssetManager = require('@11ty/eleventy-assets')
+const Image = require("@11ty/eleventy-img");
 
 const postcss = require('postcss');
 const postcssNested = require('postcss-nested');
@@ -20,6 +21,26 @@ const typographyPlugin = require("@jamshop/eleventy-plugin-typography");
 
 function getCssFilePath(componentName) {
   return `theme/${componentName}.css`;
+}
+
+async function imageShortcode(src, alt, caption, sizes) {
+  let metadata = await Image(src, {
+    widths: [600, null],
+    formats: ["avif", "webp", "jpeg"],
+    outputDir: './_site/img/'
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  };
+
+  // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
+  let html = Image.generateHTML(metadata, imageAttributes);
+  let captionHtml = caption ? `<figcaption>${caption}</figcaption>` : ''
+  return `<figure>${html}${captionHtml}</figure>`
 }
 
 module.exports = function (config) {
@@ -70,6 +91,8 @@ module.exports = function (config) {
   config.on("beforeWatch", () => {
     cssManager.resetComponentCode();
   });
+
+  config.addNunjucksAsyncShortcode("image", imageShortcode);
 
   // TODO: Implement Youtube shortcode
   config.addShortcode('youtube', function(id) {return `${id}`})

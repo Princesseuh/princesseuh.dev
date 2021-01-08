@@ -11,7 +11,7 @@ During the developement of this version of my website I encountered a few pain p
 
 Please note that this article was written progressively while making the website so some points are not necessarily still relevant to the final product nor to the current state of the projects used
 
-![Eleventy's logo. 11 ty](./11ty-logo.png)*Shouldn't it be 6ty?*
+{% image "./articles/eleventy-painpoints/11ty-logo.png", "Eleventy's logo. 11 ty", "Shouldn't it be 6ty?" %}
 
 # Issues
 ## [eleventy-plugin-vue](https://github.com/11ty/eleventy-plugin-vue)
@@ -36,7 +36,7 @@ Apart from those two issues, working with `eleventy-assets` was really pleasant.
 
 ## Markdown
 
-- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `blog/eleventy-painpoints/eleventy-paintpoints.md`). I had to manually add a watch target pointing to the folder where my articles are contained (here `blog`). Weird
+- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `blog/eleventy-painpoints/eleventy-paintpoints.md`). I had to manually add a watch target pointing to the folder where my articles are contained (here `blog`). Felt a bit unintuitive
 
 These last few years, it seems like the JS ecosystem is just now discovering that long build times are painful for writing content (May [Vite](https://github.com/vuejs/vite) and [Vitepress](https://github.com/vuejs/vitepress) saves us all) however, I must admit that Eleventy does a pretty good job at that, currently build times are around **100ms**
 
@@ -48,18 +48,8 @@ Apart from those few problems (which, all things considered are all pretty minor
 
 Some things are definitely harder to do using Eleventy than others generators but overall, it has just the right amount of magic so that it's really fun to use yet it's not magic enough that you feel like you're not in control. I'm not sure if that make sense, maybe it doesn't, but it does to me ha!
 
-![Eleventy's slogan "Eleventy is a simpler static site generator."](./11ty-tag.png)
+{% image "./articles/eleventy-painpoints/11ty-tag.png", 'Eleventy\'s slogan Eleventy is a simpler static site generator.' %}
 
 In a way, it kinda reminds me of [Arch Linux](https://archlinux.org/)? As in, it's "simple" yet it can be hard to get into but once you know your stuff, everything works just as you want it to
 
 Anyway, I liked using Eleventy, it was cool
-
-```css
-.wiki--layout {
-  max-width: min(1280px, 100%);
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 3%;
-  grid-template-columns: 14% 63% 17%;
-}
-```

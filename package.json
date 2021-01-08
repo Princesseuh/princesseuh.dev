@@ -38,6 +38,7 @@
     "postcss-nested": "^5.0.3"
   },
   "dependencies": {
-    "@11ty/eleventy-assets": "^1.0.4"
+    "@11ty/eleventy-assets": "^1.0.4",
+    "@11ty/eleventy-img": "^0.7.3"
   }
 }

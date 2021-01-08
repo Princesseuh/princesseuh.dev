@@ -46,6 +46,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .toc {
+  position: sticky;
+  top: 2rem;
+
   ol {
     list-style-type: none;
     margin: 0;
@@ -55,6 +58,18 @@ h1, h2, h3, h4, h5 {
   a {
     color: var(--subtle-font-color);
   }
+}
+
+h1, h2, h3, h4, h5 {
+  &:hover {
+    .anchor-link {
+      display: inline;
+    }
+  }
+}
+
+.anchor-link {
+  display: none;
 }
 
 article {
@@ -100,18 +115,20 @@ article {
     margin-bottom: 1em;
   }
 
-  img {
+  figure {
     margin: 0 auto;
     margin-top: 1.4rem;
+    margin-bottom: 1rem;
     max-width: 100%;
     display: block;
     text-align: center;
+  }
 
-    & + em {
-      text-align: center;
-      display: block;
-      margin: 0.25em 0;
-    }
+  figcaption {
+    text-align: center;
+    display: block;
+    margin: 0.25em 0;
+    font-style: italic;
   }
 
   > h1, > h2 {
