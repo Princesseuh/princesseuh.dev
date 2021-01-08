@@ -17,7 +17,8 @@
     {%- for project in collections.project | featured -%}
       <div>
         <a href="{{ project.url }}">
-          <img src="projects/{{ project.data.type }}s/{{ project.fileSlug }}/cover.png">
+          {% set cover = "projects/"+ project.data.type + "s/" + project.fileSlug + "/cover.png" %}
+          {% cover cover, "Eleventy's logo. 11 ty", undefined %}
           <h4>{{ project.data.title }}</h4>
         </a>
       </div>

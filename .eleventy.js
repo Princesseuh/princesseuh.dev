@@ -23,6 +23,34 @@ function getCssFilePath(componentName) {
   return `theme/${componentName}.css`;
 }
 
+async function indexCoverShortcode(src, alt, sizes) {
+  if (alt === undefined) {
+    // You bet we throw an error on missing alt (alt="" works okay)
+    throw new Error(`Missing \`alt\` on responsiveimage from: ${src}`);
+  }
+
+  let metadata = await Image(src, {
+    widths: [380, 600],
+    formats: ["avif", "webp", "jpeg"],
+    outputDir: './_site/img/'
+  });
+
+  let lowsrc = metadata.jpeg[0];
+
+  return `<picture>
+    ${Object.values(metadata).map(imageFormat => {
+    return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
+  }).join("\n")}
+      <img
+        src="${lowsrc.url}"
+        width="377"
+        height="180"
+        alt="${alt}"
+        loading="lazy"
+        decoding="async">
+    </picture>`;
+}
+
 async function imageShortcode(src, alt, caption, sizes) {
   let metadata = await Image(src, {
     widths: [600, null],
@@ -93,6 +121,7 @@ module.exports = function (config) {
   });
 
   config.addNunjucksAsyncShortcode("image", imageShortcode);
+  config.addNunjucksAsyncShortcode("cover", indexCoverShortcode);
 
   // TODO: Implement Youtube shortcode
   config.addShortcode('youtube', function(id) {return `${id}`})
