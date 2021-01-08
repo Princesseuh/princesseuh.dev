@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/post.njk",
+  "tags": "project",
+  "featured": false
+}

@@ -1,0 +1,43 @@
+{
+  "name": "princesseuh",
+  "private": true,
+  "version": "0.1.0",
+  "description": "My personal website 💐",
+  "scripts": {
+    "dev": "ELEVENTY_EXPERIMENTAL=true eleventy --serve",
+    "build": "ELEVENTY_EXPERIMENTAL=true eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Princesseuh/pricesseuh.dev.git"
+  },
+  "keywords": [
+    "eleventy",
+    "blog",
+    "static"
+  ],
+  "author": "Princesseuh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Princesseuh/pricesseuh.dev/issues"
+  },
+  "homepage": "https://github.com/Princesseuh/pricesseuh.dev#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+    "@jamshop/eleventy-plugin-typography": "^1.0.0",
+    "clean-css": "^4.2.3",
+    "csso": "^4.2.0",
+    "eleventy-plugin-toc": "^1.1.0",
+    "html-minifier-terser": "^5.1.1",
+    "luxon": "^1.25.0",
+    "markdown-it-anchor": "^7.0.0",
+    "postcss": "^8.2.2",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-import": "^14.0.0",
+    "postcss-nested": "^5.0.3"
+  },
+  "dependencies": {
+    "@11ty/eleventy-assets": "^1.0.4"
+  }
+}

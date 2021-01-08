@@ -1,0 +1,4 @@
+{
+  "layout": "layouts/wiki.njk",
+  "tags": "wiki"
+}

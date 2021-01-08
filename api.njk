@@ -1,0 +1,15 @@
+---
+pagination:
+  data: collections.all
+  size: 1
+  alias: post
+permalink: /api/{{ post.filePathStem if post.filePathStem == '/index' else post.fileSlug }}.json
+---
+{
+  "title": "{{ post.data.title }}",
+  "tagline": "{{ post.data.tagline }}",
+  "date": "{{ post.date.toUTCString() }}",
+  "content": "{{ post.templateContent | typogrify | replace('\n', '') }}",
+  "style": "{{ post.url | getCss | replace('\n', '')}}",
+  "toc": "{{ post.templateContent | toc | replace('\n', '')}}"
+}

@@ -1,0 +1,20 @@
+---
+layout: layouts/_base.njk
+---
+<article>
+  <header class="article--header">
+    <h1 class="article--title">{{ title | safe }}</h1>
+    <h2 class="article--tagline">{{ tagline | safe }}</h2>
+    <div class="article--meta">
+      <span class="article--date">{{ date | readableDate }}</span>
+      ·
+      <span class="article--tags">
+        {%- for tag in tags -%}
+          <span class="article--tag"><a href="#">{{ tag }}</a></span>{{ ', ' if not loop.last }}
+        {%- endfor -%}
+      </span>
+    </div>
+  </header>
+
+  {{ content | typogrify | safe }}
+</article>

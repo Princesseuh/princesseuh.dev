@@ -1,0 +1,318 @@
+@import '_normalize.css';
+@import '_variables.css';
+
+html, body {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  background-color: var(--footer-bg-color);
+  color: var(--font-color);
+}
+
+#app {
+  background-color: var(--main-bg-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--links-color);
+  transition: color .1s;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--links-hover-color)
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  letter-spacing: -0.01em;
+}
+
+.wiki--layout {
+  max-width: min(1280px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 3%;
+  grid-template-columns: 14% 63% 17%;
+
+  aside {
+    margin-top: 2.5rem;
+  }
+}
+
+.on-this-page {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.toc {
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: var(--subtle-font-color);
+  }
+}
+
+article {
+  margin-bottom: 3rem;
+
+  > * {
+    max-width: min(800px, 100%);
+    margin: 0 auto;
+  }
+
+  &.index > * {
+    max-width: min(880px, 100%);
+    padding: .7rem 0;
+  }
+
+  &.wiki .article--header  {
+    margin: 1rem auto 1rem;
+  }
+
+  .article--title {
+    font-size: 3.5em;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .article--tagline {
+    line-height: 1.35;
+    position: relative;
+    top: -4px;
+    font-size:1.2rem;
+    margin: 0;
+  }
+
+  .article--header {
+    margin: 1rem auto 2rem;
+  }
+
+  .article--meta {
+    color: var(--subtle-font-color)
+  }
+
+  p, ul, pre {
+    margin-bottom: 1em;
+  }
+
+  img {
+    margin: 0 auto;
+    margin-top: 1.4rem;
+    max-width: 100%;
+    display: block;
+    text-align: center;
+
+    & + em {
+      text-align: center;
+      display: block;
+      margin: 0.25em 0;
+    }
+  }
+
+  > h1, > h2 {
+    padding-bottom: 1rem
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  code:before {
+    content: "/!\\ missing style /!\\";
+    color:red;
+  }
+
+  li > p {
+    margin-bottom: 0.5em;
+  }
+
+  footer {
+    padding: 1rem;
+    text-align: right;
+  }
+}
+
+.hello {
+  font-size: 2em;
+  margin: 1rem 0;
+}
+
+.name {
+  color: var(--links-color);
+  font-weight: 700;
+}
+
+.nickname {
+  color: var(--links-hover-color);
+  font-weight: 600;
+}
+
+.featured-works {
+  margin: .5rem 2.5rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  img {
+    margin: 0;
+    object-fit: cover;
+    object-position: top;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    border-radius: .15rem;
+  }
+
+  h4 {
+    position: absolute;
+    color: var(--font-color);
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 180px;
+    font-size: 1.7em;
+    background-color: rgba(242, 145, 160, 0.8 );
+    opacity: 0;
+    transition: opacity .1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  div {
+    display: inline-block;
+    height: 180px;
+    width: calc(50% - 1rem);
+    position: relative;
+    transition: transform .1s ease-in-out;
+  }
+}
+
+.latest-content {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+
+  .latest-posts {
+    flex-basis: 68%;
+
+    section, .article--meta {
+      margin-bottom: 1rem;
+    }
+
+    .article--title {
+      display: inline-block;
+      font-size: 1.3em;
+      margin: 0;
+    }
+
+    .article--date {
+      font-size: 0.9em;
+    }
+
+    .article--tagline {
+      font-size: 1em;
+    }
+  }
+
+  .latest-wiki {
+    flex-basis: 32%;
+  }
+}
+
+#app > header {
+  display: flex;
+  justify-content: center;
+  padding: 0.8rem 0;
+
+  h1 {
+    margin: 0;
+    display: inline-block;
+
+    color: inherit;
+  }
+
+  nav {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+
+  div:first-of-type a {
+    color: inherit;
+    margin-right: 1rem;
+
+    &:hover {
+      color: var(--links-hover-color);
+      text-decoration: none
+    }
+  }
+
+  section {
+    width: min(1040px, 100%);
+    display: flex;
+    justify-content: space-between;
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+
+  > a {
+    color: inherit;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    margin-right: 1.2em;
+
+    &.twitter:hover {
+      color: #1DA1F2;
+    }
+
+    &.github:hover, &.envelope:hover {
+      color: #d8d9d8;
+    }
+  }
+}
+
+#app > footer {
+  background-color: var(--footer-bg-color);
+  padding: 1.5em 0;
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+
+  section {
+    width: min(980px, 100%);
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.appear {
+  opacity: 0;
+  animation: .4s ease-out forwards appear;
+}

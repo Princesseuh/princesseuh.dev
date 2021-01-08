@@ -1,0 +1,11 @@
+:root {
+  --font-size: 18px;
+  --line-height: 1.5;
+  --main-bg-color: #28262C;
+  --font-color: #FEFFFE;
+  --subtle-font-color: #d8d9d8;
+  --links-hover-color: #F291A0;
+  --links-color: #EC5B70;
+  --code-bg-color: #1f1f1f;
+  --footer-bg-color: #211f24;
+}

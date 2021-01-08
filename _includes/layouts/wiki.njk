@@ -1,0 +1,21 @@
+---
+layout: layouts/_base.njk
+---
+<section class="wiki--layout">
+  <aside>
+    hello
+  </aside>
+
+  <article class="wiki">
+    <header class="article--header">
+      <h1 class="article--title">{{ title | safe }}</h1>
+    </header>
+
+    {{ content | typogrify | safe }}
+  </article>
+
+  <aside>
+    <span class="on-this-page">On this page</span>
+    {{ content | toc | safe }}
+  </aside>
+</section>
