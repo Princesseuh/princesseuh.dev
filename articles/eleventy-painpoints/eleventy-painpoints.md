@@ -9,6 +9,8 @@ tags: [eleventy, website]
 
 During the developement of this version of my website I encountered a few pain points with [Eleventy](https://www.11ty.dev/), the static site generator used for this website. But that's okay, things take time to make and I'm glad it exists because outside of those few points, it was really really fun to use
 
+<!-- excerpt -->
+
 Please note that this article was written progressively while making the website so some points are not necessarily still relevant to the final product nor to the current state of the projects used
 
 {% image "./articles/eleventy-painpoints/11ty-logo.png", "Eleventy's logo. 11 ty", "Shouldn't it be 6ty?" %}

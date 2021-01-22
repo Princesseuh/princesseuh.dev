@@ -9,6 +9,7 @@ article > pre {
   padding: 1em;
   margin: 1.5em auto;
   max-width: min(960px, 100%);
+  vertical-align: middle;
 }
 
 article code {

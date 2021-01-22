@@ -16,6 +16,7 @@ const postcssNested = require('postcss-nested');
 const postcssImport = require('postcss-import');
 const postcssCSSVariables = require('postcss-css-variables');
 
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const typographyPlugin = require("@jamshop/eleventy-plugin-typography");
 
@@ -53,7 +54,7 @@ async function indexCoverShortcode(src, alt, sizes) {
 
 async function imageShortcode(src, alt, caption, sizes) {
   let metadata = await Image(src, {
-    widths: [600, null],
+    widths: [null],
     formats: ["avif", "webp", "jpeg"],
     outputDir: './_site/img/'
   });
@@ -69,6 +70,11 @@ async function imageShortcode(src, alt, caption, sizes) {
   let html = Image.generateHTML(metadata, imageAttributes);
   let captionHtml = caption ? `<figcaption>${caption}</figcaption>` : ''
   return `<figure>${html}${captionHtml}</figure>`
+}
+
+function blockShortcode(content, title) {
+  var md = new markdownIt();
+  return `<div class="block-note"><span class="block-title">${title}</span>${md.render(content)}</div>`
 }
 
 module.exports = function (config) {
@@ -109,6 +115,7 @@ module.exports = function (config) {
   )
   config.addPlugin(pluginTOC)
 
+  config.addPlugin(eleventyNavigationPlugin);
   config.addNunjucksFilter("featured", arr => arr.filter(e => e.data.featured));
 
   config.addWatchTarget("./theme/*.css");
@@ -122,6 +129,8 @@ module.exports = function (config) {
 
   config.addNunjucksAsyncShortcode("image", imageShortcode);
   config.addNunjucksAsyncShortcode("cover", indexCoverShortcode);
+
+  config.addPairedNunjucksShortcode("note", blockShortcode);
 
   // TODO: Implement Youtube shortcode
   config.addShortcode('youtube', function(id) {return `${id}`})
@@ -140,7 +149,7 @@ module.exports = function (config) {
 
   // Minify HTML
   config.addTransform("htmlmin", (content, outputPath) => {
-    if (outputPath.endsWith(".html")) {
+    if (outputPath && outputPath.endsWith('.html')) {
       let minified = HTMLMinifier(content, {
         useShortDoctype: true,
         collapseWhitespace: true,
@@ -160,7 +169,7 @@ module.exports = function (config) {
   })
 
   config.addTransform("css", async function(content, outputPath) {
-    if (outputPath.endsWith("prin.css")) {
+    if (outputPath && outputPath.endsWith("prin.css")) {
       return await processCSS(content, "./theme/prin.css")
     }
 

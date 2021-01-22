@@ -45,6 +45,31 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 0.4rem;
 }
 
+.global--navigation {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  .current--page {
+    font-weight: bolder;
+  }
+
+  > li {
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    color: var(--font-color);
+    font-weight: bold
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
 .toc {
   position: sticky;
   top: 2rem;
@@ -53,6 +78,11 @@ h1, h2, h3, h4, h5 {
     list-style-type: none;
     margin: 0;
     padding: 0;
+  }
+
+  li > ol {
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(146,149,152,.15);
   }
 
   a {
@@ -116,7 +146,6 @@ article {
   }
 
   figure {
-    margin: 0 auto;
     margin-top: 1.4rem;
     margin-bottom: 1rem;
     max-width: 100%;
@@ -135,6 +164,10 @@ article {
     padding-bottom: 1rem
   }
 
+  > h3 {
+    padding-bottom: 0.75rem;
+  }
+
   h1 {
     font-size: 2em;
   }
@@ -151,6 +184,45 @@ article {
   footer {
     padding: 1rem;
     text-align: right;
+  }
+}
+
+.block-note {
+  padding: 0.9rem;
+  max-width: 90%;
+  background-color: #201e24;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  margin-top: 1.1rem;
+
+  .block-title {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem 0;
+    padding-top: 0rem;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.blog {
+  max-width: min(880px, 100%);
+  margin: 0 auto;
+  margin-top: 1.5rem;
+
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+
+  .article--list {
+    flex-basis: 80%;
+  }
+
+  aside {
+    flex-basis: 20%;
   }
 }
 
@@ -220,30 +292,32 @@ article {
   justify-content: space-around;
   gap: 1rem;
 
-  .latest-posts {
+  .article--list {
     flex-basis: 68%;
-
-    section, .article--meta {
-      margin-bottom: 1rem;
-    }
-
-    .article--title {
-      display: inline-block;
-      font-size: 1.3em;
-      margin: 0;
-    }
-
-    .article--date {
-      font-size: 0.9em;
-    }
-
-    .article--tagline {
-      font-size: 1em;
-    }
   }
 
   .latest-wiki {
     flex-basis: 32%;
+  }
+}
+
+.article--list {
+  section, .article--meta {
+    margin-bottom: 1rem;
+  }
+
+  .article--title {
+    display: inline-block;
+    font-size: 1.3em;
+    margin: 0;
+  }
+
+  .article--date {
+    font-size: 0.9em;
+  }
+
+  .article--tagline {
+    font-size: 1em;
   }
 }
 

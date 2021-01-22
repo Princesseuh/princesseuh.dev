@@ -3,15 +3,36 @@ layout: layouts/_base.njk
 ---
 <section class="wiki--layout">
   <aside>
-    hello
+    {% set navPages = collections.wiki | eleventyNavigation %}
+
+    {% macro renderNavListItem(entry) -%}
+    <li{% if entry.url == page.url %} class="current--page"{% endif %}>
+      {% if entry.url %}
+        <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+      {% else %}
+        <span class="title">{{ entry.title }}</span>
+      {% endif %}
+    {%- if entry.children.length -%}
+      <ul>
+        {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+      </ul>
+    {%- endif -%}
+    </li>
+    {%- endmacro %}
+
+    <ul class="global--navigation">
+      {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+    </ul>
   </aside>
 
   <article class="wiki">
     <header class="article--header">
       <h1 class="article--title">{{ title | safe }}</h1>
+      <h2 class="article--tagline">{{ tagline | safe }}</h2>
     </header>
 
     {{ content | typogrify | safe }}
+    {{ lastModified }}
   </article>
 
   <aside>
