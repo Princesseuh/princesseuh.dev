@@ -3,3 +3,4 @@ README.md
 .github
 _cache
 *.draft.md
+api.njk

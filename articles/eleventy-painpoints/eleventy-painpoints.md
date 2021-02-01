@@ -13,7 +13,7 @@ During the developement of this version of my website I encountered a few pain p
 
 Please note that this article was written progressively while making the website so some points are not necessarily still relevant to the final product nor to the current state of the projects used
 
-{% image "./articles/eleventy-painpoints/11ty-logo.png", "Eleventy's logo. 11 ty", "Shouldn't it be 6ty?" %}
+{% image src="./articles/eleventy-painpoints/11ty-logo.png", alt="Eleventy's logo. 11 ty", caption="Shouldn't it be 6ty?" %}
 
 # Issues
 ## [eleventy-plugin-vue](https://github.com/11ty/eleventy-plugin-vue)
@@ -38,11 +38,20 @@ Apart from those two issues, working with `eleventy-assets` was really pleasant.
 
 ## Markdown
 
-- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `blog/eleventy-painpoints/eleventy-paintpoints.md`). I had to manually add a watch target pointing to the folder where my articles are contained (here `blog`). Felt a bit unintuitive
+- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `{{ page.inputPath }}`). I had to manually add a watch target pointing to the folder where my articles are contained (`articles`). Felt a bit unintuitive
 
 These last few years, it seems like the JS ecosystem is just now discovering that long build times are painful for writing content (May [Vite](https://github.com/vuejs/vite) and [Vitepress](https://github.com/vuejs/vitepress) saves us all) however, I must admit that Eleventy does a pretty good job at that, currently build times are around **100ms**
 
 It's clearly no [Hugo](https://gohugo.io/) or [Zola](https://www.getzola.org/) but it's good enough for me (and refreshing coming from [Gridsome](https://gridsome.org/))
+
+## [eleventy-plugin-footnotes](https://github.com/HugoGiraudel/eleventy-plugin-footnotes)
+
+I wanted to use footnotes on the wiki and quickly discovered that footnotes are not available in Eleventy by default, that's fine. [An official plugin exist for markdown-it itself](https://github.com/markdown-it/markdown-it-footnote), however while the syntax is really good (thanks to using the base Markdown one) [it's not as good for accessibility](https://hugogiraudel.com/2020/12/02/footnotes-in-11ty/) so I used the plugin made by the author of the article just linked. It's really good but:
+
+- The syntax is really unwieldy compared to the one by the markdown-it plugin, I generally don't like writing my footnotes in the middle of my content. This can by bypassed by putting the content of the footnote in a variable and putting that in the declaration but that's still really cumbersome compared to a more integrated solution
+- The plugin doesn't allow us to postprocess the content outside of using filters directly in the markdown, the only postprocessing I would like to do is making it go through markdown-it since by default, it's just raw text
+
+All in all, it works but it's annoying to use. But that's a price I'm willing to pay for better accessibility. The plugin isn't that complicated so I could technically make my own version but that's a lot of work for minor things
 
 # In Resume
 
@@ -50,7 +59,7 @@ Apart from those few problems (which, all things considered are all pretty minor
 
 Some things are definitely harder to do using Eleventy than others generators but overall, it has just the right amount of magic so that it's really fun to use yet it's not magic enough that you feel like you're not in control. I'm not sure if that make sense, maybe it doesn't, but it does to me ha!
 
-{% image "./articles/eleventy-painpoints/11ty-tag.png", 'Eleventy\'s slogan Eleventy is a simpler static site generator.' %}
+{% image src="./articles/eleventy-painpoints/11ty-tag.png", alt='Eleventy\'s slogan Eleventy is a simpler static site generator.' %}
 
 In a way, it kinda reminds me of [Arch Linux](https://archlinux.org/)? As in, it's "simple" yet it can be hard to get into but once you know your stuff, everything works just as you want it to
 

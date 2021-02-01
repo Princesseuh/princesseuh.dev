@@ -6,6 +6,8 @@ html, body {
   line-height: var(--line-height);
   background-color: var(--footer-bg-color);
   color: var(--font-color);
+
+  counter-reset: footnotes
 }
 
 #app {
@@ -37,6 +39,7 @@ h1, h2, h3, h4, h5 {
 
   aside {
     margin-top: 2.5rem;
+    transition: opacity var(--page-transition-length) linear;
   }
 }
 
@@ -71,6 +74,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .toc {
+  transition: opacity var(--page-transition-length) linear;
   position: sticky;
   top: 2rem;
 
@@ -103,6 +107,7 @@ h1, h2, h3, h4, h5 {
 }
 
 article {
+  transition: opacity var(--page-transition-length) linear;
   margin-bottom: 3rem;
 
   > * {
@@ -121,8 +126,9 @@ article {
 
   .article--title {
     font-size: 3.5em;
-    margin-bottom: 0;
+    margin-bottom: 0.75rem;
     margin-top: 0;
+    line-height: 1.1;
   }
 
   .article--tagline {
@@ -156,16 +162,19 @@ article {
   figcaption {
     text-align: center;
     display: block;
-    margin: 0.25em 0;
+    margin: 0.15rem 0;
     font-style: italic;
+    color: var(--subtle-font-color);
+    font-size: 0.95rem;
   }
 
   > h1, > h2 {
-    padding-bottom: 1rem
+    margin-top: 1.3rem;
+    margin-bottom: 0.6rem
   }
 
   > h3 {
-    padding-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
 
   h1 {
@@ -180,17 +189,53 @@ article {
   li > p {
     margin-bottom: 0.5em;
   }
+}
 
-  footer {
-    padding: 1rem;
-    text-align: right;
-  }
+.image-left {
+  float: left;
+  margin-right: 1.5rem;
+  margin-left: .5rem;
+  margin-top: .5rem;
+  max-width: min-content;
+}
+
+.article--lastmodified {
+  text-align: right;
+  display: block;
+  color: var(--subtle-font-color);
+}
+
+[role="doc-noteref"]::after {
+  counter-increment: footnotes;
+  content: "["  counter(footnotes)  "]";
+  font-size: 0.8rem;
+  position: relative;
+  top: -6px;
+  left: 1px;
+  user-select: none;
+}
+
+.Footnotes {
+  background-color: var(--alt-bg-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.Footnotes__title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.Footnotes__list-item {
+  margin-bottom: 0.5rem;
 }
 
 .block-note {
   padding: 0.9rem;
   max-width: 90%;
-  background-color: #201e24;
+  background-color: var(--alt-bg-color);
   border-radius: 4px;
   margin-bottom: 1rem;
   margin-top: 1.1rem;
@@ -392,18 +437,4 @@ article {
     display: flex;
     justify-content: space-between;
   }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.appear {
-  opacity: 0;
-  animation: .4s ease-out forwards appear;
 }

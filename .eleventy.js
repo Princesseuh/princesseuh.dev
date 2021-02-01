@@ -7,6 +7,7 @@ const csso = require('csso');
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
 const pluginTOC = require('eleventy-plugin-toc')
+const pluginFootnotes = require('eleventy-plugin-footnotes')
 
 const AssetManager = require('@11ty/eleventy-assets')
 const Image = require("@11ty/eleventy-img");
@@ -19,6 +20,7 @@ const postcssCSSVariables = require('postcss-css-variables');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const typographyPlugin = require("@jamshop/eleventy-plugin-typography");
+const { plugin } = require("postcss");
 
 function getCssFilePath(componentName) {
   return `theme/${componentName}.css`;
@@ -52,29 +54,29 @@ async function indexCoverShortcode(src, alt, sizes) {
     </picture>`;
 }
 
-async function imageShortcode(src, alt, caption, sizes) {
-  let metadata = await Image(src, {
+async function imageShortcode(data) {
+  let metadata = await Image(data.src, {
     widths: [null],
     formats: ["avif", "webp", "jpeg"],
     outputDir: './_site/img/'
   });
 
   let imageAttributes = {
-    alt,
-    sizes,
+    alt: data.alt,
+    sizes: data.sizes,
     loading: "lazy",
     decoding: "async",
   };
 
   // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
   let html = Image.generateHTML(metadata, imageAttributes);
-  let captionHtml = caption ? `<figcaption>${caption}</figcaption>` : ''
-  return `<figure>${html}${captionHtml}</figure>`
+  let captionHtml = data.caption ? `<figcaption>${data.caption}</figcaption>` : ''
+  return `<figure class="${data.class}">${html}${captionHtml}</figure>`
 }
 
 function blockShortcode(content, title) {
-  var md = new markdownIt();
-  return `<div class="block-note"><span class="block-title">${title}</span>${md.render(content)}</div>`
+  var md = new markdownIt({ typographer: true });
+  return `<div class="block-note"><span class="block-title">${md.renderInline(title)}</span>${md.render(content)}</div>`
 }
 
 module.exports = function (config) {
@@ -99,6 +101,23 @@ module.exports = function (config) {
     return cssManager.getCodeForUrl(url);
   });
 
+  config.addFilter("htmlmin", (content) => {
+    return minifyHTML(content);
+  })
+
+  config.addNunjucksAsyncFilter("cssmin", function(content, callback) {
+    processCSS(content).then(
+      (result) => {
+        callback(null, result)
+      }
+    )
+  })
+
+  config.addFilter("markdown", (content) => {
+    var md = new markdownIt({ typographer: true });
+    return md.renderInline(content);
+  })
+
   config.setLibrary(
     'md',
     markdownIt({
@@ -114,6 +133,7 @@ module.exports = function (config) {
       })
   )
   config.addPlugin(pluginTOC)
+  config.addPlugin(pluginFootnotes)
 
   config.addPlugin(eleventyNavigationPlugin);
   config.addNunjucksFilter("featured", arr => arr.filter(e => e.data.featured));
@@ -139,6 +159,10 @@ module.exports = function (config) {
     return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('LLL dd, yyyy');
   })
 
+  config.addFilter("readableDatetime", function(date) {
+    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
+  })
+
   config.addFilter("htmlDateString", function (date) {
     return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   })
@@ -150,19 +174,7 @@ module.exports = function (config) {
   // Minify HTML
   config.addTransform("htmlmin", (content, outputPath) => {
     if (outputPath && outputPath.endsWith('.html')) {
-      let minified = HTMLMinifier(content, {
-        useShortDoctype: true,
-        collapseWhitespace: true,
-        collapseBooleanAttributes: true,
-        removeComments: true,
-        // removeEmptyElements: true,
-        removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        sortAttributes: true,
-        sortClassName: true,
-      })
+      let minified = minifyHTML(content)
       return minified
     }
     return content
@@ -175,6 +187,14 @@ module.exports = function (config) {
 
     return content;
   });
+
+  config.addTransform("jsonmin", (content, outputPath) => {
+    if (outputPath && outputPath.endsWith(".json")) {
+      return JSON.stringify(JSON.parse(content))
+    }
+
+    return content;
+  })
 
   config.addPlugin(syntaxHighlight);
   config.addPlugin(typographyPlugin);
@@ -199,4 +219,22 @@ async function processCSS(content, from, to = undefined) {
         comments: false
       }).css;
     })
+}
+
+function minifyHTML(content) {
+  let minified = HTMLMinifier(content, {
+    useShortDoctype: true,
+    collapseWhitespace: true,
+    collapseBooleanAttributes: true,
+    removeComments: true,
+    // removeEmptyElements: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    sortAttributes: true,
+    sortClassName: true,
+  })
+
+  return minified;
 }

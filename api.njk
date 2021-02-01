@@ -3,13 +3,23 @@ pagination:
   data: collections.all
   size: 1
   alias: post
-permalink: /api/{{ post.filePathStem if post.filePathStem == '/index' else post.fileSlug }}.json
+permalink: /api/{{ post.filePathStem if post.filePathStem == '/index' else post.fileSlug }}.html
 ---
-{
-  "title": "{{ post.data.title }}",
-  "tagline": "{{ post.data.tagline }}",
-  "date": "{{ post.date.toUTCString() }}",
-  "content": "{{ post.templateContent | typogrify | replace('\n', '') }}",
-  "style": "{{ post.url | getCss | replace('\n', '')}}",
-  "toc": "{{ post.templateContent | toc | replace('\n', '')}}"
+
+{# {
+  {%- for tag in post.data.tags %}
+  {% if tag == "wiki" -%}
+  "lastModified": "{{ post.data.lastModified | readableDate }}",
+  "toc": "{{- post.templateContent | toc | safe | htmlmin -}}",
+  {% endif -%}
+  {%- endfor -%}
+  {%- if post.url | getCss %}
+  "style": "{{ post.url | getCss | cssmin }}",
+  {%- endif %}
+  "title": "{{ post.data.title + " - " + metadata.title if post.data.title else metadata.title }}",
+  "description": "{{ post.data.tagline }}",
+  "date": "{{ post.date | readableDate }}",
+  "tags": [{%- for tag in post.data.tags %}"{{tag}}"{% if not loop.last %},{% endif %}{% endfor %}],
+  "content": "{{- post.templateContent | htmlmin | safe -}}"
 }
+ #}

@@ -1,6 +1,7 @@
 ---
 layout: layouts/_base.njk
 ---
+
 <section class="wiki--layout">
   <aside>
     {% set navPages = collections.wiki | eleventyNavigation %}
@@ -32,7 +33,10 @@ layout: layouts/_base.njk
     </header>
 
     {{ content | typogrify | safe }}
-    {{ lastModified }}
+
+    <span class="article--lastmodified">Last modified on the {{ lastModified | readableDatetime }}</span>
+
+    {% footnotes %}
   </article>
 
   <aside>

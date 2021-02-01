@@ -1,6 +1,7 @@
 ---
   title: "Why I use Arch Linux"
   tagline: "(i use arch btw)"
+  date: 2021-01-22
   eleventyNavigation:
     key: Arch Linux
     parent: Computers
@@ -14,7 +15,7 @@ But before that, I tried many Linux distributions and like most people, it start
 
 ## History
 
-### Ubuntu
+### Starting with Ubuntu
 
 Truth be told, I didn't like Ubuntu back then and I still don't (that includes Ubuntu-flavored distros like [Mint](https://linuxmint.com/) too), my biggest problem being the package management, adding a PPA feels like an unknown foreign body is entering my computer and frankly, installing random `.deb` is really not that far from the Windows experience of installing random `.exe` sometimes
 
@@ -22,7 +23,7 @@ There's other things that I don't really like about Ubuntu (forcing snaps over t
 
 After stumbling around the Linux world, trying out many distros for a few days / weeks and ultimately always being displeased, eventually I did what everyone does: I installed Arch
 
-{% image "./wiki/archlinux/arch_logo.png", "Arch Linux logo" %}
+{% image src="./wiki/archlinux/arch_logo.png", alt="Arch Linux logo" %}
 
 ### My first steps with Arch
 
