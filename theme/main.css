@@ -339,12 +339,8 @@ article {
   flex-wrap: wrap;
 
   img {
-    margin: 0;
     object-fit: cover;
     object-position: top;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
     border-radius: .15rem;
   }
 
@@ -360,6 +356,7 @@ article {
     background-color: rgba(242, 145, 160, 0.8 );
     opacity: 0;
     transition: opacity .1s linear;
+    border-radius: .15rem;
 
     &:hover {
       opacity: 1;
