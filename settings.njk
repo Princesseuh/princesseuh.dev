@@ -1,0 +1,23 @@
+---
+  layout: layouts/_base.njk
+---
+
+<article>
+  <h1>Settings</h1>
+
+  <div>
+    <input type="checkbox" id="cb--transitions" name="vehicle1" value="Bike">
+    <label for="vehicle1"> Disable page transitions</label><br>
+  </div>
+</article>
+
+<script>
+  (function () {
+    const disableTransitionsCheckbox = document.getElementById("cb--transitions");
+    disableTransitionsCheckbox.checked = (localStorage.getItem("transitionsDisabled") == "true")
+
+    disableTransitionsCheckbox.addEventListener('change', () => {
+      localStorage.setItem("transitionsDisabled", disableTransitionsCheckbox.checked ? "true" : "false")
+    })
+  })();
+</script>

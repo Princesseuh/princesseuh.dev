@@ -39,19 +39,28 @@
   })
 
   function loadPage(href, scrollPosition = 0) {
+    const transitionEnabled = !(localStorage.getItem("transitionsDisabled") === "true")
     const targetLoc = new URL(href, document.baseURI);
-    const targetFile = targetLoc.pathname.replace(/\/$/, "").split("/").pop();
 
     // Originally, I wanted to use a .json file for every page instead of using the raw HTML of the result page, much like
     // smarter frameworks do with .js files. However, this turned out to be harder to do than expected and even though it worked
     // I couldn't figure out a clean way of doing it. So, unfortunately we're downloading more data than needed to render our
     // new pages, that's okay - this is not a big website, at worst requests will be 1-2 kb(s) bigger than they could be - erika, 2021-01-25
-    const ApiUrl = new URL("/api/" + targetFile + ".json", document.baseURI);
+    // const targetFile = targetLoc.pathname.replace(/\/$/, "").split("/").pop();
+    // const ApiUrl = new URL("/api/" + targetFile + ".json", document.baseURI);
 
     const container = document.querySelector('main');
-    const articleContainer = document.querySelector('article')
-    const asideContainer = document.querySelectorAll('aside')
-    articleContainer.style.opacity = 0;
+
+    if (transitionEnabled) {
+      const articleContainer = document.querySelector('article')
+      articleContainer.style.opacity = 0;
+
+      // If we wanted to transitions the asides as well, we could simply do this - however, it causes transitions between wiki pages which is undesirable
+      // asideContainer?.forEach(aside => {
+      //   aside.style.opacity = 0;
+      // })
+
+    }
 
     const xhr = new XMLHttpRequest();
     xhr.onload = () => {
@@ -59,20 +68,25 @@
 
       const responseDocument = xhr.responseXML;
       const responseContent = responseDocument.querySelector('main');
-      const responseArticleContainer = responseDocument.querySelector('article');
-      const responseAsides = responseDocument.querySelectorAll('aside');
-      const responseToc = responseDocument.querySelector('.toc');
       const responseStyle = responseDocument.getElementsByTagName('style')[0];
+      const responseScripts = responseContent.querySelectorAll('script');
 
-      responseArticleContainer.style.opacity = 0;
+      if (transitionEnabled) {
+        const asideContainer = document.querySelectorAll('aside');
+        const responseArticleContainer = responseDocument.querySelector('article');
+        const responseAsides = responseDocument.querySelectorAll('aside');
+        const responseToc = responseDocument.querySelector('.toc');
 
-      if (responseToc)
-        responseToc.style.opacity = 0;
+        responseArticleContainer.style.opacity = 0;
 
-      if (asideContainer.length === 0) {
-        responseAsides.forEach(aside => {
-          aside.style.opacity = 0;
-        })
+        if (responseToc)
+          responseToc.style.opacity = 0;
+
+        if (asideContainer.length === 0) {
+          responseAsides.forEach(aside => {
+            aside.style.opacity = 0;
+          })
+        }
       }
 
       // This is a bit of a naive approach, It'd probably be better to hide with our animation, wait for the DOM to be
@@ -85,18 +99,30 @@
 
         container.innerHTML = (responseContent && responseContent.innerHTML) || '';
 
-        // Wait for a bit before setting back the opacity otherwise it won't work
-        setTimeout(() => {
-          container.querySelector("article").style.opacity = 1;
+        // Script tags are not executed when changing a page content through innerHTMl so we eval them
+        // this is probably not the best solution but we won't ever have that much script tags on our pages
+        if (responseScripts) {
+          responseScripts?.forEach(script => {
+            eval(script.text);
+          })
+        }
 
+        if (transitionEnabled) {
           const toc = container.querySelector(".toc");
-          if (toc)
-            toc.style.opacity = 1;
+          const asides = container.querySelectorAll("aside");
+          const article = container.querySelector("article");
 
-          container.querySelectorAll("aside")?.forEach(aside => {
+          article.offsetHeight;
+          article.style.opacity = 1;
+
+          if (toc) {
+            toc.style.opacity = 1;
+          }
+
+          asides?.forEach(aside => {
             aside.style.opacity = 1;
           })
-        }, 15);
+        }
 
         if (targetLoc.hash && !scrollPosition) {
           const target = document.querySelector(decodeURIComponent(link.hash));
@@ -104,7 +130,7 @@
         }
 
         window.scrollTo(0, scrollPosition);
-      }, 100);
+      }, transitionEnabled ? 100 : 0);
     }
 
     xhr.open('GET', targetLoc);

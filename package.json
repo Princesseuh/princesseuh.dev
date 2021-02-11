@@ -5,6 +5,7 @@
   "description": "My personal website 💐",
   "scripts": {
     "dev": "ELEVENTY_EXPERIMENTAL=true eleventy --serve",
+    "dev:incremental": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --incremental",
     "debug": "ELEVENTY_EXPERIMENTAL=true DEBUG=Eleventy* eleventy --serve",
     "build": "ELEVENTY_EXPERIMENTAL=true eleventy"
   },
@@ -39,7 +40,8 @@
     "postcss": "^8.2.2",
     "postcss-css-variables": "^0.17.0",
     "postcss-import": "^14.0.0",
-    "postcss-nested": "^5.0.3"
+    "postcss-nested": "^5.0.3",
+    "terser": "^5.5.1"
   },
   "dependencies": {
     "@11ty/eleventy-assets": "^1.0.4",

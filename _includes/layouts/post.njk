@@ -10,7 +10,10 @@ layout: layouts/_base.njk
       ·
       <span class="article--tags">
         {%- for tag in tags -%}
-          <span class="article--tag"><a href="#">{{ tag }}</a></span>{{ ', ' if not loop.last }}
+        {% if tag != "post" %}
+          {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+          <span class="article--tag"><a href="{{ tagUrl | url }}">{{ tag }}</a></span>{{ ', ' if not loop.last }}
+        {% endif %}
         {%- endfor -%}
       </span>
     </div>

@@ -2,14 +2,17 @@
   layout: layouts/_base.njk
   pagination:
     data: collections.post
-    size: 20
+    size: 12
     alias: posts
+    reverse: true
+  permalink: "articles/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ---
 <article class="blog">
   <div class="article--list">
-  {%- for post in posts | reverse %}
+  <h2>Articles</h2>
+  {%- for post in posts %}
             <section>
-              <a href="{{ post.url }}"><h4 class="article--title">{{ post.data.title | safe }}</h4></a>
+              <a href="{{ post.url }}"><h3 class="article--title">{{ post.data.title | safe }}</h3></a>
               <div class="article--meta">
                 <span class="article--date">{{ post.data.date | readableDate }}</span>
                 ·
@@ -24,9 +27,25 @@
               {% if post.data.tagline %}<span class="article--tagline">{{ post.data.tagline | safe }}</span>{% endif %}
               </section>
   {%- endfor %}
+  <div>
+    {%- if pagination.href.previous %}<a class="pagination--previous" href="{{ pagination.href.previous }}">Newer posts</a>{% endif %}
+    {%- if pagination.href.next %}<a class="pagination--next" href="{{ pagination.href.next }}">Older posts</a>{% endif %}
+  </div>
   </div>
 
   <aside>
-    Hewwo
+    <section>
+      <h2>Tags</h2>
+      <ul>
+        {%- for tag in collections.tagListPosts | sort(collections.tagListPosts, true, false, collections[tag].length) -%}
+          {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+          <li><a href="{{ tagUrl | url }}">{{ tag }} ({{ collections[tag].length }})</a></li>
+        {%- endfor -%}
+      </ul>
+    </section>
+    <section>
+    <h2>Year</h2>
+
+    </section>
   </aside>
 </article>

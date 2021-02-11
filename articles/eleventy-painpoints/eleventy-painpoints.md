@@ -38,7 +38,7 @@ Apart from those two issues, working with `eleventy-assets` was really pleasant.
 
 ## Markdown
 
-- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `{{ page.inputPath }}`). I had to manually add a watch target pointing to the folder where my articles are contained (`articles`). Felt a bit unintuitive
+- By default, Eleventy didn't hot reload if changes were made to markdown files that are in a nested folder (for instance for this article, `{{ page.inputPath }}`). I had to manually add a watch target pointing to the folder where my articles are contained (`articles`). Felt a bit unintuitive, in general it seems like the livereload in Eleventy a bit shaky no matter what kind of content you're editing
 
 These last few years, it seems like the JS ecosystem is just now discovering that long build times are painful for writing content (May [Vite](https://github.com/vuejs/vite) and [Vitepress](https://github.com/vuejs/vitepress) saves us all) however, I must admit that Eleventy does a pretty good job at that, currently build times are around **100ms**
 

@@ -1,0 +1,26 @@
+---
+  layout: layouts/_base.njk
+---
+
+<article>
+<h2>Projects</h2>
+<h3>Games</h3>
+<div>
+{% for game in collections.project %}
+  {% if game.data.type == "game" %}
+    {{ game.data.title }}
+  {% endif %}
+{% endfor %}
+</div>
+
+<h3>Websites</h3>
+<div>
+{% for game in collections.project %}
+  {% if game.data.type == "website" %}
+    {{ game.data.title }}
+  {% endif %}
+{% endfor %}
+</div>
+
+<h3>Misc</h3>
+</article>

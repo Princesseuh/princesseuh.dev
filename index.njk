@@ -38,7 +38,8 @@
               <span class="article--tags">
                 {%- for tag in post.data.tags -%}
                   {% if tag != "post" %}
-                    <span class="article--tag"><a href="#">{{ tag }}</a></span>{{ ', ' if not loop.last }}
+                    {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+                    <span class="article--tag"><a href="{{ tagUrl | url }}">{{ tag }}</a></span>{{ ', ' if not loop.last }}
                   {% endif %}
                 {%- endfor -%}
               </span>
@@ -49,8 +50,18 @@
         {%- endfor -%}
       </div>
 
-      <div class="latest-wiki">
-        <h3>Latest wiki modifications</h3>
+      <div class="wiki--latest-modifications">
+        <div class="latest-wiki">
+          <h3>Latest wiki modifications</h3>
+        {%- for page in collections.latestWiki | reverse -%}
+        {% if (loop.index <= 5) %}
+        <section>
+          <a href="{{ page.url }}">{{ page.data.title }}</a>
+          <span class="latest--date">{{ (page.data.lastModified | readableDatetime).slice(0, -3) }}</span>
+        </section>
+        {% endif %}
+        {%- endfor -%}
+        </div>
       </div>
     </div>
   </section>

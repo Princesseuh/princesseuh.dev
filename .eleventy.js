@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const fs = require('fs')
 
+const JSMinifier = require('terser');
 const HTMLMinifier = require('html-minifier-terser').minify;
 const csso = require('csso');
 
@@ -68,9 +69,11 @@ async function imageShortcode(data) {
     decoding: "async",
   };
 
-  // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
+
   let html = Image.generateHTML(metadata, imageAttributes);
-  let captionHtml = data.caption ? `<figcaption>${data.caption}</figcaption>` : ''
+
+  var md = new markdownIt({ typographer: true });
+  let captionHtml = data.caption ? `<figcaption>${md.renderInline(data.caption)}</figcaption>` : ''
   return `<figure class="${data.class}">${html}${captionHtml}</figure>`
 }
 
@@ -113,6 +116,27 @@ module.exports = function (config) {
     )
   })
 
+  config.addCollection("latestWiki", function (collectionApi) {
+    return collectionApi.getFilteredByTag("wiki")
+    .filter(function(item) {
+      return item.url !== false
+    })
+    .sort(function (a, b) {
+      return b.lastModified - a.lastModified;
+    });
+  });
+
+  config.addCollection("tagListPosts", collection => {
+    const tagsSet = new Set();
+    collection.getFilteredByTag("post").forEach(item => {
+      if (!item.data.tags) return;
+      item.data.tags
+        .filter(tag => !['post', 'all'].includes(tag))
+        .forEach(tag => tagsSet.add(tag));
+    });
+    return Array.from(tagsSet).sort();
+  });
+
   config.addFilter("markdown", (content) => {
     var md = new markdownIt({ typographer: true });
     return md.renderInline(content);
@@ -139,7 +163,8 @@ module.exports = function (config) {
   config.addNunjucksFilter("featured", arr => arr.filter(e => e.data.featured));
 
   config.addWatchTarget("./theme/*.css");
-  config.addWatchTarget("articles");
+  config.addWatchTarget("./theme/spa.js");
+  config.addWatchTarget("**/*.md");
 
   config.setDataDeepMerge(true);
 
@@ -167,22 +192,27 @@ module.exports = function (config) {
     return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   })
 
-  config.addPassthroughCopy("articles/**/*.png");
-  config.addPassthroughCopy("projects/**/*.png");
-  config.addPassthroughCopy("theme/*.js");
-
   // Minify HTML
   config.addTransform("htmlmin", (content, outputPath) => {
     if (outputPath && outputPath.endsWith('.html')) {
       let minified = minifyHTML(content)
       return minified
     }
-    return content
+    return content;
   })
 
   config.addTransform("css", async function(content, outputPath) {
     if (outputPath && outputPath.endsWith("prin.css")) {
       return await processCSS(content, "./theme/prin.css")
+    }
+
+    return content;
+  });
+
+  config.addTransform("jsmin", async function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".js")) {
+      var result = await JSMinifier.minify(content);
+      return result.code;
     }
 
     return content;

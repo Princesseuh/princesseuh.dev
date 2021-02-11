@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5 {
   margin: 0 auto;
   display: grid;
   grid-gap: 3%;
-  grid-template-columns: 14% 63% 17%;
+  grid-template-columns: 15% 62% 17%;
 
   aside {
     margin-top: 2.5rem;
@@ -48,14 +48,14 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 0.4rem;
 }
 
+.current--page {
+  font-weight: bolder;
+}
+
 .global--navigation {
   margin: 0;
   padding: 0;
   list-style-type: none;
-
-  .current--page {
-    font-weight: bolder;
-  }
 
   > li {
     margin-bottom: 1rem;
@@ -189,13 +189,26 @@ article {
   li > p {
     margin-bottom: 0.5em;
   }
+
+  > iframe {
+    margin: 0 auto 1rem;
+    display: block;
+  }
 }
 
 .image-left {
   float: left;
   margin-right: 1.5rem;
   margin-left: .5rem;
-  margin-top: .5rem;
+  margin-top: .8rem;
+  max-width: min-content;
+}
+
+.image-right {
+  float: right;
+  margin-left: 1.5rem;
+  margin-right: .5rem;
+  margin-top: .8rem;
   max-width: min-content;
 }
 
@@ -228,8 +241,18 @@ article {
   padding-left: 0.5rem;
 }
 
+.Footnotes__list {
+  padding-left: 0;
+  list-style-position: inside;
+  padding: 0 .75rem;
+}
+
 .Footnotes__list-item {
   margin-bottom: 0.5rem;
+
+  &:focus {
+    color: red;
+  }
 }
 
 .block-note {
@@ -254,21 +277,41 @@ article {
 }
 
 .blog {
-  max-width: min(880px, 100%);
+  max-width: min(920px, 100%);
   margin: 0 auto;
   margin-top: 1.5rem;
+  margin-bottom: 3rem;
 
   display: flex;
   justify-content: space-around;
-  gap: 1rem;
+  gap: 2rem;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
 
   .article--list {
     flex-basis: 80%;
   }
 
+  h2 {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
   aside {
     flex-basis: 20%;
+
+    section {
+      margin-bottom: 1rem;
+    }
   }
+}
+
+.pagination--next {
+  float: right;
 }
 
 .hello {
@@ -316,7 +359,7 @@ article {
     font-size: 1.7em;
     background-color: rgba(242, 145, 160, 0.8 );
     opacity: 0;
-    transition: opacity .1s ease-in-out;
+    transition: opacity .1s linear;
 
     &:hover {
       opacity: 1;
@@ -328,7 +371,6 @@ article {
     height: 180px;
     width: calc(50% - 1rem);
     position: relative;
-    transition: transform .1s ease-in-out;
   }
 }
 
@@ -347,8 +389,12 @@ article {
 }
 
 .article--list {
-  section, .article--meta {
+  section {
     margin-bottom: 1rem;
+  }
+
+  .article--meta {
+    margin-bottom: 0.75rem;
   }
 
   .article--title {
@@ -363,6 +409,24 @@ article {
 
   .article--tagline {
     font-size: 1em;
+  }
+}
+
+.latest-wiki {
+  section {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    letter-spacing: -.01em;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .latest--date {
+    display: block;
+    font-size: .9em;
+    color: var(--subtle-font-color);
   }
 }
 
