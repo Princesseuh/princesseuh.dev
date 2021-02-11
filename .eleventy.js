@@ -181,15 +181,15 @@ module.exports = function (config) {
   config.addShortcode('youtube', function(id) {return `${id}`})
 
   config.addFilter("readableDate", function(date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('LLL dd, yyyy');
+    return DateTime.fromJSDate(date).toFormat('LLL dd, yyyy');
   })
 
   config.addFilter("readableDatetime", function(date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
+    return DateTime.fromJSDate(date).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
   })
 
   config.addFilter("htmlDateString", function (date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(date).toFormat('yyyy-LL-dd');
   })
 
   // Minify HTML
