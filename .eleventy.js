@@ -122,7 +122,7 @@ module.exports = function (config) {
       return item.url !== false
     })
     .sort(function (a, b) {
-      return b.lastModified - a.lastModified;
+      return b.data.lastModified - a.data.lastModified;
     });
   });
 
@@ -181,15 +181,15 @@ module.exports = function (config) {
   config.addShortcode('youtube', function(id) {return `${id}`})
 
   config.addFilter("readableDate", function(date) {
-    return DateTime.fromISO(date).toFormat('LLL dd, yyyy');
+    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('LLL dd, yyyy');
   })
 
   config.addFilter("readableDatetime", function(date) {
-    return DateTime.fromISO(date).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
+    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
   })
 
   config.addFilter("htmlDateString", function (date) {
-    return DateTime.fromISO(date).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   })
 
   // Minify HTML

@@ -11,7 +11,7 @@ module.exports = {
       let isoDate = execSync(`git log -1 --date=iso --pretty="format:%cI" ${data.page.inputPath}`)
       let result = DateTime.fromISO(isoDate, {setZone: true})
 
-      return result
+      return result.toJSDate()
     }
   }
 }
