@@ -53,7 +53,7 @@
       <div class="wiki--latest-modifications">
         <div class="latest-wiki">
           <h3>Latest wiki modifications</h3>
-        {%- for page in collections.latestWiki | reverse -%}
+        {%- for page in collections.latestWiki -%}
         {% if (loop.index <= 5) %}
         <section>
           <a href="{{ page.url }}">{{ page.data.title }}</a>
