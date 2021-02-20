@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "My personal website 💐",
   "scripts": {
-    "dev": "ELEVENTY_EXPERIMENTAL=true eleventy --serve",
+    "dev": "eleventy --serve",
     "dev:incremental": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --incremental",
     "debug": "ELEVENTY_EXPERIMENTAL=true DEBUG=Eleventy* eleventy --serve",
     "build": "ELEVENTY_EXPERIMENTAL=true eleventy"

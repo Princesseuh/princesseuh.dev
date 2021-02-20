@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5 {
   margin: 0 auto;
   display: grid;
   grid-gap: 3%;
-  grid-template-columns: 15% 62% 17%;
+  grid-template-columns: 16% 61% 17%;
 
   aside {
     margin-top: 2.5rem;

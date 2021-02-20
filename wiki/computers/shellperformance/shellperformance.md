@@ -8,10 +8,6 @@
 
 {% usingCSSComponent "code" %}
 
-I care a lot about the performance of the softwares I use, be it their startup time, [the typing latency](https://pavelfatin.com/typing-with-pleasure/) or overall performance of the program
-
-However, I also like when things work, so I won't necessarily compromise on functionalities for the sake of performance, actually it's the reverse - I don't really mind using an inefficient program (as long as it's mostly usable) if it's the **best** tool for what I'm doing
-
 When customizing a Linux setup, it's really easy to fall into the trap of thinking that, since your base programs are so efficient, adding plugins or tweaks won't slow them down much but that's often not the case
 
 A common exemple is [Vim](https://www.vim.org/), it's fairly easy to slow down Vim by adding too many plugins! You'd think that Vim is so old and so fast that they're be no way to slow it down so much so that it perform worse than modern editors and yet it's very much possible and even the simplest plugin can slow down the editor to a crawl - it's horrifying

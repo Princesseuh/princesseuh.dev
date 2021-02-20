@@ -2,8 +2,9 @@
   title: "Recommended readings for aspiring florists"
   tagline: "And just everybody interested in flowers really"
   eleventyNavigation:
-    key: Reading
+    key: Readings about flowers
     parent: Floristry
+    order: 2
 ---
 
 Floristry doesn't really have the best presence online, sure you can find plenty of pictures of bouquets and various other arrangements but it's surprisingly hard to find lessons, guides etc about it (special mention however to the MANY Youtube channels such as [Bloomtube](https://www.youtube.com/c/Bloomtube/videos) or [Flower Joos](https://www.youtube.com/c/FlowerJoos/videos), those are great!)
