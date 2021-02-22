@@ -1,7 +1,20 @@
 @import '_normalize.css';
 @import '_variables.css';
+@import '_fonts.css';
 
 html, body {
+  font-family:
+    'Cantarell',
+		system-ui,
+		-apple-system, /* Firefox supports this but not yet `system-ui` */
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji';
+
   font-size: var(--font-size);
   line-height: var(--line-height);
   background-color: var(--footer-bg-color);

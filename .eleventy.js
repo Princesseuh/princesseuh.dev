@@ -166,6 +166,8 @@ module.exports = function (config) {
   config.addWatchTarget("./theme/spa.js");
   config.addWatchTarget("**/*.md");
 
+  config.addPassthroughCopy("theme/fonts");
+
   config.setDataDeepMerge(true);
 
   config.on("beforeWatch", () => {
