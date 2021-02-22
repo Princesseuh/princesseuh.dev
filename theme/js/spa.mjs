@@ -1,6 +1,4 @@
-(function () {
-  'use strict';
-
+export function initSPA(callDuringLoad) {
   // This part is (a bit) inspired by the router Vitepress ship with at the time of writing, albeit a bit simpler and less featured
   window.addEventListener('click', (evt) => {
     const link = (evt.target).closest('a');
@@ -37,6 +35,14 @@
 
     }
   })
+
+  window.addEventListener('popstate', (e) => {
+    loadPage(location.href, (e.state && e.state.scrollPosition) || 0)
+  });
+
+  window.addEventListener('hashchange', (e) => {
+    e.preventDefault()
+  });
 
   function loadPage(href, scrollPosition = 0) {
     const transitionEnabled = !(localStorage.getItem("transitionsDisabled") === "true")
@@ -107,6 +113,10 @@
           })
         }
 
+        // Our function can be supplied a function to execute when loading a page
+        if (callDuringLoad)
+          callDuringLoad()
+
         if (transitionEnabled) {
           const toc = container.querySelector(".toc");
           const asides = container.querySelectorAll("aside");
@@ -138,12 +148,4 @@
     xhr.send();
     document.body.style.cursor = 'wait';
   }
-
-  window.addEventListener('popstate', (e) => {
-    loadPage(location.href, (e.state && e.state.scrollPosition) || 0)
-  });
-
-  window.addEventListener('hashchange', (e) => {
-    e.preventDefault()
-  });
-})();
+}

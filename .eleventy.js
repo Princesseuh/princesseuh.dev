@@ -1,7 +1,6 @@
-const { DateTime } = require("luxon");
-const fs = require('fs')
+const dayjs = require("dayjs");
+const fs = require('fs');
 
-const JSMinifier = require('terser');
 const HTMLMinifier = require('html-minifier-terser').minify;
 const csso = require('csso');
 
@@ -9,6 +8,7 @@ const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
 const pluginTOC = require('eleventy-plugin-toc')
 const pluginFootnotes = require('eleventy-plugin-footnotes')
+const pluginESbuild = require("@jamshop/eleventy-plugin-esbuild");
 
 const AssetManager = require('@11ty/eleventy-assets')
 const Image = require("@11ty/eleventy-img");
@@ -24,7 +24,7 @@ const typographyPlugin = require("@jamshop/eleventy-plugin-typography");
 const { plugin } = require("postcss");
 
 function getCssFilePath(componentName) {
-  return `theme/${componentName}.css`;
+  return `theme/css/${componentName}.css`;
 }
 
 async function indexCoverShortcode(src, alt, sizes) {
@@ -162,11 +162,11 @@ module.exports = function (config) {
   config.addPlugin(eleventyNavigationPlugin);
   config.addNunjucksFilter("featured", arr => arr.filter(e => e.data.featured));
 
-  config.addWatchTarget("./theme/*.css");
-  config.addWatchTarget("./theme/spa.js");
+  config.addWatchTarget("./theme/**/*.css");
+  config.addWatchTarget("./theme/**/*.js");
   config.addWatchTarget("**/*.md");
 
-  config.addPassthroughCopy("theme/fonts");
+  config.addPassthroughCopy({"theme/fonts": "fonts/"});
 
   config.setDataDeepMerge(true);
 
@@ -183,15 +183,15 @@ module.exports = function (config) {
   config.addShortcode('youtube', function(id) {return `${id}`})
 
   config.addFilter("readableDate", function(date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('LLL dd, yyyy');
+    return dayjs(date).format('MMM DD, YYYY');
   })
 
   config.addFilter("readableDatetime", function(date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat("LLL dd, yyyy 'at' HH:mm:ss");
+    return dayjs(date).format("MMM DD, YYYY [at] HH:mm:ss");
   })
 
   config.addFilter("htmlDateString", function (date) {
-    return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
+    //return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   })
 
   // Minify HTML
@@ -205,19 +205,17 @@ module.exports = function (config) {
 
   config.addTransform("css", async function(content, outputPath) {
     if (outputPath && outputPath.endsWith("prin.css")) {
-      return await processCSS(content, "./theme/prin.css")
+      return await processCSS(content, "./theme/css/main.css")
     }
 
     return content;
   });
 
-  config.addTransform("jsmin", async function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".js")) {
-      var result = await JSMinifier.minify(content);
-      return result.code;
-    }
-
-    return content;
+  config.addPlugin(pluginESbuild, {
+    entryPoints: {
+      main: "theme/js/index.js"
+    },
+    output: "_site/"
   });
 
   config.addTransform("jsonmin", (content, outputPath) => {

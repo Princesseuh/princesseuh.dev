@@ -28,9 +28,11 @@
     "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+    "@jamshop/eleventy-plugin-esbuild": "^1.0.2",
     "@jamshop/eleventy-plugin-typography": "^1.0.0",
     "clean-css": "^4.2.3",
     "csso": "^4.2.0",
+    "dayjs": "^1.10.4",
     "eleventy-plugin-footnotes": "^0.9.0",
     "eleventy-plugin-toc": "^1.1.0",
     "html-minifier-terser": "^5.1.1",
@@ -45,6 +47,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-assets": "^1.0.4",
-    "@11ty/eleventy-img": "^0.7.3"
+    "@11ty/eleventy-img": "^0.7.3",
+    "instant.page": "^5.1.0"
   }
 }

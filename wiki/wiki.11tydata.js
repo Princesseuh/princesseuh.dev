@@ -1,5 +1,5 @@
 const { execSync } = require('child_process')
-const { DateTime } = require("luxon");
+const dayjs = require("dayjs");
 
 module.exports = {
   layout: "layouts/wiki.njk",
@@ -9,9 +9,9 @@ module.exports = {
     // from stat (ctimems), so it get overwritten when deployed on another server, getting it from git is safer
     lastModified: (data) => {
       let isoDate = execSync(`git log -1 --date=iso --pretty="format:%cI" ${data.page.inputPath}`)
-      let result = DateTime.fromISO(isoDate, {setZone: true})
+      let result = dayjs(isoDate)
 
-      return result.toJSDate()
+      return result.toDate()
     }
   }
 }

@@ -34,7 +34,7 @@ layout: layouts/_base.njk
 
     {{ content | typogrify | safe }}
 
-    <span class="article--lastmodified">Last modified on the {{ lastModified | readableDatetime }}</span>
+    <span class="article--lastmodified">Last modified <span data-date="{{ lastModified }}">{{ lastModified | readableDatetime }}</span></span>
 
     {% footnotes %}
   </article>

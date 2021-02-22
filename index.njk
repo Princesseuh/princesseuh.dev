@@ -57,7 +57,7 @@
         {% if (loop.index <= 5) %}
         <section>
           <a href="{{ page.url }}">{{ page.data.title }}</a>
-          <span class="latest--date">{{ (page.data.lastModified | readableDatetime).slice(0, -3) }}</span>
+          <span class="latest--date" data-date="{{ page.data.lastModified }}">{{ (page.data.lastModified | readableDatetime).slice(0, -3) }}</span>
         </section>
         {% endif %}
         {%- endfor -%}
