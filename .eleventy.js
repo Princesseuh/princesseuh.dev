@@ -167,6 +167,7 @@ module.exports = function (config) {
   config.addWatchTarget("**/*.md");
 
   config.addPassthroughCopy({"theme/fonts": "fonts/"});
+  config.addPassthroughCopy({"theme/assets/favicon.svg": "favicon.svg"})
 
   config.setDataDeepMerge(true);
 
