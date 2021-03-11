@@ -11,5 +11,7 @@
         "that",
         "using",
         "way"
-    ]
+    ],
+    "explorer.sortOrder": "default",
+    "npm.packageManager": "pnpm"
 }

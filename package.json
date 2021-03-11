@@ -30,20 +30,17 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
     "@jamshop/eleventy-plugin-esbuild": "^1.0.2",
     "@jamshop/eleventy-plugin-typography": "^1.0.0",
-    "clean-css": "^4.2.3",
     "csso": "^4.2.0",
     "dayjs": "^1.10.4",
     "eleventy-plugin-footnotes": "^0.9.0",
     "eleventy-plugin-toc": "^1.1.0",
     "html-minifier-terser": "^5.1.1",
-    "luxon": "^1.25.0",
     "markdown-it-anchor": "^7.0.0",
     "markdown-it-footnote": "^3.0.2",
     "postcss": "^8.2.2",
     "postcss-css-variables": "^0.17.0",
     "postcss-import": "^14.0.0",
-    "postcss-nested": "^5.0.3",
-    "terser": "^5.5.1"
+    "postcss-nested": "^5.0.3"
   },
   "dependencies": {
     "@11ty/eleventy-assets": "^1.0.4",

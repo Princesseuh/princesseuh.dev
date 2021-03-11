@@ -18,7 +18,6 @@ Feature-wise, the website is pretty much finished however, just like anything, i
 
 ### Style
 
-- The website is currently missing a favicon
 - The website currently doesn't work on mobile and tablets
 - Vertical rythmn is mostly good but a few elements are still missing
 - Currently the page transition works nicely when going from normal page to wiki but not the reverse, what happens is {% footnoteref "side-transitions-wiki", "Frankly, this is a really minor issue and probably not worth spending too much time on" %}the side menus don't get affected by the transition and instead just disappear instantly once the loading is done{% endfootnoteref %}

@@ -7,7 +7,7 @@
     order: 2
 ---
 
-Floristry doesn't really have the best presence online, sure you can find plenty of pictures of bouquets and various other arrangements but it's surprisingly hard to find lessons, guides etc about it (special mention however to the MANY Youtube channels such as [Bloomtube](https://www.youtube.com/c/Bloomtube/videos) or [Flower Joos](https://www.youtube.com/c/FlowerJoos/videos), those are great!)
+Floristry doesn't really have the best presence online, sure you can find plenty of pictures of bouquets and various other arrangements but it's surprisingly hard to find lessons, guides etc about it (special mention however to the MANY Youtube channels such as [FlowerSchool](https://www.youtube.com/user/FlowerSchool/videos) or [Flower Joos](https://www.youtube.com/c/FlowerJoos/videos), those are great!)
 
 You see, there's no "[MDN](https://developer.mozilla.org/en-US/) of the flowers". Outside of the many videos on Youtube, typing "how to do {thing}" on your favorite search engine will most likely lead you towards sketchy websites or at least, really non-informative content
 
