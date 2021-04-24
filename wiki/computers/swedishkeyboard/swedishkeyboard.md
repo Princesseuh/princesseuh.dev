@@ -17,8 +17,7 @@ However, despite needing those characters, I use the layout I'm most accustomed 
 
 As you can see on the image above, the characters are normally on their own key. Let's start with a controversial take: We won't do this
 
-Of course, Åå being its own character, the "correct" way would be for it to be on its own key however, where the Swedish layout has all the brackets on the number row, the French Canadian's doesn't so we don't have room to have a key for it so we'll do another controversial thing and put it on.. the letter A. Jag säger inget, så har jag ingenting sagt 😄
-
+Of course, Åå being its own character, the "correct" way would be for it to be on its own key however, where the Swedish layout has all the brackets on the number row, the French Canadian's doesn't so we don't have room to have a key for it so we'll do another controversial thing and put it on.. the letter A 😄
 
 ## The layout file
 
@@ -33,7 +32,7 @@ xkb_symbols "swe" {
 
     name[Group1]= "Canadian French + Swedish Å";
 
-    key <AC01>	{ [a, A, aring, Aring ]	};
+    key <AC01> { [a, A, aring, Aring ] };
 
     include "level3(lalt_switch)"
 };
@@ -53,11 +52,11 @@ We then give a name to the current group. To be honest, I'm not sure what this i
 
 Now here come the important line:
 
-`key <AC01>	{ [a, A, aring, Aring ]	};`
+`key <AC01> { [a, A, aring, Aring ] };`
 
 `key` here says that this line describe a single mapping for a keycode, in this case `AC01`. The first letter indicate the block in which the key is located, here it's A for the **alphanumeric key block**, the second {% footnoteref "key-row", "This is a bit unintuitive, but the TL:DR is that it goes from A to E, the space bar row being A and the number keys are on the row E. So, the letter A in this case is on the row C" %}the row in which the key is located{% endfootnoteref %} and the last two numbers are for the position of the key counting from the left and skipping over special keys such as Tab, Caps Lock etc
 
-`{ [a, A, aring, Aring ]	}`
+`{ [a, A, aring, Aring ] }`
 
 This part says which character to output when the key is pressed, you might be wondering why there's 4 characters but it's actually pretty simple: the first one `a` is the normal character inputted when no modifiers are pressed, the second one `A` is when `Shift` and the key are pressed, the third one `å` is when `Mode_switch` and the key are pressed and finally the last one `Å` is when `Mode_switch`, `Shift` and the key are pressed. To resume:
 

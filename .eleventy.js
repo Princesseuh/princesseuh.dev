@@ -1,15 +1,14 @@
-const dayjs = require("dayjs");
 const fs = require('fs');
+const path = require('path');
+const shortHash = require('shorthash2')
+
+const filters = require('./config/filters.js')
 
 const HTMLMinifier = require('html-minifier-terser').minify;
 const csso = require('csso');
 
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
-const pluginTOC = require('eleventy-plugin-toc')
-const pluginFootnotes = require('eleventy-plugin-footnotes')
-const pluginESbuild = require("@jamshop/eleventy-plugin-esbuild");
-
 const AssetManager = require('@11ty/eleventy-assets')
 const Image = require("@11ty/eleventy-img");
 
@@ -18,35 +17,74 @@ const postcssNested = require('postcss-nested');
 const postcssImport = require('postcss-import');
 const postcssCSSVariables = require('postcss-css-variables');
 
-const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const typographyPlugin = require("@jamshop/eleventy-plugin-typography");
-const { plugin } = require("postcss");
+const pluginNavigation = require("@11ty/eleventy-navigation");
+const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const pluginTypography= require("@jamshop/eleventy-plugin-typography");
+const pluginTOC = require('eleventy-plugin-nesting-toc')
+const pluginFootnotes = require('eleventy-plugin-footnotes')
+const pluginESbuild = require("@jamshop/eleventy-plugin-esbuild");
 
 function getCssFilePath(componentName) {
   return `theme/css/${componentName}.css`;
 }
 
+const imageOptions = {
+  outputDir: './_site/img/',
+  formats: ['avif', 'webp', 'jpeg'],
+  filenameFormat: (id, src, width, format) => {
+    const extension = path.extname(src);
+    const name = path.basename(src, extension);
+
+    const stats = fs.statSync(src);
+
+    const hash = shortHash(`${src}|${stats.size}`);
+
+    return `${name}-${hash}-${width}w.${format}`;
+  },
+};
+
 async function indexCoverShortcode(src, alt, sizes) {
   if (alt === undefined) {
-    // You bet we throw an error on missing alt (alt="" works okay)
-    throw new Error(`Missing \`alt\` on responsiveimage from: ${src}`);
+    throw new Error(`Missing \`alt\` on responsive image from: ${src}`);
   }
 
-  let metadata = await Image(src, {
+  const options = {
     widths: [380, 600],
-    formats: ["avif", "webp", "jpeg"],
-    outputDir: './_site/img/'
-  });
+    ...imageOptions
+  }
 
-  let lowsrc = metadata.jpeg[0];
+  const stats = Image.statsSync(src, options);
+
+  /** Creating a flat array of all the output paths from the stats object. */
+  const outputPaths = Object.keys(stats).reduce((acc, key) => {
+    return [
+      ...acc,
+      ...stats[key].map((resource) => {
+        return resource.outputPath;
+      }),
+    ];
+  }, []);
+
+  /** Checking if all output files exists. */
+  let hasImageBeenOptimized = true;
+  for (const outputPath of outputPaths) {
+    if (!fs.existsSync(path.resolve(__dirname, outputPath))) {
+      hasImageBeenOptimized = false;
+    }
+  }
+
+  // Process the image if doesn't exist
+  if (!hasImageBeenOptimized) {
+    await Image(src, options)
+  }
 
   return `<picture>
-    ${Object.values(metadata).map(imageFormat => {
+    ${Object.values(stats).map(imageFormat => {
     return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
   }).join("\n")}
       <img
-        src="${lowsrc.url}"
+        class="object-cover object-top rounded-sm"
+        src="${stats.jpeg[0].url}"
         width="377"
         height="180"
         alt="${alt}"
@@ -55,12 +93,94 @@ async function indexCoverShortcode(src, alt, sizes) {
     </picture>`;
 }
 
+async function catalogueCoverShortcode(data) {
+  if (data.alt === undefined) {
+    throw new Error(`Missing \`alt\` on responsive image from: ${data.src}`);
+  }
+
+  const options = {
+    widths: [300],
+    ...imageOptions
+  }
+
+  const stats = Image.statsSync(data.src, options);
+
+  /** Creating a flat array of all the output paths from the stats object. */
+  const outputPaths = Object.keys(stats).reduce((acc, key) => {
+    return [
+      ...acc,
+      ...stats[key].map((resource) => {
+        return resource.outputPath;
+      }),
+    ];
+  }, []);
+
+  /** Checking if all output files exists. */
+  let hasImageBeenOptimized = true;
+  for (const outputPath of outputPaths) {
+    if (!fs.existsSync(path.resolve(__dirname, outputPath))) {
+      hasImageBeenOptimized = false;
+    }
+  }
+
+  // Process the image if doesn't exist
+  if (!hasImageBeenOptimized) {
+    await Image(data.src, options)
+  }
+
+  let pictureClass = data.class ? `class="${data.class}"` : ''
+  return `<picture ${pictureClass}>
+    ${Object.values(stats).map(imageFormat => {
+    return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}">`;
+  }).join("\n")}
+      <img
+        class="max-w-[200px] max-h-[300px]"
+        src="${stats.jpeg[0].url}"
+        alt="${data.alt}"
+        width="200"
+        height="300"
+        loading="lazy"
+        decoding="async">
+    </picture>`;
+}
+
 async function imageShortcode(data) {
-  let metadata = await Image(data.src, {
+
+  const options = {
     widths: [null],
-    formats: ["avif", "webp", "jpeg"],
-    outputDir: './_site/img/'
-  });
+    sharpWebpOptions: {
+      quality: 90,
+    },
+    sharpAvifOptions: {
+      quality: 90,
+    },
+    ...imageOptions
+  }
+
+  const stats = Image.statsSync(data.src, options);
+
+  /** Creating a flat array of all the output paths from the stats object. */
+  const outputPaths = Object.keys(stats).reduce((acc, key) => {
+    return [
+      ...acc,
+      ...stats[key].map((resource) => {
+        return resource.outputPath;
+      }),
+    ];
+  }, []);
+
+  /** Checking if all output files exists. */
+  let hasImageBeenOptimized = true;
+  for (const outputPath of outputPaths) {
+    if (!fs.existsSync(path.resolve(__dirname, outputPath))) {
+      hasImageBeenOptimized = false;
+    }
+  }
+
+  // Process the image if doesn't exist
+  if (!hasImageBeenOptimized) {
+    await Image(data.src, options)
+  }
 
   let imageAttributes = {
     alt: data.alt,
@@ -69,12 +189,12 @@ async function imageShortcode(data) {
     decoding: "async",
   };
 
-
-  let html = Image.generateHTML(metadata, imageAttributes);
+  let html = Image.generateHTML(stats, imageAttributes);
 
   var md = new markdownIt({ typographer: true });
   let captionHtml = data.caption ? `<figcaption>${md.renderInline(data.caption)}</figcaption>` : ''
-  return `<figure class="${data.class}">${html}${captionHtml}</figure>`
+  let figureClass = data.class ? `class="${data.class}"` : ''
+  return `<figure ${figureClass}>${html}${captionHtml}</figure>`
 }
 
 function blockShortcode(content, title) {
@@ -83,6 +203,7 @@ function blockShortcode(content, title) {
 }
 
 module.exports = function (config) {
+  // CSS Components
   let cssManager = new AssetManager.InlineCodeManager();
 
   config.addNunjucksAsyncShortcode("usingCSSComponent", async function(componentName) {
@@ -104,20 +225,18 @@ module.exports = function (config) {
     return cssManager.getCodeForUrl(url);
   });
 
-  config.addFilter("htmlmin", (content) => {
-    return minifyHTML(content);
+  config.on("beforeWatch", () => {
+    cssManager.resetComponentCode();
+  });
+
+  // Filters
+  Object.keys(filters).forEach((filterName) => {
+    config.addFilter(filterName, filters[filterName])
   })
 
-  config.addNunjucksAsyncFilter("cssmin", function(content, callback) {
-    processCSS(content).then(
-      (result) => {
-        callback(null, result)
-      }
-    )
-  })
-
-  config.addCollection("latestWiki", function (collectionApi) {
-    return collectionApi.getFilteredByTag("wiki")
+  // Collections
+  config.addCollection("latestWiki", function (collection) {
+    return collection.getFilteredByTag("wiki")
     .filter(function(item) {
       return item.url !== false
     })
@@ -137,11 +256,6 @@ module.exports = function (config) {
     return Array.from(tagsSet).sort();
   });
 
-  config.addFilter("markdown", (content) => {
-    var md = new markdownIt({ typographer: true });
-    return md.renderInline(content);
-  })
-
   config.setLibrary(
     'md',
     markdownIt({
@@ -156,13 +270,22 @@ module.exports = function (config) {
         level: [1, 2, 3, 4]
       })
   )
-  config.addPlugin(pluginTOC)
-  config.addPlugin(pluginFootnotes)
 
-  config.addPlugin(eleventyNavigationPlugin);
-  config.addNunjucksFilter("featured", arr => arr.filter(e => e.data.featured));
+  // Plugins
+  config.addPlugin(pluginTOC, { ignoredElements: ['.anchor-link'] })
+  config.addPlugin(pluginFootnotes)
+  config.addPlugin(pluginNavigation);
+  config.addPlugin(pluginSyntaxHighlight);
+  config.addPlugin(pluginTypography);
+  config.addPlugin(pluginESbuild, {
+    entryPoints: {
+      main: "theme/js/index.js"
+    },
+    output: "_site/"
+  });
 
   config.addWatchTarget("./theme/**/*.css");
+  config.addWatchTarget('./tailwind.config.js')
   config.addWatchTarget("./theme/**/*.js");
   config.addWatchTarget("**/*.md");
 
@@ -171,33 +294,18 @@ module.exports = function (config) {
 
   config.setDataDeepMerge(true);
 
-  config.on("beforeWatch", () => {
-    cssManager.resetComponentCode();
-  });
-
   config.addNunjucksAsyncShortcode("image", imageShortcode);
   config.addNunjucksAsyncShortcode("cover", indexCoverShortcode);
+  config.addNunjucksAsyncShortcode("catalogueCover", catalogueCoverShortcode);
 
   config.addPairedNunjucksShortcode("note", blockShortcode);
 
   // TODO: Implement Youtube shortcode
   config.addShortcode('youtube', function(id) {return `${id}`})
 
-  config.addFilter("readableDate", function(date) {
-    return dayjs(date).format('MMM DD, YYYY');
-  })
-
-  config.addFilter("readableDatetime", function(date) {
-    return dayjs(date).format("MMM DD, YYYY [at] HH:mm:ss");
-  })
-
-  config.addFilter("htmlDateString", function (date) {
-    //return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
-  })
-
   // Minify HTML
   config.addTransform("htmlmin", (content, outputPath) => {
-    if (outputPath && outputPath.endsWith('.html')) {
+    if (outputPath && outputPath.endsWith('.html') && process.env.ELEVENTY_PRODUCTION) {
       let minified = minifyHTML(content)
       return minified
     }
@@ -212,13 +320,6 @@ module.exports = function (config) {
     return content;
   });
 
-  config.addPlugin(pluginESbuild, {
-    entryPoints: {
-      main: "theme/js/index.js"
-    },
-    output: "_site/"
-  });
-
   config.addTransform("jsonmin", (content, outputPath) => {
     if (outputPath && outputPath.endsWith(".json")) {
       return JSON.stringify(JSON.parse(content))
@@ -227,13 +328,11 @@ module.exports = function (config) {
     return content;
   })
 
-  config.addPlugin(syntaxHighlight);
-  config.addPlugin(typographyPlugin);
-
   return {
     markdownTemplateEngine: "njk",
     dataTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
+    templateFormats: ['njk', 'md']
   }
 };
 

@@ -3,4 +3,5 @@ README.md
 .github
 _cache
 *.draft.md
+node_modules
 api.njk

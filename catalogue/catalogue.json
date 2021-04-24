@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/catalogueItem.njk",
+  "tags": "catalogue",
+  "featured": false
+}

@@ -1,0 +1,20 @@
+{% macro postHeader(includeMeta=true) %}
+<header class="mb-4 mt-4">
+  <h1 class="text-[3.5rem] mb-4 mt-0 leading-none">{{ title | safe }}</h1>
+  <h2 class="text-xl m-0 relative top-[-5px]">{{ tagline | safe }}</h2>
+  {% if includeMeta %}
+  <div class="text-creative-work">
+    <span>{{ date | readableDate }}</span>
+    ·
+    <span>
+      {%- for tag in tags -%}
+      {% if tag != "post" %}
+        {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+        <span><a href="{{ tagUrl | url }}">{{ tag }}</a></span>{{ ', ' if not loop.last }}
+      {% endif %}
+      {%- endfor -%}
+    </span>
+  </div>
+  {% endif %}
+</header>
+{% endmacro %}

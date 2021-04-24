@@ -1,6 +1,6 @@
 /* Simple normalizer based on modern-normalize, doesn't include anything we don't use */
 
-*,
+/* *,
 *::before,
 *::after {
 	box-sizing: border-box;
@@ -26,4 +26,4 @@ p {
 b,
 strong {
 	font-weight: bolder;
-}
+} */

@@ -2,45 +2,43 @@
 layout: layouts/_base.njk
 ---
 
+{% macro renderNavListItem(entry) -%}
+<li{% if entry.url == page.url %} class="font-bold"{% endif %}>
+  {% if entry.url %}
+    <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+  {% else %}
+    <span class="text-sugar-cane font-bold">{{ entry.title }}</span>
+  {% endif %}
+  {%- if entry.children.length -%}
+    <ul class="m-0 p-0 list-none">
+      {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+    </ul>
+  {%- endif -%}
+</li>
+{%- endmacro %}
+
 <section class="wiki--layout">
   <aside>
     {% set navPages = collections.wiki | eleventyNavigation %}
 
-    {% macro renderNavListItem(entry) -%}
-    <li{% if entry.url == page.url %} class="current--page"{% endif %}>
-      {% if entry.url %}
-        <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-      {% else %}
-        <span class="title">{{ entry.title }}</span>
-      {% endif %}
-    {%- if entry.children.length -%}
-      <ul>
-        {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
-      </ul>
-    {%- endif -%}
-    </li>
-    {%- endmacro %}
-
-    <ul class="global--navigation">
+    <ul class="m-0 p-0 list-none wiki-navigation">
       {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
     </ul>
   </aside>
 
-  <article class="wiki">
-    <header class="article--header">
-      <h1 class="article--title">{{ title | safe }}</h1>
-      <h2 class="article--tagline">{{ tagline | safe }}</h2>
-    </header>
+  <article class="post">
+    {% from 'postHeader.njk' import postHeader with context %}
+    {{ postHeader(false) }}
 
     {{ content | typogrify | safe }}
 
-    <span class="article--lastmodified">Last modified <span data-date="{{ lastModified }}">{{ lastModified | readableDatetime }}</span></span>
+    <span class="text-right block text-creative-work mb-4">Last modified <span data-date="{{ lastModified }}">{{ lastModified | readableDatetime }}</span></span>
 
     {% footnotes %}
   </article>
 
   <aside>
-    <span class="on-this-page">On this page</span>
+    <span class="font-semibold mb-2">On this page</span>
     {{ content | toc | safe }}
   </aside>
 </section>

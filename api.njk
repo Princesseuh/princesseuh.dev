@@ -1,25 +1,25 @@
 ---
+eleventyExcludeFromCollections: true
 pagination:
   data: collections.all
   size: 1
   alias: post
-permalink: /api/{{ post.filePathStem if post.filePathStem == '/index' else post.fileSlug }}.html
+permalink: /api/{{ post.filePathStem if post.filePathStem == '/index' else post.fileSlug }}.json
 ---
 
-{# {
+{
   {%- for tag in post.data.tags %}
   {% if tag == "wiki" -%}
   "lastModified": "{{ post.data.lastModified | readableDate }}",
-  "toc": "{{- post.templateContent | toc | safe | htmlmin -}}",
+  "toc": {{- post.templateContent | toc | jsonify -}},
   {% endif -%}
   {%- endfor -%}
   {%- if post.url | getCss %}
-  "style": "{{ post.url | getCss | cssmin }}",
+  "style": {{ post.url | getCss | jsonify }},
   {%- endif %}
   "title": "{{ post.data.title + " - " + metadata.title if post.data.title else metadata.title }}",
   "description": "{{ post.data.tagline }}",
   "date": "{{ post.date | readableDate }}",
   "tags": [{%- for tag in post.data.tags %}"{{tag}}"{% if not loop.last %},{% endif %}{% endfor %}],
-  "content": "{{- post.templateContent | htmlmin | safe -}}"
+  "content": {{- post.templateContent | jsonify -}}
 }
- #}

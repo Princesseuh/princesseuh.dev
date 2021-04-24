@@ -2,67 +2,56 @@
   layout: layouts/_base.njk
 ---
 
-<article class="index">
-  <section>
-    <h2 class="hello">Hello! 💐</h2>
+{% from 'minipost.njk' import miniPost %}
 
-    <p>My real name is <span class="name">Erika</span> but maybe you know me under the nickname <span class="nickname">Princesseuh</span> 👸, that's okay!</p>
+<article class="w-index mx-auto mt-6">
+  <h2 class="mb-4 text-4xl">Hello! 💐</h2>
 
-    <p>I'm a web/game developer from Canada 🇨🇦, pleased to meet you! Truth be told, I'm not as interested in programming as I once used to be, however, I'm definitely still a nerd at heart and having your own website is still a really cool thing, so hey, welcome to my website! Feel free to browse around!</p>
+  <p>My real name is <span class="font-bold text-beach-watermelon">Erika</span> but maybe you know me under the nickname <span class="font-semibold text-pinky-unicorny">Princesseuh</span> 👸, that's okay!</p>
 
-    Interested in seeing stuff I worked on? Click <a href="/projects">here for my projects</a>! Wanna read stuff I wrote? Well, lucky you, <a href="/articles">here's my blog</a>! You want to read random stuff I wrote mostly for myself? Well, <a href="/wiki">my wiki is right here</a>!&nbsp;🎉
+  <p>I'm a web/game developer from Canada 🇨🇦, pleased to meet you! Truth be told, I'm not as interested in programming as I once used to be, however, I'm definitely still a nerd at heart and having your own website is still a really cool thing, so hey, welcome to my website! Feel free to browse around!</p>
 
-    <h3>Featured works</h3>
-    <div class="featured-works">
+  Interested in seeing stuff I worked on? Click <a href="/projects">here for my projects</a>! Wanna read stuff I wrote? Well, lucky you, <a href="/articles">here's my blog</a>! You want to read random stuff I wrote mostly for myself? Well, <a href="/wiki">my wiki is right here</a>!&nbsp;🎉
+
+  <h3 class="text-2xl mb-5">Featured works</h3>
+  <div class="flex flex-wrap mx-10 mt-2 mb-6 gap-4 justify-center items-center">
     {%- for project in collections.project | featured -%}
-      <div>
-        <a href="{{ project.url }}">
-          {% set cover = "projects/"+ project.data.type + "s/" + project.fileSlug + "/cover.png" %}
-          {% cover cover, "Eleventy's logo. 11 ty", undefined %}
-          <h4>{{ project.data.title }}</h4>
-        </a>
-      </div>
+    <div class="h-[180px] relative">
+      <a href="{{ project.url }}">
+        {% set cover = "projects/"+ project.data.type + "s/" + project.fileSlug + "/cover.png" %}
+        {% cover cover, "Eleventy's logo. 11 ty", undefined %}
+        <h4 class="cover-title">
+          {{ project.data.title }}
+        </h4>
+      </a>
+    </div>
     {%- endfor -%}
+  </div>
+
+  <div class="flex justify-around gap-4">
+    <div class="w-[63%]">
+      <h3 class="text-2xl mb-4">Latest blog posts</h3>
+      {%- for post in collections.post | reverse -%}
+      {% if (loop.index <= 3) %}
+      {{ miniPost(post) }}
+      {% endif %}
+      {%- endfor -%}
     </div>
 
-    <div class="latest-content">
-      <div class="article--list">
-        <h3>Latest blog posts</h3>
-        {%- for post in collections.post | reverse -%}
-          {% if (loop.index <= 3) %}
-          <section>
-            <a href="{{ post.url }}"><h4 class="article--title">{{ post.data.title | safe }}</h4></a>
-            <div class="article--meta">
-              <span class="article--date">{{ post.data.date | readableDate }}</span>
-              ·
-              <span class="article--tags">
-                {%- for tag in post.data.tags -%}
-                  {% if tag != "post" %}
-                    {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
-                    <span class="article--tag"><a href="{{ tagUrl | url }}">{{ tag }}</a></span>{{ ', ' if not loop.last }}
-                  {% endif %}
-                {%- endfor -%}
-              </span>
-            </div>
-            {% if post.data.tagline %}<span class="article--tagline">{{ post.data.tagline | safe }}</span>{% endif %}
-            </section>
-          {% endif %}
-        {%- endfor -%}
-      </div>
-
-      <div class="wiki--latest-modifications">
-        <div class="latest-wiki">
-          <h3>Latest wiki modifications</h3>
-        {%- for page in collections.latestWiki -%}
-        {% if (loop.index <= 5) %}
-        <section>
-          <a href="{{ page.url }}">{{ page.data.title }}</a>
-          <span class="latest--date" data-date="{{ page.data.lastModified }}">{{ (page.data.lastModified | readableDatetime).slice(0, -3) }}</span>
-        </section>
-        {% endif %}
-        {%- endfor -%}
-        </div>
-      </div>
+    <div class="w-[37%]">
+      <h3 class="text-2xl mb-4">Latest wiki modifications</h3>
+      {%- for page in collections.latestWiki -%}
+      {% if (loop.index <= 5) %}
+      <section class="mb-3">
+        <a class="block font-bold leading-tight" href="{{ page.url }}">
+          {{ page.data.title }}
+        </a>
+        <span class="text-sm" data-date="{{ page.data.lastModified }}">
+          {{ (page.data.lastModified | readableDatetime).slice(0, -3) }}
+        </span>
+      </section>
+      {% endif %}
+      {%- endfor -%}
     </div>
-  </section>
+  </div>
 </article>

@@ -8,6 +8,9 @@
   <link rel="preload" href="/prin.css" as="style">
   <link rel="stylesheet" href="/prin.css">
 
+  <link rel="preload" href="/prin2.css" as="style">
+  <link rel="stylesheet" href="/prin2.css">
+
   <link rel="preload" href="/main.js" as="script">
   <script src="/main.js" defer></script>
 
@@ -21,17 +24,19 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <header>
-      <section>
-        <div>
-          <h1><a href="/">Erika 🌺</a></h1>
-          <nav>
-            <a href="/projects/">Projects</a>
-            <a href="/articles/">Articles</a>
-            <a href="/wiki/">Wiki</a>
-            <a href="/catalogue/">Catalogue</a>
-            <a href="/about/">About</a>
+  <div id="app" class="bg-baltic-sea">
+    <header class="py-[.8rem] flex justify-center">
+      <section class="w-header flex justify-between">
+        <div class="flex items-center">
+          <h1 class="m-0 inline-block">
+            <a class="header-link" href="/">Erika 🌺</a>
+          </h1>
+          <nav class="inline-block ml-2">
+            <a class="header-link" href="/projects/">Projects</a>
+            <a class="header-link" href="/articles/">Articles</a>
+            <a class="header-link" href="/wiki/">Wiki</a>
+            <a class="header-link" href="/catalogue/">Catalogue</a>
+            <a class="header-link" href="/about/">About</a>
           </nav>
         </div>
         {% include './socials.njk' %}
@@ -42,8 +47,8 @@
       {{ content | safe }}
     </main>
 
-    <footer>
-      <section>
+    <footer class="py-6 flex justify-center leading-tight bg-darker-skylines">
+      <section class="flex justify-between w-footer">
         {% include './socials.njk' %}
 
         <div>

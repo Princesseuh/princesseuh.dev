@@ -1,0 +1,59 @@
+---
+layout: layouts/_base.njk
+---
+
+<article class="w-index mx-auto mt-6">
+  <div class="mt-4">
+    <a href="/catalogue">&lt;&lt; Back to Catalogue</a>
+  </div>
+  <header class="flex justify-between gap-4 px-2 my-4 pb-4 border-b">
+    {% set cover = "." + page.filePathStem | replace("catalogue/", "catalogue/assets/") + ".jpg" %}
+    {% set defaultAlt = title + "'s cover" %}
+    {% catalogueCover src=cover, alt=cover_alt if cover_alt else defaultAlt, class="m-0" %}
+
+    <div class="catalogue--item-meta flex flex-1 items-center justify-center relative bottom-2">
+      <div>
+        <h2 class="mt-0 text-center">{{ title }}</h2>
+
+        <section class="flex justify-between gap-14">
+          <dl>
+            <dt>Author</dt>
+            <dd>{{ author }}</dd>
+
+            <dt>Genre</dt>
+            <dd>{{ genre }}</dd>
+
+            {% if format %}
+              <dt>Format</dt>
+              <dd>{{ format }}</dd>
+            {% endif %}
+          </dl>
+
+          <dl>
+            <dt>Started on</dt>
+            <dd>{{ data | readableDate }}</dd>
+
+            {% if endedon %}
+              <dt>Ended on</dt>
+              <dd>{{ endedon | readableDate }}</dd>
+            {% endif %}
+
+            {% if gametime %}
+              <dt>Time to finish</dt>
+              <dd>{{ gametime }}</dd>
+            {% endif %}
+
+            {% if pages %}
+              <dt>Pages</dt>
+              <dd>{{ pages }}</dd>
+            {% endif %}
+          </dl>
+        </section>
+      </div>
+    </div>
+  </header>
+
+  <section>
+  {{ content | typogrify | safe }}
+  </section>
+</article>

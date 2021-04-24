@@ -1,0 +1,24 @@
+{% macro miniPost(post) %}
+<section class="mb-3">
+  <a href="{{ post.url }}">
+    <h4 class="inline-block m-0 text-xl">{{ post.data.title | safe }}</h4>
+  </a>
+
+  <div class="mb-2 text-creative-work text-sm">
+    <span>{{ post.data.date | readableDate }}</span>
+    ·
+    <span>
+      {%- for tag in post.data.tags -%}
+      {% if tag != "post" %}
+      {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+      <a href="{{ tagUrl | url }}">{{ tag }}</a>{{ ', ' if not loop.last }}
+      {% endif %}
+      {%- endfor -%}
+    </span>
+  </div>
+
+  {% if post.data.tagline %}
+  <span>{{ post.data.tagline | safe }}</span>
+  {% endif %}
+</section>
+{% endmacro %}

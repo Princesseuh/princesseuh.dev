@@ -3,7 +3,7 @@
   tagline: "(i use arch btw)"
   date: 2021-01-22
   eleventyNavigation:
-    key: Arch Linux
+    key: Why I use Arch Linux
     parent: Computers
 ---
 

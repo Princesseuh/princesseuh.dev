@@ -1,0 +1,1 @@
+object-cover object-top rounded-sm max-w-[200px] max-h-[300px]

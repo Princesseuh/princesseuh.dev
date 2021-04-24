@@ -1,23 +1,9 @@
 ---
 layout: layouts/_base.njk
 ---
-<article>
-  <header class="article--header">
-    <h1 class="article--title">{{ title | safe }}</h1>
-    <h2 class="article--tagline">{{ tagline | safe }}</h2>
-    <div class="article--meta">
-      <span class="article--date">{{ date | readableDate }}</span>
-      ·
-      <span class="article--tags">
-        {%- for tag in tags -%}
-        {% if tag != "post" %}
-          {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
-          <span class="article--tag"><a href="{{ tagUrl | url }}">{{ tag }}</a></span>{{ ', ' if not loop.last }}
-        {% endif %}
-        {%- endfor -%}
-      </span>
-    </div>
-  </header>
-
+<article class="post mx-auto">
+  {% from 'postHeader.njk' import postHeader with context %}
+  {{ postHeader() }}
+  
   {{ content | typogrify | safe }}
 </article>

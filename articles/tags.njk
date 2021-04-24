@@ -14,36 +14,31 @@ pagination:
 permalink: /articles/tags/{{ tag }}/
 ---
 
-<article class="blog">
-  <div class="article--list">
-  <h2>Articles tagged "{{ tag }}"</h2>
-  {% set taglist = collections[ tag ] %}
-  {% for post in taglist | reverse %}
-            <section>
-              <a href="{{ post.url }}"><h3 class="article--title">{{ post.data.title | safe }}</h3></a>
-              <div class="article--meta">
-                <span class="article--date">{{ post.data.date | readableDate }}</span>
-                ·
-                <span class="article--tags">
-                  {%- for tag in post.data.tags -%}
-                    {% if tag != "post" %}
-                      <span class="article--tag"><a href="#">{{ tag }}</a></span>{{ ', ' if not loop.last }}
-                    {% endif %}
-                  {%- endfor -%}
-                </span>
-              </div>
-              {% if post.data.tagline %}<span class="article--tagline">{{ post.data.tagline | safe }}</span>{% endif %}
-              </section>
-  {%- endfor %}
+{% from 'minipost.njk' import miniPost %}
+
+<article class="w-articleList mx-auto flex">
+  <div class="w-[80%]">
+    <h2>Articles tagged "{{ tag }}"</h2>
+    {% set taglist = collections[ tag ] %}
+    {% for post in taglist | reverse %}
+      {{ miniPost(post) }}
+    {%- endfor %}
   </div>
 
-  <aside>
+  <aside class="w-[20%]">
+    <section>
     <h2>Tags</h2>
     <ul>
       {%- for ttag in collections.tagListPosts | sort(collections.tagListPosts, true, false, collections[tag].length) -%}
         {% set tagUrl %}/articles/tags/{{ ttag }}/{% endset %}
-        <li><a {% if ttag == tag %}class="current--page"{% endif %}href="{{ tagUrl | url }}">{{ ttag }} ({{ collections[ttag].length }})</a></li>
+        <li>
+          <a {% if ttag == tag %}class="current--page"{% endif %} href="{{ tagUrl | url }}">
+            {{ ttag }} ({{ collections[ttag].length }})
+          </a>
+        </li>
       {%- endfor -%}
     </ul>
   </aside>
 </article>
+
+

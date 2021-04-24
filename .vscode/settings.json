@@ -1,17 +1,4 @@
 {
-    "cSpell.ignoreWords": [
-        "avoid",
-        "better",
-        "i'd",
-        "it",
-        "it's",
-        "just",
-        "nowadays",
-        "rather",
-        "that",
-        "using",
-        "way"
-    ],
     "explorer.sortOrder": "default",
-    "npm.packageManager": "pnpm"
+    "npm.packageManager": "pnpm",
 }

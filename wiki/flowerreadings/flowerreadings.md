@@ -13,7 +13,6 @@ You see, there's no "[MDN](https://developer.mozilla.org/en-US/) of the flowers"
 
 Thankfully, there's an alternative yet still true and tried way to learn anything that exist: **Books**
 
-
 ## References
 
 These books are not designed to be read from cover to cover, instead they should be used as references you consult when needed
