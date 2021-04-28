@@ -4,25 +4,27 @@ hide_body: false
 fields:
 - type: text
   name: title
-  label: title
+  label: Title
+  config:
+    required: true
 - type: text
   name: author
-  label: author
+  label: Author
 - type: text
   name: playtime
-  label: playtime
+  label: Playtime
 - type: datetime
   name: started_on
-  label: started_on
+  label: Started on
 - type: datetime
   name: ended_on
-  label: ended_on
+  label: Ended on
 - type: text
   name: genre
-  label: genre
+  label: Genre
 - type: text
   name: platform
-  label: platform
+  label: Platform
 - type: text
   name: cover_alt
   label: cover_alt
