@@ -28,3 +28,5 @@ fields:
 - type: text
   name: cover_alt
   label: cover_alt
+pages:
+- catalogue/games/ttestse.md
