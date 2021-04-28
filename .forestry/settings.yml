@@ -10,12 +10,16 @@ sections:
   create: all
   match: "**/*"
   exclude: "*.json"
+  templates:
+  - wiki-page
 - type: directory
   path: catalogue
   label: Catalogue
   create: all
   match: "**/*"
   exclude: "*.json"
+  templates:
+  - catalogue-game
 - type: directory
   path: articles
   label: Articles
