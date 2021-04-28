@@ -1,8 +1,8 @@
 ---
 title: The Gardens Between
 author: The Voxel Agents
-gametime: 2 hours
-date: 2021-03-02
+playtime: 2 hours
+started_on: 2021-03-02
 genre: Puzzle
 platform: "PC - Game Pass"
 ---
