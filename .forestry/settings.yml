@@ -7,7 +7,7 @@ sections:
 - type: directory
   path: articles
   label: Articles
-  create: all
+  create: documents
   match: "**/*"
 upload_dir: uploads
 public_path: "/uploads"
