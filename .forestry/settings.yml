@@ -19,6 +19,7 @@ sections:
   match: "**/*"
   exclude: "*.json"
   templates:
+  - catalogue-book
   - catalogue-game
 - type: directory
   path: articles
