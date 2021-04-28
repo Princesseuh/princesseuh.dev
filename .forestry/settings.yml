@@ -9,11 +9,13 @@ sections:
   label: Catalogue
   create: all
   match: "**/*"
+  exclude: "*.json"
 - type: directory
   path: articles
   label: Articles
   create: all
   match: "**/*"
+  exclude: "*.json"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
