@@ -35,3 +35,8 @@ fields:
 - type: datetime
   name: ended_on
   label: Ended on
+- name: cover_alt
+  type: text
+  config:
+    required: true
+  label: cover_alt
