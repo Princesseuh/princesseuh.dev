@@ -4,22 +4,32 @@ hide_body: false
 fields:
 - type: text
   name: title
-  label: title
+  label: Title
+  config:
+    required: true
 - type: text
   name: genre
-  label: genre
+  label: Genre
+  config:
+    required: true
 - type: text
   name: author
-  label: author
+  label: Author
+  config:
+    required: true
 - type: number
   name: pages
-  label: pages
+  label: Pages count
+  config:
+    required: true
 - type: text
   name: format
-  label: format
+  label: Format
+  config:
+    required: true
 - type: datetime
   name: date
-  label: date
+  label: Date
 - type: datetime
   name: endedon
-  label: endedon
+  label: Ended On
