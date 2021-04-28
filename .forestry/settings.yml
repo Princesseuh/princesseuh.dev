@@ -13,14 +13,6 @@ sections:
   templates:
   - catalogue-book
 - type: directory
-  path: wiki
-  label: Wiki
-  create: all
-  match: "**/*"
-  exclude: "*.json"
-  templates:
-  - wiki-page
-- type: directory
   path: catalogue/games
   label: Catalogue - Games
   create: all
@@ -28,6 +20,14 @@ sections:
   exclude: "*.json"
   templates:
   - catalogue-game
+- type: directory
+  path: wiki
+  label: Wiki
+  create: all
+  match: "**/*"
+  exclude: "*.json"
+  templates:
+  - wiki-page
 - type: directory
   path: articles
   label: Articles
