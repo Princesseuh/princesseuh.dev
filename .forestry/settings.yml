@@ -5,6 +5,12 @@ admin_path:
 webhook_url: 
 sections:
 - type: directory
+  path: wiki
+  label: Wiki
+  create: all
+  match: "**/*"
+  exclude: "*.json"
+- type: directory
   path: catalogue
   label: Catalogue
   create: all
