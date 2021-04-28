@@ -5,6 +5,14 @@ admin_path:
 webhook_url: 
 sections:
 - type: directory
+  path: catalogue/books
+  label: Catalogue - Books
+  create: all
+  match: "**/*"
+  exclude: "*.json"
+  templates:
+  - catalogue-book
+- type: directory
   path: wiki
   label: Wiki
   create: all
@@ -13,13 +21,12 @@ sections:
   templates:
   - wiki-page
 - type: directory
-  path: catalogue
-  label: Catalogue
+  path: catalogue/games
+  label: Catalogue - Games
   create: all
   match: "**/*"
   exclude: "*.json"
   templates:
-  - catalogue-book
   - catalogue-game
 - type: directory
   path: articles
