@@ -29,5 +29,6 @@ fields:
   name: cover_alt
   label: cover_alt
 pages:
+- catalogue/games/codevein.md
 - catalogue/games/gardensbetween.md
 - catalogue/games/untotheend.md
