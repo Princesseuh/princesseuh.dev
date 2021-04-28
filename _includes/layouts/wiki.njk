@@ -17,8 +17,8 @@ layout: layouts/_base.njk
 </li>
 {%- endmacro %}
 
-<section class="wiki--layout">
-  <aside>
+<section class="w-wiki my-0 mx-auto grid gap-[3%] grid-cols-wiki">
+  <aside class="mt-10 transition-opacity duration-100 ease-linear">
     {% set navPages = collections.wiki | eleventyNavigation %}
 
     <ul class="m-0 p-0 list-none wiki-navigation">
@@ -37,7 +37,7 @@ layout: layouts/_base.njk
     {% footnotes %}
   </article>
 
-  <aside>
+  <aside class="mt-10 transition-opacity duration-100 ease-linear">
     <span class="font-semibold mb-2">On this page</span>
     {{ content | toc | safe }}
   </aside>

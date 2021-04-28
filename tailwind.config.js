@@ -45,7 +45,11 @@ module.exports = {
         footer: "min(980px, 100%)",
         index: "min(880px, 100%)",
         articleList: "min(920px, 100%)",
-        article: "min(800px, 100%)"
+        article: "min(800px, 100%)",
+        wiki: "min(1280px, 100%)"
+      },
+      gridTemplateColumns: {
+        wiki: '16% 61% 17%'
       }
     }
   },
@@ -99,6 +103,23 @@ module.exports = {
           '&:hover': {
             color: "#d8d9d8"
           }
+        },
+        '.toc': {
+          transition: 'opacity .1s linear',
+          position: 'sticky',
+          top: "2rem",
+          '& ol': {
+            listStyleType: "none",
+            margin: "0",
+            padding: "0",
+          },
+          '& li > ol': {
+            paddingLeft: '0.75rem',
+            borderLeft: '1px solid rgba(146,149,152,.15)'
+          },
+          '& a': {
+            color: theme("colors.creative-work")
+          }
         }
 
       });
@@ -141,7 +162,7 @@ module.exports = {
         },
 
         'h1, h2, h3, h4, h5': {
-          letterSpacing: '-0.01em'
+          letterSpacing: '-.01em'
         },
 
         'dt': { fontWeight: 'bold' },
@@ -166,15 +187,15 @@ module.exports = {
 
         '.post > h1, .post > h2': {
           marginTop: '1.3rem',
-          marginBottom: '0.6rem'
+          marginBottom: '.6rem'
         },
 
         '.post > h3': {
-          marginBottom: '0.6rem'
+          marginBottom: '.6rem'
         },
 
         '.post li>p': {
-          marginBottom: '0.6rem'
+          marginBottom: '.6rem'
         },
 
         '.post figure': {
@@ -187,10 +208,10 @@ module.exports = {
         '.post figcaption': {
           textAlign: 'center',
           display: 'block',
-          margin: '0.15rem 0',
+          margin: '.15rem 0',
           fontStyle: 'italic',
           color: theme("colors.creative-work"),
-          fontSize: '0.95rem'
+          fontSize: '.95rem'
         },
 
         '.post > iframe': {

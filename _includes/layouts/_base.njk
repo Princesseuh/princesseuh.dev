@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title + " - " + metadata.title if title else metadata.title }}</title>
 
   <link rel="preload" href="/prin.css" as="style">
@@ -47,7 +47,7 @@
       {{ content | safe }}
     </main>
 
-    <footer class="py-6 flex justify-center leading-tight bg-darker-skylines">
+    <footer class="px-6 sm:px-0 py-6 flex justify-center leading-tight bg-darker-skylines">
       <section class="flex justify-between w-footer">
         {% include './socials.njk' %}
 

@@ -3,10 +3,8 @@ layout: layouts/_base.njk
 ---
 
 <article class="w-index mx-auto mt-6">
-  <div class="mt-4">
-    <a href="/catalogue">&lt;&lt; Back to Catalogue</a>
-  </div>
-  <header class="flex justify-between gap-4 px-2 my-4 pb-4 border-b">
+  <a href="/catalogue">&lt;&lt; Back to Catalogue</a>
+  <header class="flex justify-between gap-4 px-4 my-4">
     {% set cover = "." + page.filePathStem | replace("catalogue/", "catalogue/assets/") + ".jpg" %}
     {% set defaultAlt = title + "'s cover" %}
     {% catalogueCover src=cover, alt=cover_alt if cover_alt else defaultAlt, class="m-0" %}
@@ -27,20 +25,25 @@ layout: layouts/_base.njk
               <dt>Format</dt>
               <dd>{{ format }}</dd>
             {% endif %}
+
+            {% if platform %}
+              <dt>Platform</dt>
+              <dd>{{ platform }}</dd>
+            {% endif %}
           </dl>
 
           <dl>
             <dt>Started on</dt>
-            <dd>{{ data | readableDate }}</dd>
+            <dd>{{ started_on | readableDate }}</dd>
 
-            {% if endedon %}
+            {% if ended_on %}
               <dt>Ended on</dt>
-              <dd>{{ endedon | readableDate }}</dd>
+              <dd>{{ ended_on | readableDate }}</dd>
             {% endif %}
 
-            {% if gametime %}
-              <dt>Time to finish</dt>
-              <dd>{{ gametime }}</dd>
+            {% if playtime %}
+              <dt>Playtime</dt>
+              <dd>{{ playtime }}</dd>
             {% endif %}
 
             {% if pages %}
@@ -53,7 +56,8 @@ layout: layouts/_base.njk
     </div>
   </header>
 
-  <section>
-  {{ content | typogrify | safe }}
+  <h2 class="mb-3 mt-0">Quick thoughts</h2>
+  <section class="px-2">
+    {{ content | typogrify | safe }}
   </section>
 </article>
