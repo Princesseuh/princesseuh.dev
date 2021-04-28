@@ -29,4 +29,5 @@ fields:
   name: cover_alt
   label: cover_alt
 pages:
+- catalogue/games/gardensbetween.md
 - catalogue/games/untotheend.md
