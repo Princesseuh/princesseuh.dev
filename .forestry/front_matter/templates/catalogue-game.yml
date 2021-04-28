@@ -1,0 +1,28 @@
+---
+label: Catalogue - Game
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: author
+  label: author
+- type: text
+  name: playtime
+  label: playtime
+- type: datetime
+  name: started_on
+  label: started_on
+- type: datetime
+  name: ended_on
+  label: ended_on
+- type: text
+  name: genre
+  label: genre
+- type: text
+  name: platform
+  label: platform
+- type: text
+  name: cover_alt
+  label: cover_alt
