@@ -23,3 +23,5 @@ fields:
   - type: number
     name: order
     label: order
+pages:
+- wiki/introtoflowers.md
