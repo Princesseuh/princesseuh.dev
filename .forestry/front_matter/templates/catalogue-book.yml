@@ -1,0 +1,25 @@
+---
+label: Catalogue - Book
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: genre
+  label: genre
+- type: text
+  name: author
+  label: author
+- type: number
+  name: pages
+  label: pages
+- type: text
+  name: format
+  label: format
+- type: datetime
+  name: date
+  label: date
+- type: datetime
+  name: endedon
+  label: endedon
