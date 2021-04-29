@@ -41,7 +41,6 @@ sections:
 - type: document
   path: _data/header-menu.json
   label: Header
-  match: "**/*"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
