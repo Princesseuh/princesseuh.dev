@@ -1,0 +1,17 @@
+<header class="py-[.8rem] flex justify-center">
+  <section class="w-header flex justify-between">
+    <div class="flex items-center">
+      <h1 class="m-0 inline-block">
+        <a class="header-link" href="/">Erika 🌺</a>
+      </h1>
+
+      <nav class="inline-block ml-2">
+        {% for item in header_menu %}
+          <a class="header-link" href="/{{ item | lower }}/">{{ item }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+
+    {% include './socials.njk' %}
+  </section>
+</header>

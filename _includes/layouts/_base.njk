@@ -25,23 +25,7 @@
 </head>
 <body>
   <div id="app" class="bg-baltic-sea">
-    <header class="py-[.8rem] flex justify-center">
-      <section class="w-header flex justify-between">
-        <div class="flex items-center">
-          <h1 class="m-0 inline-block">
-            <a class="header-link" href="/">Erika 🌺</a>
-          </h1>
-          <nav class="inline-block ml-2">
-            <a class="header-link" href="/projects/">Projects</a>
-            <a class="header-link" href="/articles/">Articles</a>
-            <a class="header-link" href="/wiki/">Wiki</a>
-            <a class="header-link" href="/catalogue/">Catalogue</a>
-            <a class="header-link" href="/about/">About</a>
-          </nav>
-        </div>
-        {% include './socials.njk' %}
-      </section>
-    </header>
+    {% include './header.njk' %}
 
     <main>
       {{ content | safe }}
