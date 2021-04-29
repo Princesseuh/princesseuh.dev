@@ -205,6 +205,11 @@ module.exports = {
           textAlign: 'center'
         },
 
+        '.post img': {
+          maxWidth: "100%",
+          height: "auto"
+        },
+
         '.post figcaption': {
           textAlign: 'center',
           display: 'block',

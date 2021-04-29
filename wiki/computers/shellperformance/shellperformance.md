@@ -46,4 +46,4 @@ Apart from Starship, most of the popular shells these days are asynchronous so t
 
 The time it takes to show anything does still depend on what prompt you're using (in the case of Git repositories, if your prompt use [gitstatus](https://github.com/romkatv/gitstatus) it's probably: extremely fast) but at least you'll be able to type instantly - no matter what kind of folder you're in
 
-Regarding Tide and Hydro, Hydro is [definitely faster](https://github.com/jorgebucaran/hydro#performance) at rendering the prompt, however it has less features than Tide so.. I use Tide but I definitely recommend both, they're really cool
+Regarding Tide and Hydro, Hydro is [definitely faster](https://github.com/jorgebucaran/hydro#performance) at rendering the prompt, however it has less features than Tide so.. Up to you to see which one you prefer. Personally, I use Hydro due to the cited performance difference though I actually prefer the prompt on Tide

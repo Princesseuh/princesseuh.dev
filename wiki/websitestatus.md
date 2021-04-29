@@ -26,7 +26,7 @@ Unlike the Future section below, those are things I would like to be completed b
 
 ### Performance
 
-- Properly resize cover images on the index page and in the catalogue
+- Properly resize cover images on the index page
 
 ### Code Gardening
 
@@ -47,6 +47,7 @@ Maybe in the future I'd like for those things to happens. I want this website to
 
 ### New pages and features
 
+- I don't like the way images are done right now, the shortcode is clunky to use and doesn't work well with CMSes and the result isn't necessarily that pleasant. I wish users could click on the images to see them in full resolution. Also, the code isn't that pretty at the moment, lots of repetition
 - A reading log? Much like [the one Mark Llobrera has on his website](https://www.markllobrera.com/reading/), such a cool feature! Maybe I should start by reading more books though..
 - A {% footnoteref "glitch-gallery", "I used to have this on my old old website, years ago. I'm very good at getting in places in video games that the devs didn't expect and getting artsy with it is really fun" %}gallery of pictures I take of video games glitches{% endfootnoteref %}
 - Adding galleries support in posts (that include the wiki) and on standalone pages, [Mark Llorbrera has a cool exemple on his blog using PhotoSwipe](https://www.markllobrera.com/posts/eleventy-building-image-gallery-photoswipe/)

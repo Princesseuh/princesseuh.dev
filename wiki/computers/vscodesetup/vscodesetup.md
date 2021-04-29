@@ -11,13 +11,11 @@
 
 These days, my editor of choice is, like many people, [VS Code](https://code.visualstudio.com/)
 
-Previously it was [Sublime Text](https://www.sublimetext.com/) but a Python-based editor in a world where the most used language is Javascript and everyone and theirs mothers does web stuff - it doesn't work anymore. I'm glad you paved the way for the future Sublime. I'll always love you for all you did. 
+Previously it was [Sublime Text](https://www.sublimetext.com/) but a Python-based editor in a world where the most used language is Javascript and everyone and theirs mothers does web stuff - it doesn't work anymore. I'm glad you paved the way for the future Sublime. I'll always love you for all you did.
 
 Ok! Now that the goodbyes are done, let's talk about my VS Code setup
 
-TODO: screenshot of setup
-
-My setup is pretty classic so don't expect anything too crazy
+{% image src="./wiki/computers/vscodesetup/screenshot.png", alt="Screenshot of my VS Code setup, the color scheme is dark, the sidebar is on the right", caption="My setup is pretty classic so don't expect anything too crazy" %}
 
 ## Settings
 
