@@ -39,7 +39,7 @@ sections:
 - type: heading
   label: Misc
 - type: document
-  path: _data/header-menu.json
+  path: _data/header_menu.json
   label: Header
 upload_dir: uploads
 public_path: "/uploads"
