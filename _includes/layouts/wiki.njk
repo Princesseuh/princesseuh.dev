@@ -32,7 +32,7 @@ layout: layouts/_base.njk
 
     {{ content | typogrify | safe }}
 
-    <span class="text-right block text-creative-work mb-4">Last modified <span data-date="{{ lastModified }}">{{ lastModified | readableDatetime }}</span></span>
+    <span class="text-right block text-creative-work mb-4">Page last modified <span data-date="{{ lastModified }}">{{ lastModified | readableDatetime }}</span></span>
 
     {% footnotes %}
   </article>

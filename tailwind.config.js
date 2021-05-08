@@ -69,7 +69,7 @@ module.exports = {
             marginBottom: "1rem"
           }
         },
-        // TODO: Figure out a way to simplify this perhaps?
+        // TODO: Figure out a way to simplify this perhaps? This is by far the most complex element on the website
         '.cover-title': {
           position: 'absolute',
           color: theme("colors.sugar-cane"),
@@ -104,6 +104,8 @@ module.exports = {
             color: "#d8d9d8"
           }
         },
+
+        // Table of content
         '.toc': {
           transition: 'opacity .1s linear',
           position: 'sticky',
@@ -120,6 +122,68 @@ module.exports = {
           '& a': {
             color: theme("colors.creative-work")
           }
+        },
+
+        // Footnotes counter
+        '[role="doc-noteref"]::after': {
+          counterIncrement: "footnotes",
+          content: '"["  counter(footnotes)  "]"',
+          fontSize: ".8rem",
+          position: "relative",
+          top: "-6px",
+          left: "1px",
+          userSelect: "none"
+        },
+
+        // Anchor links
+        '.anchor-link': {
+          display: "none"
+        },
+
+        // Note blocks, often used on wiki
+        '.block-note': {
+          padding: ".9rem",
+          maxWidth: "90%",
+          backgroundColor: theme("colors.fin-lanka"),
+          borderRadius: "4px",
+          marginBottom: "1rem",
+          marginTop: "1.1rem",
+
+          '.block-title': {
+            display: "block",
+            fontWeight: "bold",
+            textAlign: "center",
+            padding: ".5rem 0",
+            paddingTop: "0",
+          },
+
+          '& p:last-of-type': {
+            marginBottom: "0"
+          },
+        },
+
+        // Footnotes
+        '.footnotes': {
+          backgroundColor: theme("colors.fin-lanka"),
+          borderRadius: "4px",
+          padding: ".5rem",
+          marginTop: "1rem",
+        },
+
+        '.footnotes__title': {
+          marginTop: "0",
+          marginBottom: "1rem",
+          paddingLeft: ".5rem"
+        },
+
+        '.footnotes__list': {
+          paddingLeft: "0",
+          listStylePosition: "inside",
+          padding: '0 .75rem',
+        },
+
+        '.foonotes__list-item': {
+          marginBottom: ".5rem"
         }
 
       });
@@ -128,15 +192,11 @@ module.exports = {
       addBase({
         // Small reset, preflight include a lot of stuff we don't use so let's make our own
         '*, ::before, ::after': {
-          boxSizing: 'border-box',
-
-          // Border stuff needed for Tailwind's borders properties
-          borderWidth: '0',
-          borderStyle: 'solid',
-          borderColor: '#e5e7eb'
+          boxSizing: 'border-box'
         },
 
         'html': {
+          fontSize: "18px",
           lineHeight: '1.5'
         },
 
@@ -150,6 +210,13 @@ module.exports = {
         },
 
         // Custom stuff
+        'html, body': {
+          fontFamily: "'Cantarell', system- ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'",
+          backgroundColor: theme('colors.darker-skylines'),
+          color: theme('colors.sugar-cane'),
+          counterReset: 'footnotes'
+        },
+
         'a': {
           textDecoration: 'none',
           color: theme('colors.beach-watermelon'),
@@ -210,6 +277,22 @@ module.exports = {
           height: "auto"
         },
 
+        '.post .image-right': {
+          float: "right",
+          marginLeft: "1.5rem",
+          marginRight: ".5rem",
+          marginTop: ".8rem",
+          maxWidth: "min-content"
+        },
+
+        '.post .image-left': {
+          float: "left",
+          marginRight: "1.5rem",
+          marginLeft: ".5rem",
+          marginTop: ".8rem",
+          maxWidth: "max-content"
+        },
+
         '.post figcaption': {
           textAlign: 'center',
           display: 'block',
@@ -222,6 +305,14 @@ module.exports = {
         '.post > iframe': {
           margin: '0 auto 1rem',
           display: 'block'
+        },
+
+        'h1, h2, h3, h4, h5': {
+          '&:hover': {
+            '.anchor-link': {
+              display: "inline"
+            }
+          }
         }
       })
     })

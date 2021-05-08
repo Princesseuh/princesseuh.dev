@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm:watch:*\"",
     "watch:eleventy": "NODE_ENV=development eleventy --serve --incremental",
-    "watch:tailwind": "NODE_ENV=development postcss ./theme/css/tailwind.css -o ./_site/prin2.css -w --verbose",
+    "watch:tailwind": "NODE_ENV=development postcss ./theme/css/tailwind.css -o ./_site/prin.css -w --verbose",
     "debug": "DEBUG=Eleventy* eleventy --serve",
     "debug:performance": "DEBUG=Eleventy:Benchmark* eleventy --serve",
     "build": "eleventy"
@@ -50,8 +50,8 @@
     "@11ty/eleventy-assets": "^1.0.6",
     "@11ty/eleventy-img": "^0.8.3",
     "eleventy-plugin-nesting-toc": "^1.3.0",
-    "instant.page": "^5.1.0",
     "postcss-cli": "^8.3.1",
+    "quicklink": "^2.1.0",
     "shorthash2": "^1.0.3",
     "windicss": "^2.5.14"
   }

@@ -6,19 +6,34 @@
 <article class="post">
   <h1>Settings</h1>
 
+  <p>Trying to make it feel more like home, eh?</p>
+
   <div>
     <input type="checkbox" id="cb--transitions">
-    <label for="vehicle1"> Disable page transitions</label><br>
+    <label for="cb--transitions">
+      Disable page transitions
+    </label><br>
+
+    <input type="checkbox" id="cb--prefetch">
+    <label for="cb--prefetch">
+    Disable page prefetch (using <a href="https://getquick.link/">Quicklink</a>)
+    </label><br>
   </div>
 </article>
 
 <script>
   (function () {
-    const disableTransitionsCheckbox = document.getElementById("cb--transitions");
-    disableTransitionsCheckbox.checked = (localStorage.getItem("transitionsDisabled") == "true")
+    const disableTransitions = document.getElementById("cb--transitions");
+    const disablePrefetch = document.getElementById("cb--prefetch");
+    disableTransitions.checked = localStorage.getItem("transitionsDisabled") == "true"
+    disablePrefetch.checked = localStorage.getItem("prefetchDisabled") == "true"
 
-    disableTransitionsCheckbox.addEventListener('change', () => {
-      localStorage.setItem("transitionsDisabled", disableTransitionsCheckbox.checked ? "true" : "false")
+    disableTransitions.addEventListener('change', () => {
+      localStorage.setItem("transitionsDisabled", disableTransitions.checked ? "true" : "false")
     })
-  })();
+
+    disablePrefetch.addEventListener('change', () => {
+      localStorage.setItem("prefetchDisabled", disablePrefetch.checked ? "true" : "false")
+    })
+  } )();
 </script>

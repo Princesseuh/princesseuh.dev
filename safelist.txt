@@ -1,1 +1,11 @@
 object-cover object-top rounded-sm max-w-[200px] max-h-[300px]
+
+anchor-link
+
+block-note
+block-title
+
+footnotes
+footnotes__title
+footnotes__list
+footnotes__list-item

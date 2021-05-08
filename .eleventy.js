@@ -12,11 +12,6 @@ const markdownItAnchor = require('markdown-it-anchor')
 const AssetManager = require('@11ty/eleventy-assets')
 const Image = require("@11ty/eleventy-img");
 
-const postcss = require('postcss');
-const postcssNested = require('postcss-nested');
-const postcssImport = require('postcss-import');
-const postcssCSSVariables = require('postcss-css-variables');
-
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginTypography= require("@jamshop/eleventy-plugin-typography");
@@ -273,7 +268,7 @@ module.exports = function (config) {
 
   // Plugins
   config.addPlugin(pluginTOC, { ignoredElements: ['.anchor-link'] })
-  config.addPlugin(pluginFootnotes)
+  config.addPlugin(pluginFootnotes, {baseClass: 'footnotes'})
   config.addPlugin(pluginNavigation);
   config.addPlugin(pluginSyntaxHighlight);
   config.addPlugin(pluginTypography);
@@ -303,6 +298,8 @@ module.exports = function (config) {
   // TODO: Implement Youtube shortcode
   config.addShortcode('youtube', function(id) {return `${id}`})
 
+  config.addPairedShortcode("esbuild", pluginESbuild.esBuildShortcode)
+
   // Minify HTML
   config.addTransform("htmlmin", (content, outputPath) => {
     if (outputPath && outputPath.endsWith('.html') && process.env.ELEVENTY_PRODUCTION) {
@@ -311,14 +308,6 @@ module.exports = function (config) {
     }
     return content;
   })
-
-  config.addTransform("css", async function(content, outputPath) {
-    if (outputPath && outputPath.endsWith("prin.css")) {
-      return await processCSS(content, "./theme/css/main.css")
-    }
-
-    return content;
-  });
 
   config.addTransform("jsonmin", (content, outputPath) => {
     if (outputPath && outputPath.endsWith(".json")) {
@@ -336,19 +325,10 @@ module.exports = function (config) {
   }
 };
 
-async function processCSS(content, from, to = undefined) {
-  return await postcss()
-    .use(postcssImport())
-    .use(postcssNested())
-    .use(postcssCSSVariables())
-    .process(content, {
-      from: from,
-      to: to
-    }).then(function (result) {
-      return csso.minify(result.css, {
-        comments: false
-      }).css;
-    })
+async function processCSS(content) {
+  return csso.minify(content, {
+    comments: false
+  }).css;
 }
 
 function minifyHTML(content) {
