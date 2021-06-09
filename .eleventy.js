@@ -23,6 +23,15 @@ function getCssFilePath(componentName) {
   return `theme/css/${componentName}.css`;
 }
 
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const imageOptions = {
   outputDir: './_site/img/',
   formats: ['avif', 'webp', 'jpeg'],
@@ -124,7 +133,7 @@ async function catalogueCoverShortcode(data) {
   }
 
   let pictureClass = data.class ? `class="${data.class}"` : ''
-  return `<picture ${pictureClass}>
+  let result = `<picture ${pictureClass}>
     ${Object.values(stats).map(imageFormat => {
     return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}">`;
   }).join("\n")}
@@ -137,6 +146,11 @@ async function catalogueCoverShortcode(data) {
         loading="lazy"
         decoding="async">
     </picture>`;
+
+    if (data.escape) {
+      return minifyHTML(escapeHtml(result).replace(/(\r\n|\n|\r)/gm, ""));
+    }
+    return result
 }
 
 async function imageShortcode(data) {
@@ -251,6 +265,15 @@ module.exports = function (config) {
     return Array.from(tagsSet).sort();
   });
 
+  config.addCollection("catalogueTypes", collection => {
+    const typesSet = new Set();
+    collection.getFilteredByTag("catalogue").forEach(item => {
+      if (!item.data.type) return;
+      typesSet.add(item.data.type.replace("catalogue", "").toLowerCase())
+    })
+    return Array.from(typesSet).sort()
+  });
+
   config.setLibrary(
     'md',
     markdownIt({
@@ -274,7 +297,8 @@ module.exports = function (config) {
   config.addPlugin(pluginTypography);
   config.addPlugin(pluginESbuild, {
     entryPoints: {
-      main: "theme/js/index.js"
+      main: "theme/js/index.js",
+      catalogue: "theme/js/catalogue.js"
     },
     output: "_site/"
   });
@@ -285,6 +309,7 @@ module.exports = function (config) {
   config.addWatchTarget("**/*.md");
 
   config.addPassthroughCopy({"theme/fonts": "fonts/"});
+  //config.addPassthroughCopy({"theme/js/catalogue.js": "catalogue.js"})
   config.addPassthroughCopy({"theme/assets/favicon.svg": "favicon.svg"})
 
   config.setDataDeepMerge(true);

@@ -12,17 +12,17 @@ It's a really good keyboard that I recommend a lot if normal looking keyboards a
 
 What got me into ergonomic keyboards is mainly that these past few years I've been getting intermittent wrists issues. Nothing huge but still annoying once in a while, luckily just taking breaks and doing wrist exercises before usage was enough to fix them, but still, **wrists issues being a reality when you work at a computer all day long**, I might as well try to delay the inevitable as much as possible, also, I like fancy keyboards, they're cool
 
-I first started with a [Microsoft Natural Ergonomic Keyboard 4000](https://www.microsoft.com/accessories/en-ww/products/keyboards/natural-ergonomic-keyboard-4000/b2m-00012) provided by my previous job. I thought it wouldn't be too good, being a bottom of the line ergonomic keyboard but I ended up liking it a lot! It was really comfortable and I got used to it really quickly. Also, the 1234 keys at the top were really useful for switching between workspaces on i3/Sway, cool stuff
+I first started with a [Microsoft Natural Ergonomic Keyboard 4000](https://www.microsoft.com/accessories/en-ww/products/keyboards/natural-ergonomic-keyboard-4000/b2m-00012) provided by my previous job. I thought it wouldn't be too good, being a bottom of the line ergonomic keyboard but I ended up liking it a lot! It was really comfortable and I got used to it really quickly. Also, the 1234 keys at the top were pretty useful for switching between workspaces on i3/Sway, cool stuff
 
 However I still needed an option for at home and I felt like I spend enough time on a computer every day that I can afford more expensive options and so after looking a bit around **I finally got the Moonlander**
 
-And well, to resume quickly before going in: **I like it**, but it has a few issues that I would like to see fixed in latter versions (if they ever exist) and definitely it isn't a good choice for anyone not willing to also make changes to their layouts to accommodate their needs as the default layout **is** pretty rough
+And well, to resume quickly before going in: It's good, but, I personally do not like it all that much all things considered. Or at least, I'm very unsure about it. It's very cool, has a lot of cool features, Oryx and the other tools provided works really well but it sliding around my desk turns out to be fairly frustating and it definitely takes a long time before finding "the perfect layout" (if it exists)
 
 ## Build Quality
 
 **The Moonlander is an expensive product**, it cost me close to **450$CAD** total including handling fees, taxes and stuff and so, for this price I think it's reasonable to expect really good build quality. **On that point, it definitely delivers** apart from a few details that are perhaps a bit subjective:
 
-The keyboard is really light compared to my previous one and the rubber things under it to avoid it slipping are not really good I feel like? Or perhaps they're not at the right spot, I don't know but the result is that the keyboard move a lot on my desk. I fixed this issue by buying a deskpad, I always wanted one anyway
+The keyboard is kinda light compared to my previous one and the rubber things under it to avoid it slipping are not really good I feel like? Or perhaps they're not at the right spot, I don't know but the result is that the keyboard move a lot on my desk. I mostly fixed this issue by buying a deskpad (I always wanted one anyway) but it still does move quite a bit, which I find kinda frustating
 
 Additionally, I would have liked for the keyboard to ship with perhaps a coiled TRRS cable as the one shipping with it is fairly rigid. I don't know how they do the fancy round thing in the marketing images as I certainly can't do that or at least, clearly not as neatly
 
@@ -30,11 +30,11 @@ Outside of that, **it does feels well made.** It being very light and small make
 
 ## Ergonomics and comfort
 
-T**he wrist supports are surprisingly comfortable** unlike what one might think (They're made of plastic) but at least for me they should have been a little bit larger because often times parts of my hands fall off and it led to a fairly uncomfortable position
+**The wrist supports are surprisingly comfortable** unlike what one might think (They're made of plastic) but at least for me they should have been a little bit larger because often times parts of my hands fall off and it led to a fairly uncomfortable position
 
 Something often cited in other reviews is the thumb clusters keys being hard to reach and I agree completely with that, the red buttons especially are completely unreachable with a natural hand position for me (I think you're supposed to use them with your index finger??), additionally the keys under it are also relatively hard to reach, mainly the fartest one
 
-I feel like the angle on the entire thumb cluster is suboptimal and so for the first key especially, I often press the corner of the key and kinda hurt my thumbs. However, one thing that should be noted is that the thumb clusters can be angled up and down which does help a lot depending on your hand size but still, it doesn't feel as good as it probably should. I would have loved to test [the ErgoDox EZ](https://ergodox-ez.com/), if it had the same problem as the thumb cluster on it is angled fairly differently
+I feel like the angle on the entire thumb cluster is suboptimal and so for the first key especially, I often press the corner of the key and kinda hurt my thumbs. However, one thing that should be noted is that the thumb clusters can be angled up and down which does help a lot depending on your hand size but still, it doesn't feel as good as it probably should. I would have loved to test [the ErgoDox EZ](https://ergodox-ez.com/), to see if it had the same problem as the thumb cluster on it is angled differently
 
 [image of the thumb cluster]
 

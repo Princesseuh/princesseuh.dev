@@ -109,8 +109,16 @@ export function initSPA(callDuringLoad) {
         // this is probably not the best solution but we won't ever have that much script tags on our pages
         if (responseScripts) {
           responseScripts?.forEach(script => {
-            eval(script.text);
-          })
+            if (script.src) {
+                var scriptElement = document.createElement('script')
+                scriptElement.src = script.src
+                container.appendChild(scriptElement)
+              } else {
+                (new Function(script.text))()
+              }
+            }
+          )
+
         }
 
         // Our function can be supplied a function to execute when loading a page

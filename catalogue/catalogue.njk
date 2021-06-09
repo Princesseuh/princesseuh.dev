@@ -3,6 +3,28 @@ eleventyExcludeFromCollections: true
 layout: layouts/_base.njk
 ---
 
-<article>
-heewwo
+<article class="w-wiki mx-auto mt-4 sm:mt-6 px-6 sm:px-0">
+  <p class="w-index mx-auto">
+      <noscript class="font-bold">This page requires Javascript to work properly</noscript>
+      Welcome to my catalogue! This page contains (mostly) all the pieces of media I've played, watched and read these past years. Every item has its own page you can visit by clicking on its cover. Have fun browsing around!
+  </p>
+
+  <div class="w-articleList mx-auto mb-4">
+    <label for="search">Search</label>
+    <input type="text" name="search" id="catalogueSearch" class="catalogueFilter" placeholder="Search..">
+
+    <label for="types">Type:</label>
+    <select name="types" id="catalogueType" class="catalogueFilter">
+      <option value="all">All</option>
+      {% for type in collections.catalogueTypes %}
+      <option value="{{ type }}">{{ type | capitalize }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div id="catalogue">
+    <span id="catalogueCount" class="block text-right mb-1">0 elements</span>
+    <div id="catalogueContent" class="flex gap-[0.88975rem] flex-wrap" ></div>
+  </div>
+  <script src="/catalogue.js"></script>
 </article>

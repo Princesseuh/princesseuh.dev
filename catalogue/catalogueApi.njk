@@ -1,0 +1,24 @@
+---
+eleventyExcludeFromCollections: true
+permalink: /api/catalogue.json
+override:layout: null
+---
+
+{
+  "content": [
+  {% for item in collections.catalogue %}
+    {% set cover = "." + item.data.page.filePathStem | replace("catalogue/", "catalogue/assets/") + ".jpg" %}
+    {% set defaultAlt = item.data.title + "'s cover" %}
+    {
+      "type": "{{ item.data.type | replace("catalogue", "") | lower }}",
+      "path": "{{ item.data.page.url }}",
+      "title": "{{ item.data.title }}",
+      "cover": "{% catalogueCover src=cover, alt=item.data.cover_alt if item.data.cover_alt else defaultAlt, class="m-0", escape=true %}",
+      "author": "{{ item.data.author }}"
+      {% if item.data.unfinished %}
+        ,"unfinished": true
+      {% endif %}
+    }{{ ', ' if not loop.last }}
+  {% endfor %}
+  ]
+}

@@ -9,3 +9,5 @@ footnotes
 footnotes__title
 footnotes__list
 footnotes__list-item
+
+hover:no-underline

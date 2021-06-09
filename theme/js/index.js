@@ -9,6 +9,10 @@ function makeDatesRelative() {
   const dateElements = document.querySelectorAll(`[data-date]`);
 
   dateElements.forEach((element) => {
+    if (element.dataset.date === "Invalid Date") {
+      return
+    }
+
     const date = new Date(element.dataset.date)
     const deltaDays = (date.getTime() - Date.now()) / (1000 * 3600 * 24);
 
