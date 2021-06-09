@@ -11,7 +11,7 @@ devDependencies:
   '@11ty/eleventy': 0.12.1
   '@11ty/eleventy-navigation': 0.2.0_@11ty+eleventy@0.12.1
   '@11ty/eleventy-plugin-syntaxhighlight': 3.1.1_@11ty+eleventy@0.12.1
-  '@jamshop/eleventy-plugin-esbuild': link:../eleventy-plugin-esbuild
+  '@jamshop/eleventy-plugin-esbuild': github.com/Princesseuh/eleventy-plugin-esbuild/017e856136b6d2426346c493a6bed315950f4860
   '@jamshop/eleventy-plugin-typography': 1.0.0
   concurrently: 6.2.0
   csso: 4.2.0
@@ -1235,6 +1235,12 @@ packages:
       is-arrayish: 0.2.1
     resolution:
       integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==
+  /esbuild/0.12.8:
+    dev: true
+    hasBin: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-sx/LwlP/SWTGsd9G4RlOPrXnIihAJ2xwBUmzoqe2nWwbXORMQWtAGNJNYLBJJqa3e9PWvVzxdrtyFZJcr7D87g==
   /escalade/3.1.1:
     engines:
       node: '>=6'
@@ -3932,13 +3938,21 @@ packages:
     dev: true
     resolution:
       integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
+  github.com/Princesseuh/eleventy-plugin-esbuild/017e856136b6d2426346c493a6bed315950f4860:
+    dependencies:
+      esbuild: 0.12.8
+    dev: true
+    name: '@jamshop/eleventy-plugin-esbuild'
+    resolution:
+      tarball: https://codeload.github.com/Princesseuh/eleventy-plugin-esbuild/tar.gz/017e856136b6d2426346c493a6bed315950f4860
+    version: 1.1.0
 specifiers:
   '@11ty/eleventy': ^0.12.1
   '@11ty/eleventy-assets': ^1.0.6
   '@11ty/eleventy-img': ^0.9.0
   '@11ty/eleventy-navigation': ^0.2.0
   '@11ty/eleventy-plugin-syntaxhighlight': ^3.1.1
-  '@jamshop/eleventy-plugin-esbuild': link:../eleventy-plugin-esbuild
+  '@jamshop/eleventy-plugin-esbuild': github:Princesseuh/eleventy-plugin-esbuild
   '@jamshop/eleventy-plugin-typography': ^1.0.0
   concurrently: ^6.2.0
   csso: ^4.2.0

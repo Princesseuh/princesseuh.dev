@@ -30,7 +30,7 @@
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-navigation": "^0.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.1",
-    "@jamshop/eleventy-plugin-esbuild": "link:../eleventy-plugin-esbuild",
+    "@jamshop/eleventy-plugin-esbuild": "github:Princesseuh/eleventy-plugin-esbuild",
     "@jamshop/eleventy-plugin-typography": "^1.0.0",
     "concurrently": "^6.2.0",
     "csso": "^4.2.0",
