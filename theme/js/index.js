@@ -14,9 +14,14 @@ function makeDatesRelative() {
     }
 
     const date = new Date(element.dataset.date)
-    const deltaDays = (date.getTime() - Date.now()) / (1000 * 3600 * 24);
+    const deltaDays = Math.round((date.getTime() - Date.now()) / (1000 * 3600 * 24));
+    const deltaHours = Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60));
 
-    element.textContent = rtf.format(Math.round(deltaDays), 'days')
+    if (deltaDays == 0) {
+      element.textContent = rtf.format(deltaHours, 'hours')
+    } else {
+      element.textContent = rtf.format(deltaDays, 'days')
+    }
 
     element.title = date
   })

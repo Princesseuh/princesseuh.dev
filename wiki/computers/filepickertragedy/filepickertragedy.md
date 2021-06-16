@@ -71,16 +71,24 @@ For those to work, you need to install the `kio-extras` package and a few other 
 
 After installing those, make sure their previews are enabled in Dolphin's settings (the config file is in `~/.config/dolphinrc`) and with all of that, you should have working KDE filepickers working!
 
-For full compatibility, you need to start programs with `XDG_CURRENT_DESKTOP` set to `KDE` (which might unfortunately cause side effects in certain cases) and for programs that supports it, `GTK_USE_PORTAL` set to `1` with `xdg-desktop-portal` and `xdg-desktop-portal-kde` installed should be enough. Make sure 'xdg-desktop-portal-kde' is running otherwise it won't work (you might need to restart the 'xdg-desktop-portal' service after running 'xdg-desktop-portal-kde' using 'systemctl restart --user xdg-desktop-portal')
+For full compatibility, you need to start programs with `XDG_CURRENT_DESKTOP` set to `KDE` (which might unfortunately cause side effects in certain cases) and for programs that supports it, `GTK_USE_PORTAL` set to `1` with `xdg-desktop-portal` and `xdg-desktop-portal-kde` installed should be enough
 
-## Deepin File Picker
+{% note 'Quick note' %}
+Make sure `xdg-desktop-portal-kde` is running otherwise it won't work
+
+You might need to restart the `xdg-desktop-portal` service after running `xdg-desktop-portal-kde` using `systemctl restart --user xdg-desktop-portal`
+{% endnote %}
+
+Congrats, with all that you literally installed more than 100 packages for a file picker. But it works and it's pretty so who's the winner really? 🥲
+
+## The Deepin file Picker
 
 Deepin and Wayland are not the biggest friends so I was not able to install this on my normal setup, in general integrating the Deepin file picker in your system is a bit troublesome. Much like the KDE one, it doesn't come alone and isn't well supported
 
-{% image src="./wiki/computers/filepickertragedy/deepinpicker.png", alt="Deepin default file picker, it's pretty", caption="It's pretty! Comes with a dark theme by default too!" %}
+{% image src="./wiki/computers/filepickertragedy/deepinpicker.png", alt="Deepin default file picker, it's pretty", caption="It's pretty, it has thumbnails and it comes with a dark theme too!" %}
 
 It's possible to integrate it in Chromium using the following value for `XDG_CURRENT_DESKTOP`: `KDE:deepin`. The reason it works is because Chromium checks if any of the values (separated by colons) is equal to KDE and if so, it uses kdialog. Just putting KDE won't work however because kdialog needs `XDG_CURRENT_DESKTOP` to be set to Deepin to set the right dialog
 
-I haven't been able to integrate it with Firefox and other apps depending on `xdg-desktop-portal`, when it works (which isn't all the time) it launches.. a weird old KDE version of the picker with a broken theme. I'm sure there's a way to make it work because the official Deepin distro does make it work but perhaps they're using a custom Firefox or something else. Weird
+I haven't been able to integrate it with Firefox and other apps depending on `xdg-desktop-portal`, when it works (which isn't all the time) it launches.. a weird old KDE version of the picker with a broken theme. I'm sure there's a way to make it work because the official Deepin distro does make it work but perhaps they're using a custom Firefox or something else? Weird
 
 Deepin unfortunately tends to be.. not so stable and it crashes often. While trying it out, I had to reboot a few times because my system got irresponsive. It's a shame because, outside of that Deepin stuff tend to work well. Special mention to the file manager which I really find enjoyable (though I never got that working on Wayland either)

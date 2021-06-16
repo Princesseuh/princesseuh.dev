@@ -65,11 +65,11 @@ This part says which character to output when the key is pressed, you might be w
 - `Mode_switch+a` = å
 - `Mode_switch+Shift+a` = Å
 
-`Mode_switch` is most of the time `AltGr` but it's a actually bit more complicated than that, I recommend reading the documentation about it as it is outside way outside of the scope of this page. `AltGr` being a not so reachable key, we will remap it to left `Alt` using the following import:
+`Mode_switch` is most of the time `AltGr` but it's a actually bit more complicated than that, I recommend reading the documentation about it as it is fairly outside of the scope of this page. `AltGr` being a not so reachable key, we will remap it to left `Alt` using the following import:
 
 `include "level3(lalt_switch)"`
 
-And that's it for the layout file! This isn't needed on Sway with Wayland but if you were using let's say GNOME with Xorg, you would also need to add the keyboard layout to the following file `/usr/share/X11/xkb/rules/evdev.xml` otherwise it won't appear in the graphical tools for choosing your layouts
+And that's it for the layout file! This isn't needed on Sway with Wayland but if you were using let's say GNOME with Xorg, you would also need to add the keyboard layout to the following files: `/usr/share/X11/xkb/rules/evdev.xml` and `/usr/share/X11/xkb/rules/evdev.lst` otherwise it won't appear in the graphical tools for choosing your layouts
 
 ## Using the layout on Sway
 
