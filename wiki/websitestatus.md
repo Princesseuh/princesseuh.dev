@@ -54,4 +54,3 @@ Maybe in the future I'd like for those things to happens. I want this website to
 - A reading log? Much like [the one Mark Llobrera has on his website](https://www.markllobrera.com/reading/), such a cool feature! Maybe I should start by reading more books though..
 - A {% footnoteref "glitch-gallery", "I used to have this on my old old website, years ago. I'm very good at getting in places in video games that the devs didn't expect and getting artsy with it is really fun" %}gallery of pictures I take of video games glitches{% endfootnoteref %}
 - Adding galleries support in posts (that include the wiki) and on standalone pages, [Mark Llorbrera has a cool exemple on his blog using PhotoSwipe](https://www.markllobrera.com/posts/eleventy-building-image-gallery-photoswipe/)
-- A stats page with various statistics, useless, but fun

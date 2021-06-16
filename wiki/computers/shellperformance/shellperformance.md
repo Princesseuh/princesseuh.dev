@@ -1,6 +1,5 @@
 ---
   title: "Performance tips and tricks for Fish Shell"
-  date: 2021-02-03
   eleventyNavigation:
     key: Fish Shell Performance
     parent: Computers

@@ -1,4 +1,4 @@
-import { QuickScore, quickScore } from "quick-score";
+import { QuickScore } from "quick-score";
 
 var fullElements
 var catalogue = document.getElementById("catalogue")
@@ -19,7 +19,7 @@ function initCatalogue() {
   })
 }
 
-function buildLibrary(elements) {
+function buildLibrary(elements, page = 1) {
   let catalogueClasses = catalogueContainer.className
   catalogueContainer.remove()
   catalogueContainer = document.createElement("div")

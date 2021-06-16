@@ -4,13 +4,12 @@ author: Feral Cat Den
 playtime: 5 hours
 started_on: 2021-03-30
 ended_on: 2021-03-31
-genre: Action Role-Playing
+genre: Adventure Puzzle
 platform: PC - Game Pass
-cover_alt: Code Vein's Cover. Depict two characters in an edgy-dark environnement
+cover_alt: The game cover shows the main character holding a planet while himself being in space
 
 ---
-Being a big fan of Dark Souls, I attempted playing this when it came out but I wasn't hooked and so I gave up quickly
 
-This time around however, while I still wasn't hooked at first, I gave it a legit try and ended up.. actually mostly enjoying it? The game definitely has its flaws, such as unnecessary sexualized designs especially for the female characters, most areas having non-inspiring level design (The cathedral level was annoying), inconsistent difficulty curve or the not really interesting narrative
+I liked this game, was really stylish. However, I deeply wish things could have been clearer, I often got stuck because it wasn't clear what I needed to do. Also, I played this at release and it was unfortunately really buggy, I often had to restart the game to be able to progress
 
-Yet, its gameplay was actually fairly fun, the fighting was cool, bosses were mostly good apart from a few and being able to mix and match different classes (blood codes) was really interesting. I had fun 👍
+It dragged on a lot towards the end (making you repeat things multiple times without any real added value) and got more and more pretentious to me. The overall message of the game through its story and its gameplay was.. unclear
