@@ -15,10 +15,15 @@ function makeDatesRelative() {
 
     const date = new Date(element.dataset.date)
     const deltaDays = Math.round((date.getTime() - Date.now()) / (1000 * 3600 * 24));
-    const deltaHours = Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60));
 
     if (deltaDays == 0) {
-      element.textContent = rtf.format(deltaHours, 'hours')
+      const deltaHours = Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60));
+
+      if (deltaHours == 0) {
+        element.textContent = "less than an hour ago"
+      } else {
+        element.textContent = rtf.format(deltaHours, 'hours')
+      }
     } else {
       element.textContent = rtf.format(deltaDays, 'days')
     }

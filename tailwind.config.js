@@ -184,7 +184,11 @@ module.exports = {
 
         '.foonotes__list-item': {
           marginBottom: ".5rem"
-        }
+        },
+
+        '.capitalize-first:first-letter': {
+          textTransform: 'uppercase',
+        },
 
       });
     }),

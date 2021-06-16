@@ -11,3 +11,7 @@ footnotes__list
 footnotes__list-item
 
 hover:no-underline
+
+capitalize-first
+capitalize-first
+.capitalize-first:first-letter
