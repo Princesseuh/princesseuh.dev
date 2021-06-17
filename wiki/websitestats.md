@@ -18,8 +18,8 @@ The blog contain a total of **{{ collections.post | length }} articles** filled 
 
 ## Wiki
 
-{# -4 is needed for the pages because the categories count at pages even though they have no content #}
-The wiki (that's where you are!) contain a total of **{{ collections.wiki | length - 4 }} pages**
+{# -5 is needed for the pages because the categories count as pages even though they have no content #}
+The wiki (that's where you are!) contain a total of **{{ collections.wiki | length - 5 }} pages**
 
 ## Catalogue
 

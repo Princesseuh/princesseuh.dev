@@ -103,9 +103,16 @@ A possible alternative would be the Deepin one, however it's harder to integrate
 
 Either way, pick your poison. I'll be the KDE fangirl in this war
 
+{% note "Fun fact" %}
+You'll be impressed to know that even though I had to install multiple complete DE for this article, the only thing that broke on my system was my monospace font in my browser
+
+The reason being that Deepin put a config file in `.config/fontconfig/` and it wasn't removed when I removed the package. Twas an easy fix. Apart from that, I was able to get back to the same exact state I was in before starting, no orphans left behind or config files. Computing is cool sometimes
+{% endnote %}
+
 ### The truth about all this
 
-The reality is that sure, the KDE or Deepin pickers might be better than the GTK one but they are still really not as good as the Windows one is. And I'm not talking necessarily about the Windows 10 one, even older ones are still better than what we can have on Linux today
+The reality is that sure, the KDE or Deepin pickers might be better than the GTK one but they are still really not as good as the Windows one is. And I'm not talking necessarily about the Windows 10 one, even older ones are still better than what we can have
+on Linux today
 
 It does have shortcomings though, this is computers after all, but overall it has a really good UX and it has all the features you need, thumbnails, bookmarks, search, network support, urls etc. The file picker on Windows 10 is basically just a `explorer.exe` window which means that it's also consistant with what people are used to, something that Linux isn't always that good at
 

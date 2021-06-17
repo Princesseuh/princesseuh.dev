@@ -18,4 +18,4 @@ Overall I liked it, though I think it could have been a little bit simplier whil
 
 ### Quick note regarding the format
 
-I read the paperback edition and the end of the book isn't padded with empty pages, not even a single one so I often saw parts of the end by accident. I wish there would have been a single blank page to avoid this, also there was few printing errors, it kept starting stories and never ending them, so annoying
+I read the paperback edition and the end of the book isn't padded with empty pages, not even a single one so I often saw parts of the end by accident. I wish there would have been a single blank page to avoid this, also there was few printing errors, it kept starting stories and never ending them, so annoying..

@@ -2,6 +2,7 @@ const markdownIt = require('markdown-it')
 const dayjs = require("dayjs");
 const utc = require('dayjs/plugin/utc')
 
+dayjs.extend(utc)
 
 module.exports = {
   jsonify: function(content) {
@@ -14,15 +15,19 @@ module.exports = {
   },
 
   readableDate: function (date) {
-    return dayjs(date).format('MMM DD, YYYY');
+    return dayjs(date).utc().format('MMM DD, YYYY');
   },
 
   readableDatetime: function (date) {
-    return dayjs(date).format("MMM DD, YYYY [at] HH:mm:ss");
+    return dayjs(date).utc().format("MMM DD, YYYY [at] HH:mm:ss");
   },
 
   htmlDateString: function (date) {
     //return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
+  },
+
+  utcDate: function(date) {
+    return dayjs(date).utc().format()
   },
 
   featured: function (arr) {

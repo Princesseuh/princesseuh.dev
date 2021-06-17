@@ -5,7 +5,7 @@
   </a>
 
   <div class="mb-2 text-creative-work text-sm">
-    <span>{{ post.data.date | readableDate }}</span>
+    <span>{{ post.date | readableDate }}</span>
     ·
     <span>
       {%- for tag in post.data.tags -%}
