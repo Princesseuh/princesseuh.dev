@@ -1,6 +1,6 @@
 ---
   permalink: false
   eleventyNavigation:
-    key: Computers
-    order: 0
+    key: Linux
+    order: 1
 ---

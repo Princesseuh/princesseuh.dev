@@ -34,11 +34,11 @@ layout: layouts/_base.njk
 
           <dl>
             <dt>Started on</dt>
-            <dd>{{ started_on | readableDate }}</dd>
+            <dd>{{ started_on.toUTCString() | readableDate }}</dd>
 
             {% if ended_on %}
               <dt>Ended on</dt>
-              <dd>{{ ended_on | readableDate }}</dd>
+              <dd>{{ ended_on.toUTCString() | readableDate }}</dd>
             {% endif %}
 
             {% if playtime %}

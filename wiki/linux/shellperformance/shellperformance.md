@@ -2,7 +2,7 @@
   title: "Performance tips and tricks for Fish Shell"
   eleventyNavigation:
     key: Fish Shell Performance
-    parent: Computers
+    parent: Linux
 ---
 
 {% usingCSSComponent "code" %}

@@ -4,7 +4,7 @@
   date: 2021-01-22
   eleventyNavigation:
     key: Why I use Arch Linux
-    parent: Computers
+    parent: Linux
 ---
 
 {% usingCSSComponent "code" %}
@@ -23,7 +23,7 @@ There's other things that I don't really like about Ubuntu (forcing snaps over t
 
 After stumbling around the Linux world, trying out many distros for a few days / weeks and ultimately always being displeased, eventually I did what everyone does: I installed Arch
 
-{% image src="./wiki/computers/archlinux/arch_logo.png", alt="Arch Linux logo" %}
+{% image src="./wiki/linux/archlinux/arch_logo.png", alt="Arch Linux logo" %}
 
 ### My first steps with Arch
 
