@@ -5,20 +5,18 @@
   </a>
 
   <div class="mb-2 text-creative-work text-sm">
-    <span>{{ post.date | readableDate }}</span>
+    {{ post.date | readableDate }}
     ·
-    <span>
-      {%- for tag in post.data.tags -%}
+    {%- for tag in post.data.tags -%}
       {% if tag != "post" %}
-      {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
-      <a href="{{ tagUrl | url }}">{{ tag }}</a>{{ ', ' if not loop.last }}
+        {% set tagUrl %}/articles/tags/{{ tag }}/{% endset %}
+        <a href="{{ tagUrl | url }}">{{ tag }}</a>{{ ', ' if not loop.last }}
       {% endif %}
-      {%- endfor -%}
-    </span>
+    {%- endfor -%}
   </div>
 
   {% if post.data.tagline %}
-  <span>{{ post.data.tagline | safe }}</span>
+  {{ post.data.tagline | safe }}
   {% endif %}
 </section>
 {% endmacro %}
