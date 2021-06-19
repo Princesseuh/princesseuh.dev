@@ -1,6 +1,6 @@
 object-cover object-top rounded-sm max-w-[200px] max-h-[300px]
 
-anchor-link
+header-anchor
 
 block-note
 block-title
@@ -11,7 +11,3 @@ footnotes__list
 footnotes__list-item
 
 hover:no-underline
-
-capitalize-first
-capitalize-first
-.capitalize-first:first-letter

@@ -282,15 +282,14 @@ module.exports = function (config) {
       typographer: true,
     })
       .use(markdownItAnchor, {
-        permalink: true,
-        permalinkClass: 'anchor-link',
-        permalinkSymbol: '#',
+        permalink: markdownItAnchor.permalink.headerLink(),
+        assistiveText: title => `Permalink to “${title}”`,
         level: [1, 2, 3, 4]
       })
   )
 
   // Plugins
-  config.addPlugin(pluginTOC, { ignoredElements: ['.anchor-link'] })
+  config.addPlugin(pluginTOC)
   config.addPlugin(pluginFootnotes, {baseClass: 'footnotes'})
   config.addPlugin(pluginNavigation);
   config.addPlugin(pluginSyntaxHighlight);

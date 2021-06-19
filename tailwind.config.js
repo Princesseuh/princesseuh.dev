@@ -15,7 +15,11 @@ module.exports = {
     ringColor: false,
     ringOffsetWidth: false,
     ringOffsetColor: false,
-    boxShadow: false
+    boxShadow: false,
+    transform: false,
+    backdropFilter: false,
+    borderOpacity: false,
+    textOpacity: false
   },
   theme: {
     screens: {
@@ -135,11 +139,6 @@ module.exports = {
           userSelect: "none"
         },
 
-        // Anchor links
-        '.anchor-link': {
-          display: "none"
-        },
-
         // Note blocks, often used on wiki
         '.block-note': {
           padding: ".9rem",
@@ -186,9 +185,16 @@ module.exports = {
           marginBottom: ".5rem"
         },
 
-        '.capitalize-first:first-letter': {
-          textTransform: 'uppercase',
-        },
+        '.hide-for-sr': {
+          clip: "rect(1px, 1px, 1px, 1px)",
+          clipPath: "inset(50%);",
+          height: "1px",
+          width: "1px",
+          margin: "-1px",
+          overflow: "hidden",
+          padding: "0",
+          position: "absolute"
+        }
 
       });
     }),
@@ -232,8 +238,8 @@ module.exports = {
           }
         },
 
-        'h1, h2, h3, h4, h5': {
-          letterSpacing: '-.01em'
+        'h1, h2, h3, h4': {
+          letterSpacing: '-.01em',
         },
 
         'dt': { fontWeight: 'bold' },
@@ -311,10 +317,24 @@ module.exports = {
           display: 'block'
         },
 
-        'h1, h2, h3, h4, h5': {
+        '.header-anchor': {
+          color: "inherit",
+          paddingLeft: "1.5ch",
+          marginLeft: '-1.5ch',
+
           '&:hover': {
-            '.anchor-link': {
-              display: "inline"
+            color: "inherit",
+
+            '&:after': {
+              content: "'#'",
+              color: theme('colors.beach-watermelon'),
+              position: 'relative',
+              left: '-1.5ch',
+              float: 'left',
+              width: '0',
+              height: '0',
+              textDecoration: 'none',
+              display: 'inline-block'
             }
           }
         }

@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "concurrently \"npm:watch:*\"",
     "watch:eleventy": "NODE_ENV=development eleventy --serve",
-    "watch:tailwind": "NODE_ENV=development postcss ./theme/css/tailwind.css -o ./_site/prin.css -w --verbose",
+    "watch:tailwind": "NODE_ENV=development tailwindcss -i ./theme/css/tailwind.css -o ./_site/prin.css --watch",
     "debug": "DEBUG=Eleventy* eleventy --serve",
     "debug:performance": "DEBUG=Eleventy:Benchmark* eleventy --serve",
-    "build": "eleventy"
+    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production tailwindcss -i ./theme/css/tailwind.css -o ./_site/prin.css --minify"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/Princesseuh/pricesseuh.dev#readme",
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "@11ty/eleventy-navigation": "^0.2.0",
+    "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.1",
     "@jamshop/eleventy-plugin-esbuild": "github:Princesseuh/eleventy-plugin-esbuild",
     "@jamshop/eleventy-plugin-typography": "^1.0.0",
@@ -37,18 +37,18 @@
     "dayjs": "^1.10.5",
     "eleventy-plugin-footnotes": "^0.9.0",
     "html-minifier-terser": "^5.1.1",
-    "markdown-it-anchor": "^7.1.0",
+    "markdown-it-anchor": "^8.0.1",
     "markdown-it-footnote": "^3.0.3",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^2.2.2"
   },
   "dependencies": {
     "@11ty/eleventy-assets": "^1.0.6",
     "@11ty/eleventy-img": "^0.9.0",
     "eleventy-plugin-nesting-toc": "^1.3.0",
-    "postcss": "^8.3.0",
+    "postcss": "^8.3.5",
     "postcss-cli": "^8.3.1",
     "quick-score": "^0.0.12",
-    "quicklink": "^2.1.0",
+    "quicklink": "^2.2.0",
     "shorthash2": "^1.0.3"
   }
 }

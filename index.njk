@@ -46,7 +46,7 @@
         <a class="block font-bold leading-tight" href="{{ page.url }}">
           {{ page.data.title }}
         </a>
-        <span class="text-sm capitalize-first block" data-date="{{ page.data.lastModified | utcDate}}">
+        <span class="text-sm first-letter:uppercase block" data-date="{{ page.data.lastModified | utcDate}}">
           {{ (page.data.lastModified | readableDatetime).slice(0, -3) }}
         </span>
       </section>
