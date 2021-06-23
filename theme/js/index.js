@@ -1,7 +1,9 @@
 import { listen } from 'quicklink';
 import { initSPA } from './spa.mjs';
 
-initSPA(onPageLoad);
+if (!(localStorage.getItem("spaDisabled") === "true")) {
+  initSPA(onPageLoad);
+}
 
 const rtf = new Intl.RelativeTimeFormat("en");
 
@@ -36,7 +38,15 @@ function onPageLoad() {
   makeDatesRelative();
 
   if (!(localStorage.getItem("prefetchDisabled") === "true")) {
-    listen();
+    listen({
+      hrefFn: (element) => {
+        if (!(localStorage.getItem("spaDisabled") === "true")) {
+          return element.href + (element.href.endsWith("/") ? "content.json" : "/content.json")
+        } else {
+          return element.href
+        }
+      }
+    });
   }
 }
 

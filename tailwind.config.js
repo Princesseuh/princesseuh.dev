@@ -18,8 +18,10 @@ module.exports = {
     boxShadow: false,
     transform: false,
     backdropFilter: false,
+    borderColor: false, // If we don't disable this, Tailwind will apply a default border color to all the elements
+
     borderOpacity: false,
-    textOpacity: false
+    textOpacity: false,
   },
   theme: {
     screens: {
@@ -217,6 +219,10 @@ module.exports = {
         ':root': {
           "-moz-tab-size": '4',
           tabSize: '4'
+        },
+
+        'input:disabled+label': {
+          color: theme("colors.creative-work")
         },
 
         // Custom stuff

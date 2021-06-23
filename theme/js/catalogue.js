@@ -11,7 +11,7 @@ function initCatalogue() {
     filterElement.addEventListener(filterElement.type == "text" ? "input" : "change", updateFilters)
   })
 
-  fetch("/api/catalogue.json")
+  fetch("/api/catalogueContent.json")
   .then(response => response.json())
   .then(data => {
     fullElements = data.content

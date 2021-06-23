@@ -19,6 +19,8 @@ const pluginTOC = require('eleventy-plugin-nesting-toc')
 const pluginFootnotes = require('eleventy-plugin-footnotes')
 const pluginESbuild = require("@jamshop/eleventy-plugin-esbuild");
 
+const cheerio = require('cheerio');
+
 function getCssFilePath(componentName) {
   return `theme/css/${componentName}.css`;
 }
@@ -30,6 +32,20 @@ function escapeHtml(unsafe) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+// from https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+function ensurePathExists(path, mask, cb) {
+  if (typeof mask == 'function') { // Allow the `mask` parameter to be optional
+    cb = mask;
+    mask = 0777;
+  }
+  fs.mkdir(path, {mask, recursive: true}, function (err) {
+    if (err) {
+      if (err.code == 'EEXIST') cb(null); // Ignore the error if the folder already exists
+      else cb(err); // Something else went wrong
+    } else cb(null); // Successfully created folder
+  });
 }
 
 const imageOptions = {
@@ -331,6 +347,33 @@ module.exports = function (config) {
       return minified
     }
     return content;
+  })
+
+
+  config.addTransform("html2jsonapi", (content, outputPath) => {
+    if (outputPath && outputPath.endsWith(".html")) {
+      const htmlContent = cheerio.load(content)
+      const styleElement = htmlContent('head > style')
+
+      const JsonContent = {
+        "title": htmlContent('title').text().trim(),
+        "content": htmlContent('main').html(),
+      }
+
+      if (styleElement.html().trim() != "") {
+        JsonContent.style = styleElement.html()
+      }
+
+      const data = JSON.stringify(JsonContent)
+
+      ensurePathExists(outputPath.replace("/index.html", ""), (err) => {
+        if (err) console.error("Couldn't create API folder " + err)
+        else {
+          fs.writeFileSync(outputPath.replace("index.html", "content.json"), data)
+        }
+      })
+    }
+    return content
   })
 
   config.addTransform("jsonmin", (content, outputPath) => {
