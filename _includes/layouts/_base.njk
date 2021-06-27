@@ -13,6 +13,23 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
+  {# Meta stuff #}
+  <meta name="og:title" content="{{ title if title else metadata.title}}">
+  <meta property="og:site_name" content="princesseuh.dev">
+  <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+  <meta name="twitter:title" content="{{ title if title else metadata.title}}">
+  <meta name="twitter:site" content="@_princesseuh">
+
+  {% if tags and 'post' in tags %}
+    <meta property="og:image" content="{{ metadata.url }}/{% GenerateSocialImage title %}" />
+    <meta name="twitter:image" content="{{ metadata.url }}/{% GenerateSocialImage title %}" />
+    <meta name="twitter:card" content="summary_large_image"/>
+  {% else %}
+    <meta property="og:image" content="{{ metadata.url }}/social-card.png" />
+    <meta name="twitter:image" content="{{ metadata.url }}/social-card.png" />
+    <meta name="twitter:card" content="summary"/>
+  {% endif %}
+
   {# We still include the style element even if empty so we can add to it through Javascript if needed #}
 	<style>
   {% if page.url | getCss | length %}

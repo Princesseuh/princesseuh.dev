@@ -18,6 +18,7 @@ const pluginTypography= require("@jamshop/eleventy-plugin-typography");
 const pluginTOC = require('eleventy-plugin-nesting-toc')
 const pluginFootnotes = require('eleventy-plugin-footnotes')
 const pluginESbuild = require("@jamshop/eleventy-plugin-esbuild");
+const pluginSocialImages = require("@manustays/eleventy-plugin-generate-social-images")
 
 const cheerio = require('cheerio');
 
@@ -317,6 +318,16 @@ module.exports = function (config) {
     },
     output: "_site/"
   });
+  config.addPlugin(pluginSocialImages, {
+    promoImage: "./theme/assets/social.png",
+    outputDir: "./_site/img/socials",
+    urlPath: "img/socials",
+    siteName: "princesseuh.dev",
+    titleColor: "#FEFFFE",
+    bgColor: "#28262C",
+    hideTerminal: true,
+    lineBreakAt: 45,
+  })
 
   config.addWatchTarget("./theme/**/*.css");
   config.addWatchTarget('./tailwind.config.js')
@@ -326,6 +337,7 @@ module.exports = function (config) {
   config.addPassthroughCopy({"theme/fonts": "fonts/"});
   //config.addPassthroughCopy({"theme/js/catalogue.js": "catalogue.js"})
   config.addPassthroughCopy({"theme/assets/favicon.svg": "favicon.svg"})
+  config.addPassthroughCopy({"theme/assets/social-card.png": "social-card.png"})
 
   config.setDataDeepMerge(true);
 

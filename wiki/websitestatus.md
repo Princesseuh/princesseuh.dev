@@ -24,6 +24,7 @@ Unlike the Future section below, those are things I would like to be completed b
 - The website currently doesn't work on mobile and tablets
 - Vertical rhythm is mostly good but a few elements are still missing
 - The font used for code blocks isn't installed on the website and doesn't have fallbacks
+- Add loading spinners (or other loading visualization) in place where content loading can be slow, for the moment that's page loadings and the catalogue
 
 ### Performance
 
@@ -41,15 +42,15 @@ Maybe in the future I'd like for those things to happens. I want this website to
 ### Technology
 
 - Right now this website uses Eleventy with Nunjucks for the templates and Tailwind for the CSS. In the future, I would love to instead move to using Vue 3 for the templates, however `eleventy-plugin-vue` does not [currently support using Vue files as templates](https://github.com/11ty/eleventy-plugin-vue/issues/5) neither does it support Vue 3 so that's not possible for the moment
+- I don't like the way images are done right now, {% footnoteref "image-shortcode", "Perhaps I could look into using eleventy-plugin-images-responsiver instead" %}the shortcode is clunky to use{% endfootnoteref %}, doesn't work well with CMSes and the result isn't necessarily that pleasant. I wish users could click on the images to see them in full resolution. Also, the code isn't that pretty at the moment, lots of repetition
+- I don't like how footnotes are done. It's nice that they are accessible but they make my markdown files very hard to parse for me
 
 ### Performance and Bugs
 
-- Add a loading spinner or something to indicate loading when the page transitions are too slow
 - Currently the page transition works nicely when going from normal page to wiki but not the reverse, what happens is {% footnoteref "side-transitions-wiki", "Frankly, this is a really minor issue and probably not worth spending too much time on" %}the side menus don't get affected by the transition and instead just disappear instantly once the loading is done{% endfootnoteref %}
 - Reduce dependencies as much as possible, some are used for convenience but can be removed easily. `concurrently` in particular needs to be removed as it's insanely big (almost as many files as eleventy itself!)
 
 ### New pages and features
 
-- I don't like the way images are done right now, the shortcode is clunky to use and doesn't work well with CMSes and the result isn't necessarily that pleasant. I wish users could click on the images to see them in full resolution. Also, the code isn't that pretty at the moment, lots of repetition
 - A {% footnoteref "glitch-gallery", "I used to have this on my old old website, years ago. I'm very good at getting in places in video games that the devs didn't expect and getting artsy with it is really fun" %}gallery of pictures I take of video games glitches{% endfootnoteref %}
 - Adding galleries support in posts (that include the wiki) and on standalone pages, [Mark Llorbrera has a cool exemple on his blog using PhotoSwipe](https://www.markllobrera.com/posts/eleventy-building-image-gallery-photoswipe/)

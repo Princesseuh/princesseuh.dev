@@ -15,9 +15,6 @@ override:layout: null
       "title": "{{ item.data.title }}",
       "cover": "{% catalogueCover src=cover, alt=item.data.cover_alt if item.data.cover_alt else defaultAlt, class="m-0", escape=true %}",
       "author": "{{ item.data.author }}"
-      {% if item.data.unfinished %}
-        ,"unfinished": true
-      {% endif %}
     }{{ ', ' if not loop.last }}
   {% endfor %}
   ]
