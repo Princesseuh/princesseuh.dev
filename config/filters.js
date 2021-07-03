@@ -1,36 +1,36 @@
-const markdownIt = require('markdown-it')
-const dayjs = require("dayjs");
-const utc = require('dayjs/plugin/utc')
+const markdownIt = require('markdown-it');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
 
-dayjs.extend(utc)
+dayjs.extend(utc);
 
 module.exports = {
-  jsonify: function(content) {
+  jsonify(content) {
     return JSON.stringify(content);
   },
 
-  markdown: function(content) {
-    var md = new markdownIt({ ty: true });
+  markdown(content) {
+    const md = new markdownIt({ ty: true });
     return md.renderInline(content);
   },
 
-  readableDate: function (date) {
+  readableDate(date) {
     return dayjs(date).utc().format('MMM DD, YYYY');
   },
 
-  readableDatetime: function (date) {
-    return dayjs(date).utc().format("MMM DD, YYYY [at] HH:mm:ss");
+  readableDatetime(date) {
+    return dayjs(date).utc().format('MMM DD, YYYY [at] HH:mm:ss');
   },
 
-  htmlDateString: function (date) {
-    //return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
+  htmlDateString(date) {
+    // return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   },
 
-  utcDate: function(date) {
-    return dayjs(date).utc().format()
+  utcDate(date) {
+    return dayjs(date).utc().format();
   },
 
-  featured: function (arr) {
-    return arr.filter(e => e.data.featured)
-  }
-}
+  featured(arr) {
+    return arr.filter((e) => e.data.featured);
+  },
+};
