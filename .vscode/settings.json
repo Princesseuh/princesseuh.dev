@@ -1,4 +1,8 @@
 {
     "explorer.sortOrder": "default",
     "npm.packageManager": "pnpm",
+    "files.autoSaveDelay": 2500,
+    "css.validate": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.lintTask.enable": true
 }

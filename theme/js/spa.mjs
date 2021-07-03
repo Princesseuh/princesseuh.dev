@@ -1,93 +1,48 @@
-export function initSPA(callDuringLoad) {
-  // This part is (a bit) inspired by the router Vitepress ship with at the time of writing, albeit a bit simpler and less featured
-  window.addEventListener('click', (evt) => {
-    const link = (evt.target).closest('a');
-    if (link) {
-      const { href, hostname, pathname, hash, target } = link
-      const currentURL = window.location;
+export default function initSPA(callDuringLoad) {
+  function loadPage(href, scrollPosition = 0) {
+    document.body.style.cursor = 'wait';
 
-      if (
-        !evt.ctrlKey &&
-        !evt.altKey &&
-        !evt.shiftKey &&
-        !evt.metaKey &&
-        target !== '_blank' &&
-        hostname === currentURL.hostname
-        ) {
-          evt.preventDefault();
+    const transitionEnabled = !(localStorage.getItem('transitionsDisabled') === 'true');
+    const targetLoc = new URL(href, document.baseURI);
+    const targetLocJSON = new URL(window.location.href + (window.location.href.endsWith('/') ? 'content.json' : '/content.json'));
 
-          if (pathname === currentURL.pathname) {
-            // If we're on the same page and the link is only an anchor, we scroll to it like the browser would
-            if (hash && hash !== currentURL.hash) {
-              history.pushState(null, '', hash);
+    const styleContainer = document.getElementsByTagName('style')[0];
+    const asideContainer = document.getElementsByTagName('aside');
+    let container = document.querySelector('main');
 
-              const target = document.querySelector(decodeURIComponent(link.hash));
-              target?.scrollIntoView(true);
-            }
-          } else {
-            // Save the current scroll position before changing to a new page
-            history.replaceState({ scrollPosition: window.scrollY }, document.title);
-            history.pushState(null, '', href);
+    if (transitionEnabled) {
+      const articleContainer = document.querySelector('article');
+      if (articleContainer) articleContainer.style.opacity = 0;
 
-            loadPage(href);
-          }
-        }
+      const tocContainer = document.querySelector('.toc');
+      if (tocContainer) tocContainer.style.opacity = 0;
 
-      }
-    })
+      // If we wanted to transitions the asides as well, we could simply do this - however, it causes transitions between wiki pages which is undesirable
+      // asideContainer?.forEach(aside => {
+      //   aside.style.opacity = 0;
+      // })
+    }
 
-    window.addEventListener('popstate', (e) => {
-      loadPage(location.href, (e.state && e.state.scrollPosition) || 0)
-    });
-
-    window.addEventListener('hashchange', (e) => {
-      e.preventDefault()
-    });
-
-    function loadPage(href, scrollPosition = 0) {
-      document.body.style.cursor = 'wait';
-
-      const transitionEnabled = !(localStorage.getItem("transitionsDisabled") === "true")
-      const targetLoc = new URL(href, document.baseURI);
-      const targetLocJSON = new URL(window.location.href + (window.location.href.endsWith('/') ? "content.json" : "/content.json"));
-
-      const styleContainer = document.getElementsByTagName('style')[0]
-      const asideContainer = document.getElementsByTagName('aside')
-      let container = document.querySelector('main');
-
-      if (transitionEnabled) {
-        const articleContainer = document.querySelector('article')
-        if (articleContainer) articleContainer.style.opacity = 0;
-
-        const tocContainer = document.querySelector('.toc')
-        if (tocContainer) tocContainer.style.opacity = 0;
-
-        // If we wanted to transitions the asides as well, we could simply do this - however, it causes transitions between wiki pages which is undesirable
-        // asideContainer?.forEach(aside => {
-        //   aside.style.opacity = 0;
-        // })
-      }
-
-      fetch(targetLocJSON)
-      .then(response => response.json())
+    fetch(targetLocJSON)
+      .then((response) => response.json())
       .then((data) => {
-        const template = document.createElement('template')
-        template.innerHTML = '<main>' + data.content + '</main>'
-        const templateScripts = template.content.querySelectorAll('script')
+        const template = document.createElement('template');
+        template.innerHTML = `<main>${data.content}</main>`;
+        const templateScripts = template.content.querySelectorAll('script');
 
         if (transitionEnabled) {
-          const resultArticleContainer = template.content.querySelector('article')
-          const resultToc = template.content.querySelector('.toc')
-          const resultAsides = template.content.querySelectorAll('aside')
+          const resultArticleContainer = template.content.querySelector('article');
+          const resultToc = template.content.querySelector('.toc');
+          const resultAsides = template.content.querySelectorAll('aside');
 
           resultArticleContainer.style.opacity = 0;
 
           if (resultToc) resultToc.style.opacity = 0;
 
           if (asideContainer.length === 0) {
-            resultAsides?.forEach(aside => {
+            resultAsides?.forEach((aside) => {
               aside.style.opacity = 0;
-            })
+            });
           }
         }
 
@@ -95,33 +50,35 @@ export function initSPA(callDuringLoad) {
           document.body.style.cursor = 'default'; // Reset default cursor
           document.title = data.title;
 
-          styleContainer.innerHTML = data.style || ''
+          styleContainer.innerHTML = data.style || '';
 
-          container.replaceWith(template.content.cloneNode(true))
+          container.replaceWith(template.content.cloneNode(true));
           container = document.querySelector('main');
 
           // Script tags are not executed when changing a page content through replaceWith so we eval them
           // for inline ones and create a new script element for those from external files
           if (templateScripts) {
-            templateScripts?.forEach(script => {
+            templateScripts?.forEach((script) => {
               if (script.src) {
-                var scriptElement = document.createElement('script')
-                scriptElement.src = script.src
-                container.appendChild(scriptElement)
+                const scriptElement = document.createElement('script');
+                scriptElement.src = script.src;
+                container.appendChild(scriptElement);
               } else {
-                (new Function(script.text))()
+                // eslint-disable-next-line no-new-func
+                (new Function(script.text))();
               }
-            })
+            });
           }
 
           // If we supplied a function to call once the page is loaded, execute it
-          if (callDuringLoad) callDuringLoad()
+          if (callDuringLoad) callDuringLoad();
 
           if (transitionEnabled) {
-            const article = container.querySelector("article");
-            const toc = container.querySelector(".toc");
-            const asides = container.querySelectorAll("aside");
+            const article = container.querySelector('article');
+            const toc = container.querySelector('.toc');
+            const asides = container.querySelectorAll('aside');
 
+            // eslint-disable-next-line no-unused-expressions
             article.offsetHeight;
             article.style.opacity = 1;
 
@@ -129,23 +86,67 @@ export function initSPA(callDuringLoad) {
               toc.style.opacity = 1;
             }
 
-            asides?.forEach(aside => {
+            asides?.forEach((aside) => {
               aside.style.opacity = 1;
-            })
+            });
           }
 
           if (targetLoc.hash && !scrollPosition) {
-            const target = document.querySelector(decodeURIComponent(link.hash));
+            const target = document.querySelector(decodeURIComponent(targetLoc.hash));
             target?.scrollIntoView(true);
           }
 
           window.scrollTo(0, scrollPosition);
-        }, transitionEnabled ? 100 : 0)
-
+        }, transitionEnabled ? 100 : 0);
       })
       .catch((err) => {
-        console.error("Couldn't load the target location JSON. Moving manually.." + err)
-        window.location.assign(targetLoc.href)
-      })
-    }
+        window.location.assign(targetLoc.href);
+      });
   }
+
+  // This part is (a bit) inspired by the router Vitepress ship with at the time of writing, albeit a bit simpler and less featured
+  window.addEventListener('click', (evt) => {
+    const link = (evt.target).closest('a');
+    if (link) {
+      const {
+        href, hostname, pathname, hash, target,
+      } = link;
+      const currentURL = window.location;
+
+      if (
+        !evt.ctrlKey
+        && !evt.altKey
+        && !evt.shiftKey
+        && !evt.metaKey
+        && target !== '_blank'
+        && hostname === currentURL.hostname
+      ) {
+        evt.preventDefault();
+
+        if (pathname === currentURL.pathname) {
+          // If we're on the same page and the link is only an anchor, we scroll to it like the browser would
+          if (hash && hash !== currentURL.hash) {
+            history.pushState(null, '', hash);
+
+            const targetElement = document.querySelector(decodeURIComponent(link.hash));
+            targetElement?.scrollIntoView(true);
+          }
+        } else {
+          // Save the current scroll position before changing to a new page
+          history.replaceState({ scrollPosition: window.scrollY }, document.title);
+          history.pushState(null, '', href);
+
+          loadPage(href);
+        }
+      }
+    }
+  });
+
+  window.addEventListener('popstate', (e) => {
+    loadPage(location.href, (e.state && e.state.scrollPosition) || 0);
+  });
+
+  window.addEventListener('hashchange', (e) => {
+    e.preventDefault();
+  });
+}

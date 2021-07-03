@@ -10,7 +10,7 @@ cover_alt: The cover depicts Lee and Clementine, the two main characters in fron
 
 ---
 
-After playing The Wolf Among Us, it was only natural to play this with my partner too. I must admit that it didn't reach my partner as much as I thought it would but that's okay - overall they enjoyed it
+After playing [The Wolf Among Us](/catalogue/games/thewolfamongus/), it was only natural to play this with my partner too. I must admit that it didn't reach my partner as much as I thought it would but that's okay - overall they enjoyed it
 
 ### Notes
 

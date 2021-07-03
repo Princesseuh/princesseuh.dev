@@ -3,7 +3,7 @@
   tagline: "Admittedly a weird mix, but it's what I need"
   date: 2021-02-11
   eleventyNavigation:
-    key: Typing Åå on Linux
+    key: Swedish + FR CA Layout
     parent: Linux
 ---
 
@@ -68,6 +68,10 @@ This part says which character to output when the key is pressed, you might be w
 `Mode_switch` is most of the time `AltGr` but it's a actually bit more complicated than that, I recommend reading the documentation about it as it is fairly outside of the scope of this page. `AltGr` being a not so reachable key, we will remap it to left `Alt` using the following import:
 
 `include "level3(lalt_switch)"`
+
+{% note 'Caution regarding lalt_switch' %}
+Unfortunately, this isn't macOS and apps expect the left alt to be used for shortcuts so setting this will break shortcuts in a lot of apps. What you can do is either use another level3 include to use another key, or omit it completely to use AltGr
+{% endnote %}
 
 And that's it for the layout file! This isn't needed on Sway with Wayland but if you were using let's say GNOME with Xorg, you would also need to add the keyboard layout to the following files: `/usr/share/X11/xkb/rules/evdev.xml` and `/usr/share/X11/xkb/rules/evdev.lst` otherwise it won't appear in the graphical tools for choosing your layouts
 

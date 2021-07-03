@@ -28,25 +28,25 @@
 
 <script>
   (function () {
-    const disableSPA = document.getElementById("cb--spa");
-    const disableTransitions = document.getElementById("cb--transitions");
-    const disablePrefetch = document.getElementById("cb--prefetch");
-    disableSPA.checked = localStorage.getItem("spaDisabled") == "true"
-    disableTransitions.disabled = disableSPA.checked
-    disableTransitions.checked = localStorage.getItem("transitionsDisabled") == "true"
-    disablePrefetch.checked = localStorage.getItem("prefetchDisabled") == "true"
+    const disableSPA = document.getElementById('cb--spa');
+    const disableTransitions = document.getElementById('cb--transitions');
+    const disablePrefetch = document.getElementById('cb--prefetch');
+    disableSPA.checked = localStorage.getItem('spaDisabled') == 'true';
+    disableTransitions.disabled = disableSPA.checked;
+    disableTransitions.checked = localStorage.getItem('transitionsDisabled') == 'true';
+    disablePrefetch.checked = localStorage.getItem('prefetchDisabled') == 'true';
 
     disableSPA.addEventListener('change', () => {
-      localStorage.setItem("spaDisabled", disableSPA.checked ? "true" : "false")
-      location.reload()
-    })
+      localStorage.setItem('spaDisabled', disableSPA.checked ? 'true' : 'false');
+      location.reload();
+    });
 
     disableTransitions.addEventListener('change', () => {
-      localStorage.setItem("transitionsDisabled", disableTransitions.checked ? "true" : "false")
-    })
+      localStorage.setItem('transitionsDisabled', disableTransitions.checked ? 'true' : 'false');
+    });
 
     disablePrefetch.addEventListener('change', () => {
-      localStorage.setItem("prefetchDisabled", disablePrefetch.checked ? "true" : "false")
-    })
-  } )();
+      localStorage.setItem('prefetchDisabled', disablePrefetch.checked ? 'true' : 'false');
+    });
+  }());
 </script>

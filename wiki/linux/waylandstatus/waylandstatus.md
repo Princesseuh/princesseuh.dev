@@ -18,7 +18,9 @@ If you've been using Linux for a long time now, you're probably aware that Linux
 
 For Wayland's case what this mean that if you're using a conventional stacking window manager, you're in luck because [GNOME (Mutter)](https://en.wikipedia.org/wiki/Mutter_(software)) and [KDE (KWin)](https://en.wikipedia.org/wiki/KWin) both supports NVIDIA GPUs, but any other options (be it stacking or tilling) doesn't. So yeah, [Sway doesn't officially support NVIDIA GPUs](https://github.com/swaywm/sway/wiki#nvidia-users)
 
-I, unfortunately for my Linux adventure, have a NVIDIA GPU, but thankfully, Sway runs fine using [Nouveau](https://nouveau.freedesktop.org/), the unofficial open source driver for NVIDIA GPUs
+I, unfortunately for my Linux adventure, have a NVIDIA GPU, but thankfully, Sway runs fine using [Nouveau](https://nouveau.freedesktop.org/), the unofficial open source driver for NVIDIA GPU. Nouveau isn't always perfect, it doesn't always have the best performance for gaming but, it's better than nothing
+
+I'll buy an AMD GPU next time
 
 {% image src="./wiki/linux/waylandstatus/waylandlogo.png", alt="The Wayland logo, a white W written on a yellow-ish circle using a graffiti font", caption="Wayland's logo" %}
 
@@ -40,7 +42,13 @@ and for Firefox, run using
 
 `MOZ_ENABLE_WAYLAND=1 firefox`
 
-For both of them, Wayland is still a work in progress but it's getting along really nicely, I don't notice any particular issues on my setup
+For both of them, Wayland is still a work in progress but it's getting along really nicely, I don't notice any particular issues on my setup that wouldn't happen on Xorg with Nouveau
+
+### Electron
+
+Electron support Wayland since its version 12, however it also needs the same flags Chrome does. It has certain limitations, namely [it doesn't support client side decorations](https://github.com/electron/electron/issues/27522) yet if you need those (this isn't really a requirement on Sway as it will render its own title bars)
+
+Unfortunately Electron apps tend to be slow at updating their Electron versions sometimes so for some applications it might take just a little bit more time before everything works, luckily projects like [discord_arch_electron](https://aur.archlinux.org/packages/discord_arch_electron/) exists to use your system's Electron instead of the bundled one
 
 ### Spotify
 

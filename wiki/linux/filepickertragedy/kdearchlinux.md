@@ -13,7 +13,7 @@ That's the default Qt file picker. To get the KDE one, the minimum list of packa
 - `plasma-integration`
 - `breeze` or `breeze-icons` (It can work without but: you won't have icons. Alternatively, you can use another Qt theme)
 
-With those installed, we get the normal KDE picker pictured earlier. It works nicely outside of a few things, namely thumbnails (the one thing we are here for!) and previews
+With those installed, we get the expected KDE picker. It works nicely outside of a few things, namely thumbnails (the one thing we are here for!) and previews
 
 For those to work, you need to install the `kio-extras` package and a few other packages in order get full support for various formats. On most systems you probably already have a few of the packages needed for the common formats (notably `libpng`) but you can install the following packages for other formats:
 
