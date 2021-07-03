@@ -22,6 +22,7 @@ specifiers:
   html-minifier-terser: ^5.1.1
   markdown-it-anchor: ^8.1.0
   markdown-it-footnote: ^3.0.3
+  netlify-plugin-cache: ^1.0.3
   postcss: ^8.3.5
   postcss-cli: ^8.3.1
   quick-score: ^0.0.12
@@ -58,6 +59,7 @@ devDependencies:
   html-minifier-terser: 5.1.1
   markdown-it-anchor: 8.1.0
   markdown-it-footnote: 3.0.3
+  netlify-plugin-cache: 1.0.3
   tailwindcss: 2.2.4_postcss@8.3.5
 
 packages:
@@ -2967,6 +2969,10 @@ packages:
 
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+    dev: true
+
+  /netlify-plugin-cache/1.0.3:
+    resolution: {integrity: sha512-CTOwNWrTOP59T6y6unxQNnp1WX702v2R/faR5peSH94ebrYfyY4zT5IsRcIiHKq57jXeyCrhy0GLuTN8ktzuQg==}
     dev: true
 
   /no-case/3.0.4:

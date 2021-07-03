@@ -40,6 +40,7 @@
     "html-minifier-terser": "^5.1.1",
     "markdown-it-anchor": "^8.1.0",
     "markdown-it-footnote": "^3.0.3",
+    "netlify-plugin-cache": "^1.0.3",
     "tailwindcss": "^2.2.4"
   },
   "dependencies": {
