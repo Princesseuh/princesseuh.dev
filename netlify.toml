@@ -2,3 +2,9 @@
 package = "netlify-plugin-cache"
   [plugins.inputs]
   paths = ["_site/img/"]
+
+[[headers]]
+  for = "*.avif"
+    [headers.values]
+      Content-Type = "image/avif"
+      Content-Disposition = "inline"

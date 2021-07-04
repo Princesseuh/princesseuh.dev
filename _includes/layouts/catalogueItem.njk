@@ -30,6 +30,11 @@ layout: layouts/_base.njk
               <dt>Platform</dt>
               <dd>{{ platform }}</dd>
             {% endif %}
+
+            {% if chapters %}
+              <dt>Chapters</dt>
+              <dd>{{ chapters }}</dd>
+            {% endif %}
           </dl>
 
           <dl>
@@ -49,6 +54,11 @@ layout: layouts/_base.njk
             {% if pages %}
               <dt>Pages</dt>
               <dd>{{ pages }}</dd>
+            {% endif %}
+
+            {% if volumes %}
+              <dt>Volumes</dt>
+              <dd>{{ volumes }}</dd>
             {% endif %}
           </dl>
         </section>

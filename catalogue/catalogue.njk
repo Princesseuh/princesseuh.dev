@@ -17,8 +17,8 @@ layout: layouts/_base.njk
     </div>
 
     <div>
-      <label class="block text-sm font-medium" for="types">Type</label>
-      <select name="types" id="catalogueType" class="catalogueFilter">
+      <label class="block text-sm font-medium" for="type">Type</label>
+      <select name="type" id="catalogueType" class="catalogueFilter">
         <option value="all">All</option>
         {% for type in collections.catalogueTypes %}
         <option value="{{ type }}">{{ type | capitalize }}</option>

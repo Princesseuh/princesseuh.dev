@@ -33,7 +33,6 @@ Unlike the Future section below, those are things I would like to be completed b
 ### Code Gardening
 
 - My `.eleventy.js` file is a mess, I need to look into best practices for the architecture of that file otherwise, It'll be a hard to maintain
-- Configure linters
 
 ## Future
 
@@ -41,8 +40,8 @@ Maybe in the future I'd like for those things to happens. I want this website to
 
 ### Technology
 
-- Right now this website uses Eleventy with Nunjucks for the templates and Tailwind for the CSS. In the future, I would love to instead move to using Vue 3 for the templates, however `eleventy-plugin-vue` does not [currently support using Vue files as templates](https://github.com/11ty/eleventy-plugin-vue/issues/5) neither does it support Vue 3 so that's not possible for the moment
-- I don't like the way images are done right now, {% footnoteref "image-shortcode", "Perhaps I could look into using eleventy-plugin-images-responsiver instead" %}the shortcode is clunky to use{% endfootnoteref %}, doesn't work well with CMSes and the result isn't necessarily that pleasant. I wish users could click on the images to see them in full resolution. Also, the code isn't that pretty at the moment, lots of repetition
+- Right now this website uses Eleventy with Nunjucks for the templates and Tailwind for the CSS. In the future, I would love to instead move to using Vue 3 for the templates, however `eleventy-plugin-vue` does not [currently support using Vue files as templates](https://github.com/11ty/eleventy-plugin-vue/issues/5) neither does [it support Vue 3](https://github.com/11ty/eleventy-plugin-vue/issues/31) so that's not possible for the moment
+- I don't like the way images are done right now, {% footnoteref "image-shortcode", "Perhaps I could look into using eleventy-plugin-images-responsiver instead" %}the shortcode is clunky to use{% endfootnoteref %}, doesn't work well with CMSes and the result isn't necessarily that pleasant. I wish users could click on the images to see them in full resolution. It would also be neat to have blurry placeholders
 - I don't like how footnotes are done. It's nice that they are accessible but they make my markdown files very hard to parse for me
 
 ### Performance and Bugs

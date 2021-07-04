@@ -37,14 +37,22 @@ function updateFilters() {
   let result = fullElements;
   const searchFilter = document.getElementById('catalogueSearch');
   const typeFilter = document.getElementById('catalogueType');
+  const searchParams = new URLSearchParams(window.location.search);
 
   if (typeFilter.value !== 'all') {
     result = result.filter((element) => element.type === typeFilter.value);
+    searchParams.set('type', typeFilter.value);
+  } else {
+    searchParams.delete('type');
   }
 
   if (searchFilter.value !== '') {
     const qs = new QuickScore(result, ['title', 'author']);
     const search = qs.search(searchFilter.value);
+
+    // Adding search to the URl works perfectly however, it result in a very unpleasant experience
+    // when going back through the browser. Perhaps setting it at some other time would be possible however
+    // searchParams.set('search', searchFilter.value);
 
     // QuickStore return an array in its custom format so we need to rebuild it in ours
     result = [];
@@ -54,19 +62,32 @@ function updateFilters() {
   }
 
   buildLibrary(result);
+
+  const newRelativePathQuery = `${window.location.pathname}?${searchParams.toString()}`;
+  window.history.replaceState(null, '', newRelativePathQuery);
 }
 
 function initCatalogue() {
   const filters = document.querySelectorAll('.catalogueFilter');
+  const searchParams = new URLSearchParams(window.location.search);
   filters.forEach((filterElement) => {
     filterElement.addEventListener(filterElement.type === 'text' ? 'input' : 'change', updateFilters);
+
+    if (searchParams.get(filterElement.name)) {
+      filterElement.value = searchParams.get(filterElement.name);
+    }
   });
 
   fetch('/api/catalogueContent.json')
     .then((response) => response.json())
     .then((data) => {
       fullElements = data.content;
-      buildLibrary(fullElements);
+
+      if (searchParams.toString() !== '') {
+        updateFilters();
+      } else {
+        buildLibrary(fullElements);
+      }
     });
 }
 

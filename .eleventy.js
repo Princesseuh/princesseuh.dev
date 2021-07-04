@@ -387,6 +387,9 @@ function minifyHTML(content) {
     removeStyleLinkTypeAttributes: true,
     sortAttributes: true,
     sortClassName: true,
+    removeOptionalTags: true,
+    removeAttributeQuotes: true,
+    collapseBooleanAttributes: true,
   });
 
   return minified;

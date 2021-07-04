@@ -12,5 +12,6 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
+    'no-param-reassign': ['error', { props: false }],
   },
 };
